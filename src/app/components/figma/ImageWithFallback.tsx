@@ -12,7 +12,9 @@ export function ImageWithFallback(props: ImgHTMLAttributes<HTMLImageElement>) {
 
   const { src, alt, style, className, ...rest } = props
 
-  const preventDownload = (e: MouseEvent) => e.preventDefault()
+  const preventDownload = (e: MouseEvent) => {
+    e.preventDefault()
+  }
 
   return didError ? (
     <div
@@ -20,10 +22,28 @@ export function ImageWithFallback(props: ImgHTMLAttributes<HTMLImageElement>) {
       style={style}
     >
       <div className="flex items-center justify-center w-full h-full">
-        <img src={ERROR_IMG_SRC} alt="Error loading image" draggable={false} onContextMenu={preventDownload} {...rest} data-original-url={src} />
+        <img
+          src={ERROR_IMG_SRC}
+          alt="Error loading image"
+          draggable={false}
+          onContextMenu={preventDownload}
+          onDragStart={preventDownload}
+          {...rest}
+          data-original-url={src}
+        />
       </div>
     </div>
   ) : (
-    <img src={src} alt={alt} className={className} style={style} draggable={false} onContextMenu={preventDownload} {...rest} onError={handleError} />
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      style={style}
+      draggable={false}
+      onContextMenu={preventDownload}
+      onDragStart={preventDownload}
+      {...rest}
+      onError={handleError}
+    />
   )
 }
