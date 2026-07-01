@@ -7,7 +7,7 @@ const images = import.meta.glob<{ default: string }>(
 // 提取 basename (不含路径和扩展名) → URL
 function resolve(name: string): string {
   const key = `../assets/${name}`;
-  return (images as Record<string, string>)[key];
+  return (images as unknown as Record<string, string>)[key];
 }
 
 export const localImages = {

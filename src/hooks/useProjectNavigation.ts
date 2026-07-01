@@ -16,8 +16,8 @@ interface UseProjectNavigationOptions {
 
 interface UseProjectNavigationResult {
   currentIndex: number;
-  prevId: string | null;
-  nextId: string | null;
+  prevId?: string;
+  nextId?: string;
 }
 
 export function useProjectNavigation(
@@ -32,11 +32,11 @@ export function useProjectNavigation(
     () => (id ? allProjectIds.indexOf(id) : -1),
     [id, allProjectIds],
   );
-  const prevId = currentIndex > 0 ? allProjectIds[currentIndex - 1] : null;
+  const prevId = currentIndex > 0 ? allProjectIds[currentIndex - 1] : undefined;
   const nextId =
     currentIndex < allProjectIds.length - 1
       ? allProjectIds[currentIndex + 1]
-      : null;
+      : undefined;
 
   useEffect(() => {
     if (isDisabled) return;

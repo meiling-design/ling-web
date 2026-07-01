@@ -24,12 +24,3 @@ export const fadeIn: Variants = {
   },
 };
 
-/** 子元素交错入场（配合 fadeUp/fadeIn 使用） */
-export const stagger: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};

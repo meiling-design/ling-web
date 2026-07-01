@@ -13,7 +13,7 @@
  * - 新增项目：① 在 projectDetailData 中写完整数据 ② 在对应分组的 projectIds 追加 id
  *   ③ 如展示层与详情层的 title/image 不同，在 listingOverrides 中覆写
  */
-import { projectDetailData } from "../app/projectDetailData";
+import { ProjectData, projectDetailData } from "../app/projectDetailData";
 import { localImages } from "../app/imageAssets";
 
 // ---- 透传详情数据 ----
@@ -84,11 +84,24 @@ const listingOverrides: Record<string, ListingOverride> = {
 
 // ---- 内部函数 ----
 
+const listingCache = new Map<string, ProjectListing>();
+const projectGroupById = new Map<string, ProjectGroup>();
+const projectGroupIndex = new Map<string, string>();
+const allProjectIds = Object.keys(projectDetailData);
+
 function toListing(id: string): ProjectListing {
+  const cached = listingCache.get(id);
+  if (cached) return cached;
+
   const project = projectDetailData[id];
-  if (!project) return { id, title: id, subtitle: "", category: "" };
+  if (!project) {
+    const fallback = { id, title: id, subtitle: "", category: "" };
+    listingCache.set(id, fallback);
+    return fallback;
+  }
+
   const override = listingOverrides[id];
-  return {
+  const listing: ProjectListing = {
     id,
     title: override?.title ?? project.title,
     subtitle: project.subtitle,
@@ -96,6 +109,9 @@ function toListing(id: string): ProjectListing {
     image: override?.image ?? project.images?.[0],
     homeDescription: project.homeDescription,
   };
+
+  listingCache.set(id, listing);
+  return listing;
 }
 
 // ---- 分组定义 ----
@@ -172,10 +188,8 @@ export const projectGroups: ProjectGroup[] = [
 
 // ---- 反向索引缓存 ----
 
-/** projectId → groupId 的 Map，避免每调用一次 getProjectGroup 就遍历一次 */
-const projectGroupIndex = new Map<string, string>();
-
 for (const group of projectGroups) {
+  projectGroupById.set(group.id, group);
   for (const pid of group.projectIds) {
     projectGroupIndex.set(pid, group.id);
   }
@@ -190,7 +204,7 @@ export function getGroupProjects(ids: string[]): ProjectListing[] {
 
 /** 获取所有项目 ID（有序） */
 export function getAllProjectIds(): string[] {
-  return Object.keys(projectDetailData);
+  return allProjectIds;
 }
 
 /** 根据 ID 获取完整项目详情数据 */
@@ -205,7 +219,7 @@ export function getProjectGroup(id: string): string | undefined {
 
 /** 根据分组 ID 获取完整分组信息 */
 export function getGroupById(groupId: string): ProjectGroup | undefined {
-  return projectGroups.find((g) => g.id === groupId);
+  return projectGroupById.get(groupId);
 }
 
 /** 指定分组是否应在详情页显示 detailTags */

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, type KeyboardEvent, type ReactNode } from "react";
 import { useParams, Link } from "react-router";
 import { motion } from "motion/react";
 import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
@@ -7,7 +7,7 @@ import { Lightbox } from "./components/ui/Lightbox";
 import { BackToHomeLink, ProjectMetadata } from "./components/product";
 import { getProjectById, getAllProjectIds, getProjectGroup, groupHasDetailTags } from "../services/projectService";
 import type { ProjectData } from "../services/projectService";
-import { fadeUp, stagger } from "../services/animationVariants";
+import { fadeUp } from "../services/animationVariants";
 import { useProjectNavigation } from "../hooks/useProjectNavigation";
 import { localImages } from "./imageAssets";
 
@@ -193,10 +193,10 @@ export function ProjectDetail() {
                 { label: "地点 / SITE", value: project.location },
                 { label: "类别 / CATEGORY", value: project.category },
                 { label: "角色 / ROLE", value: project.role },
-                project.mentor && { label: "指导 / INSTRUCTOR", value: project.mentor },
+                project.mentor ? { label: "指导 / INSTRUCTOR", value: project.mentor } : null,
               ]
-                .filter(Boolean)
-                .map((item: { label: string; value: string }) => (
+                .filter((item): item is { label: string; value: string } => item !== null)
+                .map((item) => (
                   <div key={item.label} className="flex flex-col gap-1 text-[0.75rem]">
                     <span className="text-[#BBB] tracking-widest uppercase text-[0.65rem] font-bold">{item.label}</span>
                     <span className="text-[#1A1A1A]">{item.value}</span>
@@ -360,12 +360,14 @@ function ChapterHeader({ number, title, enTitle, expanded, onToggle }: {
 
 /* ---------- CollapsibleContent —— 可折叠内容区 ---------- */
 function CollapsibleContent({ expanded, children }: { expanded: boolean; children: React.ReactNode }) {
+  if (!expanded) {
+    return null;
+  }
+
   return (
     <div
       aria-hidden={!expanded}
-      className={`overflow-hidden transition-all duration-500 ease-in-out ${
-        expanded ? "max-h-[20000px] opacity-100" : "max-h-0 opacity-0"
-      }`}
+      className="overflow-hidden transition-all duration-500 ease-in-out max-h-[20000px] opacity-100"
     >
       {children}
     </div>
@@ -2539,6 +2541,8 @@ function QAHeader({ number, question, answer }: {
 
 /* ---------- JobMatchingHero —— 第一屏：项目头图 ---------- */
 function JobMatchingHero({ project }: { project: ProjectData }) {
+  const [showWorkflowImage, setShowWorkflowImage] = useState(true);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -2590,23 +2594,23 @@ function JobMatchingHero({ project }: { project: ProjectData }) {
         className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-blue-50/30 to-purple-50/30"
       >
         <div className="aspect-[16/7] flex items-center justify-center">
-          <img
-            src={project.images[1] || localImages.coverJobMatching}
-            alt="Job Matching AI Agent - Hero Workflow"
-            className="w-full h-full object-contain p-4"
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.display = "none";
-              (e.target as HTMLImageElement).parentElement!.classList.add("flex", "flex-col", "items-center", "justify-center");
-            }}
-          />
-          <div className="hidden flex-col items-center justify-center text-muted-foreground">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="mb-3 opacity-40">
-              <rect x="3" y="3" width="18" height="18" rx="3" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <path d="M21 15l-5-5L5 21" />
-            </svg>
-            <p className="text-sm font-medium">Hero Workflow Diagram</p>
-          </div>
+          {showWorkflowImage ? (
+            <img
+              src={project.images[1] || localImages.coverJobMatching}
+              alt="Job Matching AI Agent - Hero Workflow"
+              className="w-full h-full object-contain p-4"
+              onError={() => setShowWorkflowImage(false)}
+            />
+          ) : (
+            <div className="flex flex-col items-center justify-center text-muted-foreground px-8 py-6">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="mb-3 opacity-40">
+                <rect x="3" y="3" width="18" height="18" rx="3" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <path d="M21 15l-5-5L5 21" />
+              </svg>
+              <p className="text-sm font-medium">Hero Workflow Diagram</p>
+            </div>
+          )}
         </div>
       </motion.div>
     </motion.div>
@@ -3026,6 +3030,38 @@ function ValueSection({ localImages }: { localImages: Record<string, string> }) 
 
 // ---------- 主组件 ----------
 
+function ScreenFooter({
+  project,
+  prevId,
+  nextId,
+  currentIndex,
+  totalCount,
+  padding = "",
+  variant = "yimo",
+}: {
+  project: ProjectData;
+  prevId?: string;
+  nextId?: string;
+  currentIndex: number;
+  totalCount: number;
+  padding?: string;
+  variant?: "default" | "yimo";
+}) {
+  return (
+    <div className={`${padding}`}>
+      <div className="h-px bg-border mb-6" />
+      <ProjectMetadata project={project} className="mb-6" hideLocation />
+      <ProjectNav
+        prevId={prevId}
+        nextId={nextId}
+        currentIndex={currentIndex}
+        totalCount={totalCount}
+        variant={variant}
+      />
+    </div>
+  );
+}
+
 function JobMatchingProductDetail({
   project,
   allProjectIds,
@@ -3053,21 +3089,6 @@ function JobMatchingProductDetail({
     { num: "03", label: "Design" },
     { num: "04", label: "Value" },
   ];
-
-  // 每屏底部的元数据 + 导航组件
-  const ScreenFooter = ({ padding = "" }: { padding?: string }) => (
-    <div className={`${padding}`}>
-      <div className="h-px bg-border mb-6" />
-      <ProjectMetadata project={project} className="mb-6" />
-      <ProjectNav
-        prevId={prevId}
-        nextId={nextId}
-        currentIndex={currentIndex}
-        totalCount={allProjectIds.length}
-        variant="yimo"
-      />
-    </div>
-  );
 
   const scrollToPage = (index: number) => {
     if (!scrollContainerRef.current) return;
@@ -3109,7 +3130,13 @@ function JobMatchingProductDetail({
             <div>
               <JobMatchingHero project={project} />
             </div>
-            <ScreenFooter />
+            <ScreenFooter
+              project={project}
+              prevId={prevId}
+              nextId={nextId}
+              currentIndex={currentIndex}
+              totalCount={allProjectIds.length}
+            />
           </div>
         </section>
 
@@ -3137,7 +3164,14 @@ function JobMatchingProductDetail({
                 </p>
               </motion.div>
             </div>
-            <ScreenFooter padding="mt-8" />
+            <ScreenFooter
+              padding="mt-8"
+              project={project}
+              prevId={prevId}
+              nextId={nextId}
+              currentIndex={currentIndex}
+              totalCount={allProjectIds.length}
+            />
           </div>
         </section>
 
@@ -3152,7 +3186,14 @@ function JobMatchingProductDetail({
               />
               <WorkflowSection localImages={localImages} />
             </div>
-            <ScreenFooter padding="mt-8" />
+            <ScreenFooter
+              padding="mt-8"
+              project={project}
+              prevId={prevId}
+              nextId={nextId}
+              currentIndex={currentIndex}
+              totalCount={allProjectIds.length}
+            />
           </div>
         </section>
 
@@ -3167,7 +3208,14 @@ function JobMatchingProductDetail({
               />
               <WhySection />
             </div>
-            <ScreenFooter padding="mt-8" />
+            <ScreenFooter
+              padding="mt-8"
+              project={project}
+              prevId={prevId}
+              nextId={nextId}
+              currentIndex={currentIndex}
+              totalCount={allProjectIds.length}
+            />
           </div>
         </section>
 
@@ -3182,7 +3230,14 @@ function JobMatchingProductDetail({
               />
               <ValueSection localImages={localImages} />
             </div>
-            <ScreenFooter padding="mt-8" />
+            <ScreenFooter
+              padding="mt-8"
+              project={project}
+              prevId={prevId}
+              nextId={nextId}
+              currentIndex={currentIndex}
+              totalCount={allProjectIds.length}
+            />
           </div>
         </section>
       </div>

@@ -1,11 +1,19 @@
 import { motion } from "motion/react";
 import { HorizontalSection } from "./components/ui/HorizontalSection";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useLocation } from "react-router";
 import { projectGroups, getGroupProjects } from "../services/projectService";
 
 export function Home() {
   const { hash } = useLocation();
+
+  const sections = useMemo(
+    () => projectGroups.map((group) => ({
+      ...group,
+      projects: getGroupProjects(group.projectIds),
+    })),
+    [],
+  );
 
   useEffect(() => {
     if (hash) {
@@ -67,13 +75,13 @@ export function Home() {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        {projectGroups.map((group) => (
+        {sections.map((group) => (
           <HorizontalSection
             key={group.id}
             id={group.id}
             title={group.title}
             subtitle={group.subtitle}
-            projects={getGroupProjects(group.projectIds)}
+            projects={group.projects}
           />
         ))}
       </motion.div>
