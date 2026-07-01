@@ -1,0 +1,52 @@
+node_modules
+dist
+*.local
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+
+# Next.js 构建产物
+.next/
+
+# 环境变量
+.env
+.env.local
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE 配置（可选，如果希望团队共享 VSCode 配置则删除本行）
+.vscode/
+
+# 日志
+*.log
+
+# 临时文件
+*.tmp
+.cache/2
+
+# 项目说明文档
+doc.md
+
+# Claude AI 本地记忆（含凭证，不上传）
+.claude/
+
+# Supabase 后端代码（部署在 Supabase 端，非 Vercel 所需）
+supabase/
+
+# 项目首页说明（不上传，留给本地使用）
+README.md
+
+# 设计源文件（非 web 格式）
+src/assets/cover6.psd
+
+# Claude Code 技能文件
+.agents/
+skills-lock.json
+
+# 项目说明文档
+ATTRIBUTIONS.md
+guidelines/
