@@ -417,8 +417,14 @@ function ProjectNav({ prevId, nextId, currentIndex, totalCount, variant = "defau
    3. Pain Point Map — 痛点地图
    ================================================================ */
 function PainPointMap() {
+  const items = [
+    { icon: "📡", title: "传播", subtitle: "MEDIA", points: ["数字化传播单一", "年轻用户触达率低"] },
+    { icon: "🧑‍🎨", title: "传承", subtitle: "INHERIT", points: ["传承人老龄化", "后继者不足"] },
+    { icon: "🏮", title: "文化", subtitle: "CULTURE", points: ["缺乏场景体验", "缺少现代表达"] },
+    { icon: "🥽", title: "科技", subtitle: "TECH", points: ["VR体验缺失", "沉浸感不足"] },
+  ];
   return (
-    <div className="space-y-6">
+    <div className="space-y-10">
       <motion.p
         variants={fadeUp}
         initial="hidden"
@@ -439,68 +445,44 @@ function PainPointMap() {
         <Card title="🧓 传承人侧" desc="传播渠道少、数字化能力弱 — 传统技艺无法有效触达年轻受众" />
         <Card title="🏭 行业侧" desc="产业链断裂、商业模式弱 — 从体验到消费的闭环未形成" />
       </motion.div>
-    </div>
-  );
-}
 
-/* ================================================================
-   5. Opportunity Framework — 图文故事
-   ================================================================ */
-function OpportunityFramework() {
-  const items = [
-    { icon: "📡", title: "传播", subtitle: "MEDIA", points: ["数字化传播单一", "年轻用户触达率低"] },
-    { icon: "🧑‍🎨", title: "传承", subtitle: "INHERIT", points: ["传承人老龄化", "后继者不足"] },
-    { icon: "🏮", title: "文化", subtitle: "CULTURE", points: ["缺乏场景体验", "缺少现代表达"] },
-    { icon: "🥽", title: "科技", subtitle: "TECH", points: ["VR体验缺失", "沉浸感不足"] },
-  ];
-  return (
-    <div className="space-y-8">
-      {/* 引子 */}
-      <motion.p
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="text-center text-2xl md:text-3xl font-bold text-foreground tracking-tight"
-      >
-        非遗传播断层
-      </motion.p>
-
-      <motion.div
-        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="grid md:grid-cols-2 gap-4"
-      >
-        {items.map((item) => (
-          <motion.div
-            key={item.title}
-            variants={fadeUp}
-            className="group p-5 md:p-6 border border-border rounded-2xl bg-card hover:shadow-md hover:border-foreground/20 transition-all duration-300"
-          >
-            <div className="flex items-start gap-4">
-              <span className="text-2xl shrink-0 mt-0.5">{item.icon}</span>
-              <div className="min-w-0">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-base font-bold text-foreground">{item.title}</span>
-                  <span className="text-[0.5rem] text-muted-foreground tracking-[0.25em] uppercase font-medium">{item.subtitle}</span>
+      <div className="space-y-4">
+        <h3 className="text-xl font-semibold text-foreground text-center">机会框架 / Opportunity Framework</h3>
+        <motion.div
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 gap-4"
+        >
+          {items.map((item) => (
+            <motion.div
+              key={item.title}
+              variants={fadeUp}
+              className="group p-5 md:p-6 border border-border rounded-2xl bg-card hover:shadow-md hover:border-foreground/20 transition-all duration-300"
+            >
+              <div className="flex items-start gap-4">
+                <span className="text-2xl shrink-0 mt-0.5">{item.icon}</span>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-base font-bold text-foreground">{item.title}</span>
+                    <span className="text-[0.5rem] text-muted-foreground tracking-[0.25em] uppercase font-medium">{item.subtitle}</span>
+                  </div>
+                  <ul className="space-y-2">
+                    {item.points.map((p) => (
+                      <li key={p} className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                        <span className="w-1 h-1 rounded-full bg-foreground/30 shrink-0" />
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="space-y-2">
-                  {item.points.map((p) => (
-                    <li key={p} className="flex items-center gap-2.5 text-sm text-muted-foreground">
-                      <span className="w-1 h-1 rounded-full bg-foreground/30 shrink-0" />
-                      {p}
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
 
-      {/* 结语 */}
       <motion.p
         variants={fadeUp}
         initial="hidden"
@@ -2281,9 +2263,6 @@ function YimoVRProductDetail({
         2.3 Opportunity Framework — 机会框架
         ════════════════════════════════════════════════════════════
       */}
-      <Section title="机会框架 / Opportunity Framework">
-        <OpportunityFramework />
-      </Section>
       </CollapsibleContent>
 
       {/*
@@ -2683,10 +2662,10 @@ function ProblemSection({ localImages }: { localImages: Record<string, string> }
         className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-blue-50/30 to-purple-50/30 min-h-[300px] flex items-center justify-center"
       >
         <PlaceholderImage
-          src={localImages.jobmatchingOverview}
-          alt="Product Overview"
-          title="Product Overview"
-          subtitle="Workflow Hero Diagram"
+          src={localImages.aiWorkflowDiagram}
+          alt="AI Workflow Diagram"
+          title="AI Workflow Diagram"
+          subtitle="Job Matching AI Agent"
         />
       </motion.div>
     </div>
@@ -2748,9 +2727,9 @@ function WorkflowSection({ localImages }: { localImages: Record<string, string> 
         className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-blue-50/30 to-purple-50/30 min-h-[300px] flex items-center justify-center"
       >
         <PlaceholderImage
-          src={localImages.jobmatchingWorkflow}
-          alt="Workflow Diagram"
-          title="Workflow Diagram"
+          src={localImages.jobmatchingLanggraphWorkflow}
+          alt="LangGraph Workflow Diagram"
+          title="LangGraph Workflow Diagram"
           subtitle="LangGraph StateGraph 工作流编排"
         />
       </motion.div>

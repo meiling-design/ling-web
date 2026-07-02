@@ -104,7 +104,6 @@ export const localImages = {
   hetao02: resolve("hetao02.jpg"),
   hetao04: resolve("hetao04.jpg"),
   hetao05: resolve("hetao05.jpg"),
-  hetao06: resolve("hetao06.jpg"),
   hetao08: resolve("hetao08.jpg"),
   hetao10: resolve("hetao10.jpg"),
   hetao11: resolve("hetao11.jpg"),
@@ -141,10 +140,13 @@ export const localImages = {
   london12: resolve("london12.jpg"),
 
   // Job Matching AI Agent
+  cover01: resolve("cover01.png"),
   coverJobMatching: resolve("cover-job-matching.png"),
+  aiWorkflowDiagram: resolve("AI Workflow Diagram.png"),
   jobmatchingHero: resolve("jobmatching-hero.png"),
   jobmatchingOverview: resolve("jobmatching-overview.png"),
   jobmatchingWorkflow: resolve("jobmatching-workflow.png"),
+  jobmatchingLanggraphWorkflow: resolve("langgraph-workflow.png"),
   jobmatchingSystem: resolve("jobmatching-system.png"),
   jobmatchingDecision: resolve("jobmatching-decision.png"),
   jobmatchingInterface: resolve("jobmatching-interface.png"),
