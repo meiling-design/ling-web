@@ -548,7 +548,7 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionEN: `A VR-driven immersive platform for Intangible Cultural Heritage. Three core modules: Yijing (360° VR immersion), Yimo (SVG pattern design), and Yizong (community & education), creating a differentiated advantage of "immersive experience + design participation + social connection."`,
     year: "2025",
     location: "湖南",
-    role: "团队运营负责人",
+    role: "团队负责人",
     images: [
       localImages.productHeroCover,
       localImages.productVr15,

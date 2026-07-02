@@ -1534,62 +1534,150 @@ function CurrentSolutions() {
 }
 
 /* ================================================================
-   4.2 Product Positioning — 产品定位
+   4.2 产品架构 — Product Blueprint（5层系统模型｜中文完整版）
    ================================================================ */
 function ProductPositioningSection() {
-  const principles = [
-    { icon: "\u{1F97D}", title: "沉浸参与", desc: "通过VR技术打造沉浸式非遗体验，让用户身临其境感受文化魅力" },
-    { icon: "\u{1F464}", title: "用户中心", desc: "以用户需求为导向，降低创作门槛，让每个人都能参与文化传承" },
-    { icon: "\u{1F3AF}", title: "多感体验", desc: "融合视觉、听觉、互动多维度感官设计，提升文化认知深度" },
-    { icon: "\u{1F504}", title: "社交驱动", desc: "社区机制形成传播闭环，让非遗文化在互动分享中持续扩散" },
-  ];
   return (
-    <div className="space-y-8">
-      <motion.p
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="text-center text-base text-muted-foreground max-w-2xl mx-auto"
-      >
-        以"沉浸式+参与式"为核心理念，将可视化叙事与用户共创融入产品设计全过程
-      </motion.p>
-      {/* 定位宣言 */}
-      <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="p-6 border border-foreground/10 rounded-xl bg-gradient-to-br from-background to-muted text-center max-w-2xl mx-auto"
-      >
-        <p className="text-[0.55rem] font-bold text-muted-foreground uppercase tracking-widest">Product Positioning</p>
-        <p className="text-lg font-bold text-foreground mt-2 leading-snug">
-          让非遗触手可及 — 沉浸式体验 × AI创作 × 社区传播
-        </p>
-        <p className="text-sm text-muted-foreground mt-2">
-          遗墨不是又一个内容平台，而是非遗文化的数字化基础设施
+    <div>
+      <SectionDivider label="产品架构 / PRODUCT ARCHITECTURE" />
+
+      {/* 架构图 */}
+      <motion.div variants={fadeUp} className="mb-12">
+        <div
+          className="rounded-2xl border border-border overflow-hidden bg-white"
+          style={{ aspectRatio: "16/9" }}
+        >
+          <ImageWithFallback
+            src={localImages.vrPlatformArchitecture}
+            alt="系统架构图"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <p className="text-center text-sm text-muted-foreground tracking-widest uppercase mt-6">
+          系统架构概览 · 五层模型
         </p>
       </motion.div>
-      {/* 设计原则四卡片 */}
-      <motion.div
-        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="grid md:grid-cols-2 lg:grid-cols-4 gap-4"
-      >
-        {principles.map((p) => (
-          <motion.div
-            key={p.title}
-            variants={fadeUp}
-            className="text-center p-5 border border-border rounded-xl bg-card hover:shadow-md transition-all"
-          >
-            <span className="text-3xl block mb-3">{p.icon}</span>
-            <h3 className="text-sm font-bold text-foreground mb-2">{p.title}</h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
-          </motion.div>
-        ))}
-      </motion.div>
+
+      {/* 产品定义 */}
+      <div className="mb-12">
+        <p className="text-sm text-muted-foreground leading-relaxed max-w-3xl mx-auto text-center">
+          本产品是一个文化智能平台，通过VR沉浸体验、UGC内容创作与AI驱动推荐系统，
+          重构非遗文化的生产、体验与传播方式。
+        </p>
+      </div>
+
+      {/* =========================
+          五层系统架构
+         ========================= */}
+
+      <div className="space-y-6">
+
+        {/* ① 体验层 */}
+        <motion.div variants={fadeUp} className="border rounded-2xl p-6 bg-white">
+          <div className="text-sm tracking-widest text-muted-foreground mb-2">
+            第01层
+          </div>
+          <h3 className="text-lg font-medium mb-2">
+            体验层 · Experience Layer
+          </h3>
+          <p className="text-sm text-muted-foreground mb-3">
+            用户直接接触的沉浸式交互空间
+          </p>
+          <div className="flex flex-wrap gap-2 text-xs">
+            <span className="px-3 py-1 bg-gray-100 rounded-full">VR沉浸体验</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">UGC创作界面</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">社交互动空间</span>
+          </div>
+        </motion.div>
+
+        {/* ② 应用层 */}
+        <motion.div variants={fadeUp} className="border rounded-2xl p-6 bg-white">
+          <div className="text-sm tracking-widest text-muted-foreground mb-2">
+            第02层
+          </div>
+          <h3 className="text-lg font-medium mb-2">
+            应用层 · Application Layer
+          </h3>
+          <p className="text-sm text-muted-foreground mb-3">
+            支撑核心功能运行的系统能力层
+          </p>
+          <div className="flex flex-wrap gap-2 text-xs">
+            <span className="px-3 py-1 bg-gray-100 rounded-full">VR引擎系统</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">内容创作系统</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">社区互动系统</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">场景管理系统</span>
+          </div>
+        </motion.div>
+
+        {/* ③ 内容层 */}
+        <motion.div variants={fadeUp} className="border rounded-2xl p-6 bg-white">
+          <div className="text-sm tracking-widest text-muted-foreground mb-2">
+            第03层
+          </div>
+          <h3 className="text-lg font-medium mb-2">
+            内容层 · Content Layer
+          </h3>
+          <p className="text-sm text-muted-foreground mb-3">
+            非遗文化资产与UGC内容的统一组织体系
+          </p>
+          <div className="flex flex-wrap gap-2 text-xs">
+            <span className="px-3 py-1 bg-gray-100 rounded-full">非遗文化数据库</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">3D文化资产</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">展览内容库</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">用户生成内容UGC</span>
+          </div>
+        </motion.div>
+
+        {/* ④ 智能层 */}
+        <motion.div variants={fadeUp} className="border rounded-2xl p-6 bg-white">
+          <div className="text-sm tracking-widest text-muted-foreground mb-2">
+            第04层
+          </div>
+          <h3 className="text-lg font-medium mb-2">
+            智能层 · Intelligence Layer
+          </h3>
+          <p className="text-sm text-muted-foreground mb-3">
+            AI驱动的内容理解与个性化推荐系统
+          </p>
+          <div className="flex flex-wrap gap-2 text-xs">
+            <span className="px-3 py-1 bg-gray-100 rounded-full">AI推荐系统</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">AIGC内容生成</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">语义标签系统</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">文化知识图谱</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">智能搜索系统</span>
+          </div>
+        </motion.div>
+
+        {/* ⑤ 基础设施层 */}
+        <motion.div variants={fadeUp} className="border rounded-2xl p-6 bg-white">
+          <div className="text-sm tracking-widest text-muted-foreground mb-2">
+            第05层
+          </div>
+          <h3 className="text-lg font-medium mb-2">
+            基础设施层 · Infrastructure Layer
+          </h3>
+          <p className="text-sm text-muted-foreground mb-3">
+            支撑系统运行的底层能力
+          </p>
+          <div className="flex flex-wrap gap-2 text-xs">
+            <span className="px-3 py-1 bg-gray-100 rounded-full">用户认证系统</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">权限管理系统</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">数据存储系统</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">行为分析系统</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">资产管理系统</span>
+          </div>
+        </motion.div>
+
+      </div>
+
+      {/* 系统总结 */}
+      <div className="mt-12 text-center">
+        <p className="text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          本架构采用五层系统设计模型：体验层 → 应用层 → 内容层 → 智能层 → 基础设施层，
+          构建一个以文化资产为核心、AI驱动的沉浸式文化智能系统。
+        </p>
+      </div>
     </div>
   );
 }
@@ -2111,6 +2199,21 @@ function MarketAnalysisSection() {
 }
 
 
+/* ---------- ChapterTransition —— 章节过渡句 ---------- */
+function ChapterTransition({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.p
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+      className="text-center text-lg md:text-xl font-medium text-red-600 py-12"
+    >
+      {children}
+    </motion.p>
+  );
+}
+
 // ---------- 主组件 ----------
 
 function YimoVRProductDetail({
@@ -2219,6 +2322,9 @@ function YimoVRProductDetail({
         </Section>
       </CollapsibleContent>
 
+      {/* Chapter 1 → 2 */}
+      <ChapterTransition>↓ 在行业趋势与技术演进的推动下，非遗传播的结构性问题开始显现。</ChapterTransition>
+
       {/*
         ════════════════════════════════════════════════════════════
         Chapter 2 产品机会分析 / Product Discovery
@@ -2265,6 +2371,9 @@ function YimoVRProductDetail({
       */}
       </CollapsibleContent>
 
+      {/* Chapter 2 → 3 */}
+      <ChapterTransition>↓ 这些问题的背后，本质上是不同用户体验断层的集中体现。</ChapterTransition>
+
       {/*
         ════════════════════════════════════════════════════════════
         Chapter 3 用户研究 / User Research
@@ -2289,6 +2398,9 @@ function YimoVRProductDetail({
       </Section>
       </CollapsibleContent>
 
+      {/* Chapter 3 → 4 */}
+      <ChapterTransition>↓ 理解用户之后，我们需要将需求转化为可落地的产品结构。</ChapterTransition>
+
       {/*
         ════════════════════════════════════════════════════════════
         Chapter 4 产品设计 / Product Design
@@ -2306,9 +2418,9 @@ function YimoVRProductDetail({
       </Section>
 
       {/*
-        4.2 Product Positioning — 产品定位
+        4.2 Product Architecture — 产品架构（5层系统模型）
       */}
-      <Section title="产品定位 / Product Positioning">
+      <Section title="产品架构 / Product Architecture">
         <ProductPositioningSection />
       </Section>
 
@@ -2333,6 +2445,9 @@ function YimoVRProductDetail({
         <UserFlowSection />
       </Section>
       </CollapsibleContent>
+
+      {/* Chapter 4 → 5 */}
+      <ChapterTransition>↓ 在完成系统设计后，产品价值需要通过具体功能体验来承载。</ChapterTransition>
 
       {/*
         ════════════════════════════════════════════════════════════
@@ -2365,6 +2480,9 @@ function YimoVRProductDetail({
         <CommunitySection onImageClick={(idx) => { setVrLightboxIndex(idx + 1); setIsVrLightboxOpen(true); }} />
       </Section>
       </CollapsibleContent>
+
+      {/* Chapter 5 → 6 */}
+      <ChapterTransition>↓ 当体验形成闭环后，产品需要进入可持续增长与商业化阶段。</ChapterTransition>
 
       {/*
         ════════════════════════════════════════════════════════════
@@ -2404,6 +2522,9 @@ function YimoVRProductDetail({
       </Section>
       </CollapsibleContent>
 
+      {/* Chapter 6 → 7 */}
+      <ChapterTransition>↓ 在商业模型成立的基础上，我们进一步探索产品的长期演进方向。</ChapterTransition>
+
       {/*
         ════════════════════════════════════════════════════════════
         Chapter 7 产品规划 / Future
@@ -2434,6 +2555,9 @@ function YimoVRProductDetail({
         <MarketPositionSection />
       </Section>
       </CollapsibleContent>
+
+      {/* Chapter 7 → 8 */}
+      <ChapterTransition>↓ 从未来回到当下，我们重新审视设计选择与项目价值沉淀。</ChapterTransition>
 
       {/*
         ════════════════════════════════════════════════════════════
@@ -2504,169 +2628,189 @@ function QAHeader({ number, question, answer }: {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
+      className="mb-10"
     >
-      <span className="text-[0.65rem] font-bold text-muted-foreground uppercase tracking-[0.3em]">
+      <span className="text-[0.65rem] font-bold text-neutral-400 uppercase tracking-[0.3em]">
         {number}
       </span>
-      <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-3 mb-3 tracking-tight">
+      <h2 className="text-3xl font-light text-neutral-900 mt-3 mb-4 tracking-tight">
         {question}
       </h2>
-      <div className="p-4 md:p-5 bg-gradient-to-r from-blue-50/60 to-purple-50/60 border border-blue-100/50 rounded-xl">
-        <p className="text-base md:text-lg text-foreground/80 leading-relaxed font-medium">
+      <div className="p-5 bg-white/80 border border-neutral-200 rounded-xl">
+        <p className="text-base text-neutral-600 leading-relaxed font-medium">
           {answer}
         </p>
       </div>
-      <div className="h-px bg-border mt-6 mb-10" />
+      <div className="h-px bg-neutral-200/70 mt-6" />
     </motion.div>
   );
 }
 
-/* ---------- JobMatchingHero —— 第一屏：项目头图 ---------- */
+/* ---------- JobMatchingHero —— 第一屏：项目概述 ---------- */
 function JobMatchingHero({ project }: { project: ProjectData }) {
   const [showWorkflowImage, setShowWorkflowImage] = useState(true);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="space-y-8"
-    >
-      {/* 标题区 */}
-      <div className="space-y-4">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-tight">
+    <div className="grid grid-cols-2 gap-20 w-full min-h-[70vh] items-center">
+      {/* 左侧文字 */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="flex flex-col justify-center"
+      >
+        <p className="text-[0.65rem] text-neutral-400 tracking-[0.3em] uppercase font-bold">
+          案例研究
+        </p>
+        <h1 className="text-5xl font-light mt-6 leading-tight text-neutral-900">
           {project.title}
         </h1>
-        <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed max-w-3xl">
-          {project.subtitle}
+        <p className="text-lg text-neutral-400 mt-8 leading-9">
+          一个基于工作流驱动的 AI 决策系统，用于重构传统职位匹配流程。
         </p>
-        <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
-          通过 Agent Workflow 将职位抓取、简历解析、语义匹配、智能决策与报告生成整合为完整工作流，实现自动化职位分析与推荐。
+        <p className="text-base text-neutral-500 mt-4 leading-8">
+          我们将"职位匹配"重新定义为结构化的 AI 决策问题，而非简单搜索问题。
         </p>
-      </div>
 
-      {/* 元数据标签 */}
-      <div className="flex flex-wrap gap-x-8 gap-y-3">
-        <div>
-          <p className="text-[0.55rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-1">Role</p>
-          <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1.5 text-[0.7rem] font-medium bg-card border border-border rounded-lg">AI Product Design</span>
-            <span className="px-3 py-1.5 text-[0.7rem] font-medium bg-card border border-border rounded-lg">Full-stack Development</span>
+        {/* 元数据标签 */}
+        <div className="flex flex-wrap gap-x-6 gap-y-2 mt-12">
+          {["LangGraph", "Multi-Agent", "Workflow", "LLM"].map((kw) => (
+            <span key={kw} className="px-3 py-1.5 text-[0.7rem] font-mono font-medium bg-neutral-100/70 text-neutral-500 rounded-lg">
+              {kw}
+            </span>
+          ))}
+        </div>
+
+        {/* 年份 · 类别 · 角色 */}
+        <div className="flex flex-wrap gap-x-8 gap-y-2 mt-10">
+          <div className="flex flex-col gap-0.5">
+            <span className="text-[0.55rem] font-bold tracking-widest uppercase text-neutral-400">年份 / YEAR</span>
+            <span className="text-sm text-neutral-700">{project.year}</span>
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <span className="text-[0.55rem] font-bold tracking-widest uppercase text-neutral-400">类别 / CATEGORY</span>
+            <span className="text-sm text-neutral-700">{project.category}</span>
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <span className="text-[0.55rem] font-bold tracking-widest uppercase text-neutral-400">角色 / ROLE</span>
+            <span className="text-sm text-neutral-700">{project.role}</span>
           </div>
         </div>
-        <div>
-          <p className="text-[0.55rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-1">Duration</p>
-          <span className="px-3 py-1.5 text-[0.7rem] font-medium bg-card border border-border rounded-lg inline-block">2025</span>
-        </div>
-        <div>
-          <p className="text-[0.55rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-1">Keywords</p>
-          <div className="flex flex-wrap gap-2">
-            {["LangGraph", "Multi-Agent", "Workflow", "LLM"].map((kw) => (
-              <span key={kw} className="px-3 py-1.5 text-[0.7rem] font-mono font-medium bg-black/5 text-foreground/70 rounded-lg">{kw}</span>
-            ))}
-          </div>
-        </div>
-      </div>
+      </motion.div>
 
-      {/* Hero Workflow 图 */}
+      {/* 右侧视觉 */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-blue-50/30 to-purple-50/30"
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+        className="flex items-center justify-center"
       >
-        <div className="aspect-[16/7] flex items-center justify-center">
+        <div className="w-full aspect-[4/3] border border-neutral-200 rounded-2xl bg-white flex items-center justify-center text-neutral-400 overflow-hidden">
           {showWorkflowImage ? (
             <img
               src={project.images[1] || localImages.coverJobMatching}
-              alt="Job Matching AI Agent - Hero Workflow"
-              className="w-full h-full object-contain p-4"
+              alt="Job Matching AI Agent - Workflow"
+              className="w-full h-full object-contain p-6"
               draggable={false}
-              onContextMenu={(e) => e.preventDefault()}
-              onDragStart={(e) => e.preventDefault()}
               onError={() => setShowWorkflowImage(false)}
             />
           ) : (
-            <div className="flex flex-col items-center justify-center text-muted-foreground px-8 py-6">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="mb-3 opacity-40">
+            <div className="text-center px-6">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="mx-auto mb-3 opacity-40">
                 <rect x="3" y="3" width="18" height="18" rx="3" />
                 <circle cx="8.5" cy="8.5" r="1.5" />
                 <path d="M21 15l-5-5L5 21" />
               </svg>
-              <p className="text-sm font-medium">Hero Workflow Diagram</p>
+              <p className="text-sm font-medium">工作流核心示意图</p>
             </div>
           )}
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }
 
 /* ---------- ProblemSection —— 第二屏：问题与背景 ---------- */
 function ProblemSection({ localImages }: { localImages: Record<string, string> }) {
   const problems = [
-    {
-      number: "01",
-      title: "Matching Accuracy",
-      desc: "关键词无法真正理解岗位需求与候选人的能力之间的匹配关系。",
-    },
-    {
-      number: "02",
-      title: "Inference Cost",
-      desc: "所有职位直接进入 LLM 推理，导致 Token 消耗高、响应速度慢。",
-    },
-    {
-      number: "03",
-      title: "Workflow Stability",
-      desc: "长流程任务缺少状态管理，异常中断后需要重新执行。",
-    },
+    { number: "01", title: "Matching Accuracy", desc: "基于关键词的匹配缺乏语义理解能力，无法理解真正的岗位需求。" },
+    { number: "02", title: "Inference Cost", desc: "候选人筛选的认知成本较高，单一 LLM 推理链路 Token 消耗大。" },
+    { number: "03", title: "Workflow Stability", desc: "长流程缺少状态管理，发生异常后需要重新执行，缺少结构化的决策支持系统。" },
   ];
   return (
-    <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-      {/* 左侧：问题列表 */}
-      <div className="space-y-4">
-        <p className="text-[0.65rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-4">Background</p>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-          传统招聘平台主要依赖关键词搜索或单次 LLM 推理完成职位推荐，存在三个核心问题：
+    <div className="grid grid-cols-2 gap-16 w-full">
+      {/* 左侧：问题内容 */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <p className="text-[0.65rem] text-neutral-400 tracking-[0.3em] uppercase font-bold">
+          问题
         </p>
-        <div className="space-y-4">
+        <h2 className="text-4xl font-light mt-6 leading-tight text-neutral-900">
+          职位匹配仍然是一个"搜索问题"
+        </h2>
+        <p className="text-base text-neutral-500 mt-6 leading-8">
+          用户仍然需要手动判断职位与自身能力的匹配程度，系统无法提供真正的决策支持。
+        </p>
+        <div className="mt-10 space-y-4 text-neutral-500 text-sm">
+          <p className="flex items-start gap-2">
+            <span className="text-neutral-300 mt-0.5">•</span>
+            <span>基于关键词的匹配缺乏语义理解能力</span>
+          </p>
+          <p className="flex items-start gap-2">
+            <span className="text-neutral-300 mt-0.5">•</span>
+            <span>候选人筛选的认知成本较高</span>
+          </p>
+          <p className="flex items-start gap-2">
+            <span className="text-neutral-300 mt-0.5">•</span>
+            <span>缺少结构化的决策支持系统</span>
+          </p>
+        </div>
+
+        {/* 三个核心问题卡片 */}
+        <div className="mt-10 space-y-3">
           {problems.map((p) => (
             <motion.div
               key={p.number}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: Number(p.number) * 0.1 }}
-              className="p-5 border border-border rounded-xl bg-card hover:shadow-md transition-all"
+              className="p-4 border border-neutral-200 rounded-xl bg-white/70"
             >
               <div className="flex items-start gap-3">
-                <span className="text-[0.6rem] font-bold text-muted-foreground bg-muted w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-[0.55rem] font-bold text-neutral-400 bg-neutral-100 w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                   {p.number}
                 </span>
                 <div>
-                  <h4 className="text-sm font-bold text-foreground">{p.title}</h4>
-                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{p.desc}</p>
+                  <h4 className="text-sm font-medium text-neutral-800">{p.title}</h4>
+                  <p className="text-xs text-neutral-500 mt-1 leading-relaxed">{p.desc}</p>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
-      {/* 右侧：Product Overview 图 */}
+      {/* 右侧：问题对比图 */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-blue-50/30 to-purple-50/30 min-h-[300px] flex items-center justify-center"
+        className="flex items-center justify-center"
       >
-        <PlaceholderImage
-          src={localImages.aiWorkflowDiagram}
-          alt="AI Workflow Diagram"
-          title="AI Workflow Diagram"
-          subtitle="Job Matching AI Agent"
-        />
+        <div className="w-full aspect-[4/3] border border-neutral-200 rounded-2xl bg-white flex items-center justify-center text-neutral-400 overflow-hidden">
+          <PlaceholderImage
+            src={localImages.aiWorkflowDiagram}
+            alt="问题对比图（Before / After）"
+            title="问题对比图"
+            subtitle="Before / After"
+          />
+        </div>
       </motion.div>
     </div>
   );
@@ -2708,80 +2852,83 @@ function PlaceholderImage({ src, alt, title, subtitle }: {
 
 /* ---------- WorkflowSection —— 第三屏：产品工作流 ---------- */
 function WorkflowSection({ localImages }: { localImages: Record<string, string> }) {
-  const steps = [
-    { icon: "📄", label: "Upload Resume" },
-    { icon: "🔗", label: "Input Job URL" },
-    { icon: "🤖", label: "AI Analysis" },
-    { icon: "📊", label: "Matching" },
-    { icon: "🏆", label: "Ranking" },
-    { icon: "📋", label: "Report" },
-    { icon: "📥", label: "Export" },
+  const flowSteps = [
+    { icon: "📄", label: "简历解析", en: "Resume Parse", desc: "信息理解" },
+    { icon: "🔍", label: "职位分析", en: "Job Analysis", desc: "语义解析" },
+    { icon: "📊", label: "匹配计算", en: "Matching", desc: "相关性排序" },
+    { icon: "📋", label: "结果生成", en: "Report", desc: "结构化报告" },
   ];
+
   return (
-    <div className="space-y-10">
-      {/* Workflow 图 */}
+    <div className="grid grid-cols-2 gap-16 w-full">
+      {/* 左侧：解决方案内容 */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-blue-50/30 to-purple-50/30 min-h-[300px] flex items-center justify-center"
+        transition={{ duration: 0.5 }}
       >
-        <PlaceholderImage
-          src={localImages.jobmatchingLanggraphWorkflow}
-          alt="LangGraph Workflow Diagram"
-          title="LangGraph Workflow Diagram"
-          subtitle="LangGraph StateGraph 工作流编排"
-        />
-      </motion.div>
-
-      {/* Workflow Description */}
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-sm text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto"
-      >
-        整个流程采用 LangGraph StateGraph 进行编排，将复杂任务拆分为多个可独立执行的节点，并通过状态驱动整个职位匹配流程。
-      </motion.p>
-
-      {/* User Journey — 药丸导航 */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.2 }}
-      >
-        <p className="text-[0.6rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-4 text-center">
-          User Journey
+        <p className="text-[0.65rem] text-neutral-400 tracking-[0.3em] uppercase font-bold">
+          解决方案
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          {steps.map((step, i) => (
-            <span key={step.label} className="inline-flex items-center gap-1">
-              <span className="inline-flex items-center gap-1.5 px-3 py-2 border border-border rounded-lg bg-card text-[0.65rem] font-medium text-foreground/80 whitespace-nowrap hover:shadow-sm transition-shadow">
-                <span className="text-sm leading-none">{step.icon}</span>
-                <span>{step.label}</span>
-              </span>
-              {i < steps.length - 1 && (
-                <span className="text-muted-foreground/30 text-sm shrink-0">→</span>
-              )}
-            </span>
+        <h2 className="text-4xl font-light mt-6 leading-tight text-neutral-900">
+          将职位匹配拆解为结构化推理流程
+        </h2>
+        <p className="text-base text-neutral-500 mt-6 leading-8">
+          不再依赖单次模型输出，而是构建多步骤的 AI 决策流程，模拟人类对岗位的理解与评估过程。
+        </p>
+
+        {/* 四步骤列表 */}
+        <div className="mt-10 space-y-4">
+          {flowSteps.map((step, i) => (
+            <motion.div
+              key={step.label}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="flex items-center gap-4 p-4 border border-neutral-200 rounded-xl bg-white/70"
+            >
+              <span className="text-xl">{step.icon}</span>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <h4 className="text-sm font-semibold text-neutral-800">{step.label}</h4>
+                  <span className="text-[0.55rem] text-neutral-400 font-mono uppercase tracking-wider">
+                    {step.en}
+                  </span>
+                </div>
+                <p className="text-xs text-neutral-500 mt-0.5">→ {step.desc}</p>
+              </div>
+            </motion.div>
           ))}
         </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="mt-6 text-sm text-neutral-500 italic"
+        >
+          整个流程采用 LangGraph StateGraph 编排，将复杂任务拆分为多个可独立执行的节点，通过状态驱动整个职位匹配流程。
+        </motion.p>
       </motion.div>
 
-      {/* 一句总结 */}
+      {/* 右侧：工作流示意图 */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.4 }}
-        className="text-center"
+        transition={{ duration: 0.6 }}
+        className="flex items-center justify-center"
       >
-        <div className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-r from-blue-50/80 to-purple-50/80 border border-blue-200/30">
-          <span className="text-sm">💡</span>
-          <p className="text-sm font-medium text-foreground/80">
-            整个流程无需人工干预，Agent 自动完成任务编排与执行。
-          </p>
+        <div className="w-full aspect-[4/3] border border-neutral-200 rounded-2xl bg-white flex items-center justify-center text-neutral-400 overflow-hidden">
+          <PlaceholderImage
+            src={localImages.jobmatchingLanggraphWorkflow}
+            alt="AI 工作流示意图（简化版）"
+            title="AI 工作流示意图"
+            subtitle="LangGraph StateGraph 工作流编排"
+          />
         </div>
       </motion.div>
     </div>
@@ -2791,9 +2938,9 @@ function WorkflowSection({ localImages }: { localImages: Record<string, string> 
 /* ---------- WhySection —— 第四屏：架构设计 ---------- */
 function WhySection() {
   const layers = [
-    { name: "Planning Layer", desc: "任务拆解 · 节点编排 · 状态调度", color: "from-blue-500/10 to-blue-500/5", border: "border-blue-200/30" },
-    { name: "Execution Layer", desc: "抓取 · 解析 · 匹配 · 评分 · 生成", color: "from-purple-500/10 to-purple-500/5", border: "border-purple-200/30" },
-    { name: "Service Layer", desc: "LLM · Embedding · Crawler · Parser · DB", color: "from-emerald-500/10 to-emerald-500/5", border: "border-emerald-200/30" },
+    { name: "Planning Layer", desc: "任务拆解 · 节点编排 · 状态调度" },
+    { name: "Execution Layer", desc: "抓取 · 解析 · 匹配 · 评分 · 生成" },
+    { name: "Service Layer", desc: "LLM · Embedding · Crawler · Parser · DB" },
   ];
   const strategySteps = [
     { label: "Embedding Recall", desc: "向量检索快速召回" },
@@ -2822,7 +2969,7 @@ function WhySection() {
   return (
     <div className="space-y-10">
       {/* 左右布局：System Thinking + Decision Strategy */}
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-2 gap-8">
         {/* 左：System Thinking — 三层架构 */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -2830,7 +2977,7 @@ function WhySection() {
           viewport={{ once: true }}
           className="space-y-4"
         >
-          <p className="text-[0.65rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-3">System Thinking</p>
+          <p className="text-[0.65rem] font-bold text-neutral-400 uppercase tracking-[0.25em] mb-3">System Thinking</p>
           <div className="space-y-3">
             {layers.map((layer, i) => (
               <motion.div
@@ -2839,10 +2986,10 @@ function WhySection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`p-5 rounded-xl border bg-gradient-to-br ${layer.color} ${layer.border}`}
+                className="p-5 rounded-xl border border-neutral-200 bg-white/70"
               >
-                <h4 className="text-sm font-bold text-foreground">{layer.name}</h4>
-                <p className="text-xs text-muted-foreground mt-1">{layer.desc}</p>
+                <h4 className="text-sm font-bold text-neutral-800">{layer.name}</h4>
+                <p className="text-xs text-neutral-500 mt-1">{layer.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -2855,8 +3002,8 @@ function WhySection() {
           viewport={{ once: true }}
           className="space-y-4"
         >
-          <p className="text-[0.65rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-3">Decision Strategy</p>
-          <div className="space-y-0">
+          <p className="text-[0.65rem] font-bold text-neutral-400 uppercase tracking-[0.25em] mb-3">Decision Strategy</p>
+          <div className="space-y-0 border border-neutral-200 rounded-xl overflow-hidden">
             {strategySteps.map((step, i) => (
               <motion.div
                 key={step.label}
@@ -2864,17 +3011,17 @@ function WhySection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="flex items-center gap-4 p-4 border-b border-border last:border-b-0 bg-card first:rounded-t-xl last:rounded-b-xl hover:bg-muted/50 transition-colors"
+                className="flex items-center gap-4 p-4 border-b border-neutral-100 last:border-b-0 bg-white/70"
               >
-                <span className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-200/30 flex items-center justify-center text-[0.55rem] font-bold text-muted-foreground shrink-0">
+                <span className="w-7 h-7 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center text-[0.55rem] font-bold text-neutral-500 shrink-0">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div className="min-w-0">
-                  <h4 className="text-sm font-semibold text-foreground">{step.label}</h4>
-                  <p className="text-xs text-muted-foreground">{step.desc}</p>
+                  <h4 className="text-sm font-semibold text-neutral-800">{step.label}</h4>
+                  <p className="text-xs text-neutral-500">{step.desc}</p>
                 </div>
                 {i < strategySteps.length - 1 && (
-                  <span className="text-muted-foreground/20 ml-auto shrink-0">
+                  <span className="text-neutral-200 ml-auto shrink-0">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M5 12h14M13 5l7 7-7 7" />
                     </svg>
@@ -2888,7 +3035,7 @@ function WhySection() {
 
       {/* 底部：Design Decisions */}
       <div>
-        <p className="text-[0.65rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-5 text-center">
+        <p className="text-[0.65rem] font-bold text-neutral-400 uppercase tracking-[0.25em] mb-5 text-center">
           Design Decisions
         </p>
         <motion.div
@@ -2896,17 +3043,17 @@ function WhySection() {
           whileInView="show"
           viewport={{ once: true }}
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
-          className="grid md:grid-cols-3 gap-4"
+          className="grid grid-cols-3 gap-4"
         >
           {decisions.map((d) => (
             <motion.div
               key={d.title}
               variants={{ hidden: { opacity: 0, y: 15 }, show: { opacity: 1, y: 0 } }}
-              className="p-5 border border-border rounded-xl bg-card hover:shadow-md transition-all"
+              className="p-5 border border-neutral-200 rounded-xl bg-white/70"
             >
               <span className="text-xl block mb-3">{d.icon}</span>
-              <h4 className="text-sm font-bold text-foreground mb-2">{d.title}</h4>
-              <p className="text-xs text-muted-foreground leading-relaxed">{d.desc}</p>
+              <h4 className="text-sm font-bold text-neutral-800 mb-2">{d.title}</h4>
+              <p className="text-xs text-neutral-500 leading-relaxed">{d.desc}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -2918,99 +3065,69 @@ function WhySection() {
 /* ---------- ValueSection —— 第五屏：价值与成果 ---------- */
 function ValueSection({ localImages }: { localImages: Record<string, string> }) {
   const values = [
-    "自动职位抓取",
-    "AI 简历解析",
-    "智能职位匹配",
-    "自动生成分析报告",
-    "多格式导出",
+    { icon: "⚡", label: "筛选效率", desc: "筛选效率提升约 80%", stat: "80%" },
+    { icon: "📊", label: "结构化", desc: "输出结构化匹配结果", stat: "✓" },
+    { icon: "🧠", label: "决策负担", desc: "降低用户决策负担", stat: "↓" },
+    { icon: "🤖", label: "自动化", desc: "实现端到端自动化流程", stat: "✓" },
   ];
-  const techRows = [
-    { module: "Workflow", tech: "LangGraph" },
-    { module: "LLM", tech: "Qwen" },
-    { module: "Embedding", tech: "DashScope" },
-    { module: "Parser", tech: "pdfplumber" },
-    { module: "Crawler", tech: "Playwright" },
-    { module: "State", tech: "SQLite" },
-    { module: "Frontend", tech: "Streamlit" },
-  ];
+
   return (
-    <div className="space-y-10">
-      {/* 三列布局 */}
-      <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-        {/* 左：Product Value */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="p-6 border border-border rounded-xl bg-card"
-        >
-          <p className="text-[0.65rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-5">
-            Product Value
-          </p>
-          <div className="space-y-4">
-            {values.map((v) => (
-              <div key={v} className="flex items-center gap-3 text-sm text-foreground/80">
-                <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="3">
-                    <path d="M20 6L9 17l-5-5" />
-                  </svg>
-                </span>
-                <span>{v}</span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+    <div className="grid grid-cols-2 gap-16 w-full">
+      {/* 左侧：产品价值内容 */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <p className="text-[0.65rem] text-neutral-400 tracking-[0.3em] uppercase font-bold">
+          价值
+        </p>
+        <h2 className="text-4xl font-light mt-6 leading-tight text-neutral-900">
+          从人工筛选走向 AI 决策系统
+        </h2>
+        <p className="text-base text-neutral-500 mt-6 leading-8">
+          系统将传统的职位匹配流程自动化，提供可解释的结构化决策结果。
+        </p>
 
-        {/* 中：Technical Highlights */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="p-6 border border-border rounded-xl bg-card"
-        >
-          <p className="text-[0.65rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-5">
-            Technical Highlights
-          </p>
-          <div className="divide-y divide-border">
-            {techRows.map((row) => (
-              <div key={row.module} className="flex items-center justify-between py-2.5">
-                <span className="text-xs font-medium text-foreground">{row.module}</span>
-                <span className="text-xs text-muted-foreground font-mono">{row.tech}</span>
+        {/* 四个价值卡片 */}
+        <div className="mt-10 grid grid-cols-2 gap-4">
+          {values.map((v) => (
+            <motion.div
+              key={v.label}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="p-4 border border-neutral-200 rounded-xl bg-white/70"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-lg">{v.icon}</span>
+                <span className="text-sm font-bold text-neutral-800">{v.stat}</span>
               </div>
-            ))}
-          </div>
-        </motion.div>
+              <p className="text-sm font-medium text-neutral-800 mb-0.5">{v.label}</p>
+              <p className="text-xs text-neutral-500">{v.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
 
-        {/* 右：产品界面截图 */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-blue-50/30 to-purple-50/30 min-h-[280px] flex items-center justify-center"
-        >
+      {/* 右侧：产品界面截图 */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="flex items-center justify-center"
+      >
+        <div className="w-full aspect-[4/3] border border-neutral-200 rounded-2xl bg-white flex items-center justify-center text-neutral-400 overflow-hidden">
           <PlaceholderImage
             src={localImages.jobmatchingInterface}
-            alt="Product Interface"
-            title="Product Interface"
-            subtitle="Streamlit 前端界面截图"
+            alt="产品界面截图"
+            title="产品界面截图"
+            subtitle="Job Matching AI Agent"
           />
-        </motion.div>
-      </div>
-
-      {/* Outcome */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.3 }}
-        className="p-8 border border-foreground/10 rounded-2xl bg-gradient-to-br from-blue-50/40 via-purple-50/30 to-background text-center"
-      >
-        <p className="text-[0.55rem] font-bold text-muted-foreground uppercase tracking-widest mb-3">Outcome</p>
-        <p className="text-base md:text-lg text-foreground leading-relaxed max-w-3xl mx-auto">
-          本项目完成了一个从职位抓取到分析报告生成的完整 AI Agent Workflow，验证了 LangGraph 在复杂任务编排、多 Agent 协作及状态管理方面的可行性，也探索了 AI 在智能招聘场景中的产品化应用。
-        </p>
+        </div>
       </motion.div>
     </div>
   );
@@ -3019,7 +3136,6 @@ function ValueSection({ localImages }: { localImages: Record<string, string> }) 
 // ---------- 主组件 ----------
 
 function ScreenFooter({
-  project,
   prevId,
   nextId,
   currentIndex,
@@ -3027,7 +3143,6 @@ function ScreenFooter({
   padding = "",
   variant = "yimo",
 }: {
-  project: ProjectData;
   prevId?: string;
   nextId?: string;
   currentIndex: number;
@@ -3037,8 +3152,7 @@ function ScreenFooter({
 }) {
   return (
     <div className={`${padding}`}>
-      <div className="h-px bg-border mb-6" />
-      <ProjectMetadata project={project} className="mb-6" hideLocation />
+      <div className="h-px bg-neutral-200/70 mb-6" />
       <ProjectNav
         prevId={prevId}
         nextId={nextId}
@@ -3100,7 +3214,7 @@ function JobMatchingProductDetail({
   };
 
   return (
-    <div className="job-matching-case bg-white text-foreground relative">
+    <div className="job-matching-case bg-[#F6F5F2] text-neutral-900 relative">
       {/* ===== 固定返回按钮 ===== */}
       <BackToHomeLink />
 
@@ -3113,13 +3227,12 @@ function JobMatchingProductDetail({
       >
 
         {/* ========== Screen 0: Hero ========== */}
-        <section className="w-screen h-screen snap-start flex-shrink-0 overflow-y-auto px-6 py-28">
-          <div className="max-w-5xl mx-auto w-full min-h-full flex flex-col justify-between">
+        <section className="w-screen h-screen snap-start flex-shrink-0 overflow-y-auto px-24 py-28">
+          <div className="w-full min-h-full flex flex-col justify-between">
             <div>
               <JobMatchingHero project={project} />
             </div>
             <ScreenFooter
-              project={project}
               prevId={prevId}
               nextId={nextId}
               currentIndex={currentIndex}
@@ -3129,8 +3242,8 @@ function JobMatchingProductDetail({
         </section>
 
         {/* ========== Screen 1: Problem ========== */}
-        <section className="w-screen h-screen snap-start flex-shrink-0 overflow-y-auto px-6 py-28">
-          <div className="max-w-5xl mx-auto w-full min-h-full flex flex-col justify-between">
+        <section className="w-screen h-screen snap-start flex-shrink-0 overflow-y-auto px-24 py-28">
+          <div className="w-full min-h-full flex flex-col justify-between">
             <div>
               <QAHeader
                 number="01"
@@ -3144,17 +3257,16 @@ function JobMatchingProductDetail({
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mt-8 p-5 border border-blue-200/40 rounded-xl bg-gradient-to-br from-blue-50/60 to-purple-50/60 text-center"
+                className="mt-8 p-5 bg-white/80 border border-neutral-200 rounded-xl text-center"
               >
-                <p className="text-[0.55rem] font-bold text-muted-foreground uppercase tracking-widest mb-2">Product Goal</p>
-                <p className="text-sm text-foreground leading-relaxed max-w-3xl mx-auto">
+                <p className="text-[0.55rem] font-bold text-neutral-500 uppercase tracking-widest mb-2">Product Goal</p>
+                <p className="text-sm text-neutral-700 leading-relaxed max-w-3xl mx-auto">
                   构建一个能够自主完成职位抓取、简历理解、岗位筛选、智能评分及报告生成的 AI Agent Workflow，让用户仅需上传简历与职位链接，即可完成整个职位分析过程。
                 </p>
               </motion.div>
             </div>
             <ScreenFooter
               padding="mt-8"
-              project={project}
               prevId={prevId}
               nextId={nextId}
               currentIndex={currentIndex}
@@ -3164,8 +3276,8 @@ function JobMatchingProductDetail({
         </section>
 
         {/* ========== Screen 2: How it works ========== */}
-        <section className="w-screen h-screen snap-start flex-shrink-0 overflow-y-auto px-6 py-28">
-          <div className="max-w-5xl mx-auto w-full min-h-full flex flex-col justify-between">
+        <section className="w-screen h-screen snap-start flex-shrink-0 overflow-y-auto px-24 py-28">
+          <div className="w-full min-h-full flex flex-col justify-between">
             <div>
               <QAHeader
                 number="02"
@@ -3176,7 +3288,6 @@ function JobMatchingProductDetail({
             </div>
             <ScreenFooter
               padding="mt-8"
-              project={project}
               prevId={prevId}
               nextId={nextId}
               currentIndex={currentIndex}
@@ -3186,8 +3297,8 @@ function JobMatchingProductDetail({
         </section>
 
         {/* ========== Screen 3: Why designed this way ========== */}
-        <section className="w-screen h-screen snap-start flex-shrink-0 overflow-y-auto px-6 py-28">
-          <div className="max-w-5xl mx-auto w-full min-h-full flex flex-col justify-between">
+        <section className="w-screen h-screen snap-start flex-shrink-0 overflow-y-auto px-24 py-28">
+          <div className="w-full min-h-full flex flex-col justify-between">
             <div>
               <QAHeader
                 number="03"
@@ -3198,7 +3309,6 @@ function JobMatchingProductDetail({
             </div>
             <ScreenFooter
               padding="mt-8"
-              project={project}
               prevId={prevId}
               nextId={nextId}
               currentIndex={currentIndex}
@@ -3208,8 +3318,8 @@ function JobMatchingProductDetail({
         </section>
 
         {/* ========== Screen 4: What value ========== */}
-        <section className="w-screen h-screen snap-start flex-shrink-0 overflow-y-auto px-6 py-28">
-          <div className="max-w-5xl mx-auto w-full min-h-full flex flex-col justify-between">
+        <section className="w-screen h-screen snap-start flex-shrink-0 overflow-y-auto px-24 py-28">
+          <div className="w-full min-h-full flex flex-col justify-between">
             <div>
               <QAHeader
                 number="04"
@@ -3220,7 +3330,6 @@ function JobMatchingProductDetail({
             </div>
             <ScreenFooter
               padding="mt-8"
-              project={project}
               prevId={prevId}
               nextId={nextId}
               currentIndex={currentIndex}
@@ -3234,38 +3343,38 @@ function JobMatchingProductDetail({
       <button
         onClick={() => scrollToPage(activePage - 1)}
         disabled={activePage === 0}
-        className={`fixed top-1/2 left-6 -translate-y-1/2 z-50 w-12 h-12 flex items-center justify-center bg-white/90 backdrop-blur-sm border border-black/10 rounded-full shadow-md transition-all duration-200 ${
+        className={`fixed top-1/2 left-6 -translate-y-1/2 z-50 w-10 h-10 flex items-center justify-center bg-white/80 backdrop-blur-sm border border-neutral-200 rounded-full shadow-sm transition-all duration-200 ${
           activePage === 0
             ? "opacity-0 cursor-default"
-            : "opacity-100 hover:bg-black hover:text-white cursor-pointer"
+            : "opacity-100 hover:bg-neutral-900 hover:text-white cursor-pointer"
         }`}
         aria-label="Previous Screen"
       >
-        <ChevronLeft size={20} />
+        <ChevronLeft size={18} />
       </button>
       <button
         onClick={() => scrollToPage(activePage + 1)}
         disabled={activePage >= totalPages - 1}
-        className={`fixed top-1/2 right-6 -translate-y-1/2 z-50 w-12 h-12 flex items-center justify-center bg-white/90 backdrop-blur-sm border border-black/10 rounded-full shadow-md transition-all duration-200 ${
+        className={`fixed top-1/2 right-6 -translate-y-1/2 z-50 w-10 h-10 flex items-center justify-center bg-white/80 backdrop-blur-sm border border-neutral-200 rounded-full shadow-sm transition-all duration-200 ${
           activePage >= totalPages - 1
             ? "opacity-0 cursor-default"
-            : "opacity-100 hover:bg-black hover:text-white cursor-pointer"
+            : "opacity-100 hover:bg-neutral-900 hover:text-white cursor-pointer"
         }`}
         aria-label="Next Screen"
       >
-        <ChevronRight size={20} />
+        <ChevronRight size={18} />
       </button>
 
       {/* ===== 底部页码指示器 ===== */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-3 px-5 py-2.5 bg-white/80 backdrop-blur-md border border-white/30 rounded-full shadow-sm">
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-3 px-5 py-2.5 bg-white/70 backdrop-blur-md border border-neutral-200/70 rounded-full shadow-sm">
         {pageLabels.map((p, i) => (
           <button
             key={p.num}
             onClick={() => scrollToPage(i)}
             className={`transition-all ${
               i === activePage
-                ? "text-foreground font-bold"
-                : "text-muted-foreground/40 hover:text-muted-foreground/70"
+                ? "text-neutral-900 font-bold"
+                : "text-neutral-300 hover:text-neutral-500"
             }`}
             aria-label={`Go to ${p.label}`}
           >
