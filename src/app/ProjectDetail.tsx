@@ -827,42 +827,6 @@ function PersonaInsight() {
 }
 
 /* ================================================================
-   Product Module — 产品模块卡片
-   ================================================================ */
-function ProductModule({ emoji, title, subtitle, features, screenshotLabel }: {
-  emoji?: string;
-  title?: string;
-  subtitle?: string;
-  features?: string[];
-  screenshotLabel?: string;
-}) {
-  return (
-    <motion.div
-      variants={fadeUp}
-      className="border border-border rounded-2xl overflow-hidden bg-card"
-    >
-      <div className="p-6 md:p-8">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-2xl">{emoji}</span>
-          <div>
-            <h3 className="text-xl font-bold text-foreground tracking-tight">{title}</h3>
-            <p className="text-sm text-muted-foreground">{subtitle}</p>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-2 mt-4">
-          {features.map((f: string) => (
-            <span key={f} className="px-3 py-1 text-[0.6rem] font-medium bg-muted rounded-full text-muted-foreground">{f}</span>
-          ))}
-        </div>
-      </div>
-      <div className="px-6 md:px-8 pb-6 md:pb-8">
-        <ScreenPlaceholder label={screenshotLabel} aspect="16/9" />
-      </div>
-    </motion.div>
-  );
-}
-
-/* ================================================================
    6.2 Business Scenarios — 商业模式场景
    ================================================================ */
 function BusinessScenariosSection() {
@@ -1543,14 +1507,11 @@ function ProductPositioningSection() {
 
       {/* 架构图 */}
       <motion.div variants={fadeUp} className="mb-12">
-        <div
-          className="rounded-2xl border border-border overflow-hidden bg-white"
-          style={{ aspectRatio: "16/9" }}
-        >
+        <div className="rounded-2xl border border-border overflow-hidden bg-white">
           <ImageWithFallback
             src={localImages.vrPlatformArchitecture}
             alt="系统架构图"
-            className="w-full h-full object-cover"
+            className="w-full"
           />
         </div>
 
@@ -1728,33 +1689,6 @@ function DesignThinkingSection() {
 }
 
 /* ================================================================
-   4.3 Product Architecture — 产品架构
-   ================================================================ */
-function ProductArchitectureSection() {
-  return (
-    <div>
-      <SectionDivider label="产品架构 / PRODUCT ARCHITECTURE" />
-
-      {/* VR平台架构图（从用户流程移入） */}
-      <motion.div variants={fadeUp} className="mb-10">
-        <div className="rounded-2xl border border-border overflow-y-auto" style={{ aspectRatio: "16/9" }}>
-          <ImageWithFallback src={localImages.vrPlatformArchitecture} alt="VR平台架构图" className="w-full" />
-        </div>
-      </motion.div>
-
-      <p className="text-center text-sm text-muted-foreground tracking-wider uppercase mb-6">
-        遗墨平台 · 三大核心模块
-      </p>
-      <div className="grid md:grid-cols-3 gap-5">
-        <ProductModule emoji="\u{1F97D}" title="遗境" subtitle="VR沉浸体验" features={["360°全景", "工艺学习", "沉浸导览"]} screenshotLabel="VR Scene Screenshot" />
-        <ProductModule emoji="✏️" title="遗墨" subtitle="UGC创作系统" features={["AI辅助", "素材库", "SVG设计"]} screenshotLabel="Editor Screenshot" />
-        <ProductModule emoji="\u{1F465}" title="遗踪" subtitle="社区生态" features={["作品发布", "互动讨论", "创作者激励"]} screenshotLabel="Community Screenshot" />
-      </div>
-    </div>
-  );
-}
-
-/* ================================================================
    4.4 Information Architecture — 信息架构
    ================================================================ */
 function InformationArchitectureSection() {
@@ -1837,34 +1771,31 @@ function UserFlowSection() {
 }
 
 /* ================================================================
-   4.6 Homepage Showcase — 首页展示（从产品架构移至功能设计章节上方）
+   4.6 Homepage Showcase — 首页展示（产品功能设计章节内）
    ================================================================ */
 function HomepageShowcaseSection() {
   return (
-    <motion.div
-      variants={fadeUp}
-      className="rounded-2xl border border-border bg-card overflow-hidden mb-10"
-    >
-      <div className="p-6 md:p-8">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-2xl">🏠</span>
-          <div>
-            <h3 className="text-xl font-bold text-foreground tracking-tight">遗墨平台 · 网站首页</h3>
-            <p className="text-sm text-muted-foreground">平台门户首页 / 产品总入口</p>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-2 mt-4">
-          {["平台概览", "产品入口", "品牌展示"].map((f) => (
-            <span key={f} className="px-3 py-1 text-[0.6rem] font-medium bg-muted rounded-full text-muted-foreground">{f}</span>
-          ))}
+    <div className="mb-10">
+      {/* 文字信息移到卡片外部 */}
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-2xl">🏠</span>
+        <div>
+          <h3 className="text-xl font-bold text-foreground tracking-tight">遗墨平台 · 网站首页</h3>
+          <p className="text-sm text-muted-foreground">平台门户首页 / 产品总入口</p>
         </div>
       </div>
-      <div className="px-6 md:px-8 pb-6 md:pb-8">
-        <div className="rounded-2xl border border-border overflow-y-auto" style={{ aspectRatio: "16/9" }}>
+      <div className="flex flex-wrap gap-2 mb-5">
+        {["平台概览", "产品入口", "品牌展示"].map((f) => (
+          <span key={f} className="px-3 py-1 text-[0.6rem] font-medium bg-muted rounded-full text-muted-foreground">{f}</span>
+        ))}
+      </div>
+      {/* 卡片只包含图像 */}
+      <motion.div variants={fadeUp} className="rounded-2xl border border-border bg-card overflow-hidden">
+        <div className="rounded-2xl overflow-y-auto" style={{ aspectRatio: "16/9" }}>
           <ImageWithFallback src={localImages.vrHomepage} alt="遗墨平台网站首页" className="w-full" />
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
 
@@ -2425,13 +2356,6 @@ function YimoVRProductDetail({
       </Section>
 
       {/*
-        4.3 Product Architecture — 产品架构
-      */}
-      <Section title="产品架构 / Product Architecture">
-        <ProductArchitectureSection />
-      </Section>
-
-      {/*
         4.4 Information Architecture — 信息架构
       */}
       <Section title="信息架构 / Information Architecture">
@@ -2458,11 +2382,17 @@ function YimoVRProductDetail({
 
       <CollapsibleContent expanded={expandedChapters[5]}>
 
+      {/*
+        5.1 Website Homepage — 网站首页
+      */}
+      <Section title="网站首页 / Website Homepage" className="pt-2">
+        <HomepageShowcaseSection />
+      </Section>
 
       {/*
-        5.1 VR Experience — VR沉浸体验
+        5.2 VR Experience — VR沉浸体验
       */}
-      <Section title="VR沉浸体验 / VR Experience" className="pt-2">
+      <Section title="VR沉浸体验 / VR Experience">
         <VRExperienceSection onImageClick={(idx) => { setVrLightboxIndex(idx); setIsVrLightboxOpen(true); }} />
       </Section>
 
@@ -2651,13 +2581,13 @@ function JobMatchingHero({ project }: { project: ProjectData }) {
   const [showWorkflowImage, setShowWorkflowImage] = useState(true);
 
   return (
-    <div className="grid grid-cols-2 gap-20 w-full min-h-[70vh] items-center">
+    <div className="grid grid-cols-5 gap-12 w-full min-h-[70vh] items-center">
       {/* 左侧文字 */}
       <motion.div
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="flex flex-col justify-center"
+        className="col-span-2 flex flex-col justify-center"
       >
         <p className="text-[0.65rem] text-neutral-400 tracking-[0.3em] uppercase font-bold">
           案例研究
@@ -2703,14 +2633,14 @@ function JobMatchingHero({ project }: { project: ProjectData }) {
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-        className="flex items-center justify-center"
+        className="col-span-3 flex items-center justify-center"
       >
-        <div className="w-full aspect-[4/3] border border-neutral-200 rounded-2xl bg-white flex items-center justify-center text-neutral-400 overflow-hidden">
+        <div className="w-full border border-neutral-200 rounded-2xl bg-white overflow-hidden">
           {showWorkflowImage ? (
             <img
-              src={project.images[1] || localImages.coverJobMatching}
-              alt="Job Matching AI Agent - Workflow"
-              className="w-full h-full object-contain p-6"
+              src={localImages.jobMatching}
+              alt="Job Matching AI Agent"
+              className="w-full h-full object-contain"
               draggable={false}
               onError={() => setShowWorkflowImage(false)}
             />

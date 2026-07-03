@@ -29,15 +29,12 @@ export function About() {
             className="lg:w-1/2 space-y-12"
           >
             <div>
-              <h1 className="text-[2.5rem] font-medium tracking-[0.2em] mb-8 text-[#1A1A1A]">ABOUT</h1>
+              <h1 className="text-[2.5rem] font-medium tracking-[0.2em] mb-8 text-[#1A1A1A]">MeiLing</h1>
               <div className="space-y-6 text-[#666] leading-relaxed text-[1.1rem]">
-                <p>
-                  我是 LING，一名活跃于中国境内的建筑师与视觉探索者。关注空间、产品与文化之间的系统关系，并尝试用产品思维重新理解设计问题的组织方式。
-                </p>
-                <p>
-                 实践中，我将建筑与空间视为一种可被迭代的体验系统，而不仅是形式与功能的结果；同时引入用户体验、服务逻辑与内容结构的方法，使设计能够在不同场景中持续运行与扩展。
-                 我坚信设计的本质是叙事。无论是宏观的城市更新，还是微观的构件连接，都在讲述关于生活、记忆与感官的故事。
-                </p>
+                <p>我是 LING ，城市空间设计背景。关注空间、产品与文化之间的系统关系，用产品思维重新理解设计问题的组织方式。</p>
+                <p>在系列实践中，我将建筑与空间视为一种可被迭代的体验系统，而不仅是形式与功能的终端输出。通过引入用户体验、服务逻辑与内容结构的方法，使设计能够在不同场景中持续运行与扩展。</p>
+                <p>我的项目横跨城市空间、文化IP与数字体验系统，从单一的空间设计到整体性的“系统设计”——空间如何支持行为，内容如何形成传播，体验如何转化为长期价值。</p>
+                <p>设计的本质不仅是塑造空间，更是构建连接人、内容与环境的结构系统。</p>
               </div>
             </div>
 
@@ -45,7 +42,7 @@ export function About() {
               <div className="space-y-4">
                 <h3 className="text-[0.8rem] tracking-widest text-[#1A1A1A] font-bold uppercase">教育经历</h3>
                 <ul className="text-[0.9rem] text-[#777] space-y-2">
-                  <li>湖南科技大学 城乡规划</li>
+                  <li>湖南科技大学 城乡规划 本科</li>
                 </ul>
               </div>
               <div className="space-y-4">

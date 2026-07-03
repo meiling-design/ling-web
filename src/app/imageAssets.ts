@@ -142,6 +142,7 @@ export const localImages = {
   // Job Matching AI Agent
   cover01: resolve("cover01.png"),
   coverJobMatching: resolve("cover-job-matching.png"),
+  jobMatching: resolve("job-matching.png"),
   aiWorkflowDiagram: resolve("AI Workflow Diagram.png"),
   jobmatchingHero: resolve("jobmatching-hero.png"),
   jobmatchingOverview: resolve("jobmatching-overview.png"),
