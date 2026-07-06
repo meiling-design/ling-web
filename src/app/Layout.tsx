@@ -23,7 +23,7 @@ function Root() {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen bg-white text-[#1A1A1A] selection:bg-[#F2F2F2] selection:text-[#1A1A1A] lg:min-w-[1440px] lg:overflow-x-auto">
+    <div className="min-h-screen bg-white text-[#1A1A1A] selection:bg-[#F2F2F2] selection:text-[#1A1A1A]">
       <motion.div
         className="fixed top-0 left-0 right-0 h-0.5 bg-[#1A1A1A] origin-left z-[60]"
         style={{ scaleX }}

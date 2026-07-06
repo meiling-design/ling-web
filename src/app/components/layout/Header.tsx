@@ -16,7 +16,7 @@ export function Header() {
   ];
 
   return (
-    <header className="fixed lg:sticky top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#F2F2F2] lg:min-w-[1440px]">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#F2F2F2]">
       <div className="container mx-auto px-6 h-20 flex items-center justify-between max-w-[1440px]">
         <Link to="/" className="text-[1.2rem] font-medium tracking-[0.2em] text-[#1A1A1A]">
           LING DESIGN
