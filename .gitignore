@@ -54,5 +54,4 @@ guidelines/
 # API 凭证（含 Cloudinary API Key/Secret）
 scripts/upload-to-cloudinary.js
 
-# Cloudinary URL 映射文件（生成文件，包含 Cloud Name）
-src/data/cloudinary-urls.json
+# Cloudinary URL 映射文件（生成文件，需提交以支持 Vercel 构建）

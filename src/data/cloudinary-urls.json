@@ -1,0 +1,854 @@
+{
+  "cloudName": "pbofn55m",
+  "folder": "ling-web-assets",
+  "updatedAt": "2026-07-06T02:53:37.585Z",
+  "images": {
+    "cover10.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306197/ling-web-assets/cover10.jpg",
+      "width": 3840,
+      "height": 2160,
+      "format": "jpg",
+      "bytes": 3299197
+    },
+    "landscape1.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306201/ling-web-assets/landscape1.jpg",
+      "width": 3860,
+      "height": 2168,
+      "format": "jpg",
+      "bytes": 2565036
+    },
+    "landscape2.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306204/ling-web-assets/landscape2.jpg",
+      "width": 4352,
+      "height": 2444,
+      "format": "jpg",
+      "bytes": 1914523
+    },
+    "cover9.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306208/ling-web-assets/cover9.jpg",
+      "width": 3840,
+      "height": 2160,
+      "format": "jpg",
+      "bytes": 2168490
+    },
+    "landscape3.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306211/ling-web-assets/landscape3.jpg",
+      "width": 2592,
+      "height": 4608,
+      "format": "jpg",
+      "bytes": 1597800
+    },
+    "arcphoto2.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306215/ling-web-assets/arcphoto2.jpg",
+      "width": 1636,
+      "height": 3176,
+      "format": "jpg",
+      "bytes": 1734555
+    },
+    "landscape4.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306218/ling-web-assets/landscape4.jpg",
+      "width": 4480,
+      "height": 2016,
+      "format": "jpg",
+      "bytes": 1569357
+    },
+    "arcphoto1.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306221/ling-web-assets/arcphoto1.jpg",
+      "width": 3992,
+      "height": 1796,
+      "format": "jpg",
+      "bytes": 986015
+    },
+    "me.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306224/ling-web-assets/me.jpg",
+      "width": 2689,
+      "height": 4033,
+      "format": "jpg",
+      "bytes": 1674697
+    },
+    "arcphoto3.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306227/ling-web-assets/arcphoto3.jpg",
+      "width": 1688,
+      "height": 3140,
+      "format": "jpg",
+      "bytes": 706594
+    },
+    "arcphoto5.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306229/ling-web-assets/arcphoto5.jpg",
+      "width": 2396,
+      "height": 1864,
+      "format": "jpg",
+      "bytes": 369099
+    },
+    "arcphoto4.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306232/ling-web-assets/arcphoto4.jpg",
+      "width": 2280,
+      "height": 1708,
+      "format": "jpg",
+      "bytes": 403113
+    },
+    "cover4.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306234/ling-web-assets/cover4.jpg",
+      "width": 4032,
+      "height": 3024,
+      "format": "jpg",
+      "bytes": 1709230
+    },
+    "london4.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306237/ling-web-assets/london4.jpg",
+      "width": 7016,
+      "height": 4961,
+      "format": "jpg",
+      "bytes": 1931390
+    },
+    "research26.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306241/ling-web-assets/research26.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 2015723
+    },
+    "cover05.1.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306249/ling-web-assets/cover05_1.jpg",
+      "width": 1840,
+      "height": 2444,
+      "format": "jpg",
+      "bytes": 466742
+    },
+    "research18.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306252/ling-web-assets/research18.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1540235
+    },
+    "ipdesign-10.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306254/ling-web-assets/ipdesign-10.jpg",
+      "width": 4267,
+      "height": 2844,
+      "format": "jpg",
+      "bytes": 1718283
+    },
+    "cover03.1.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306257/ling-web-assets/cover03_1.jpg",
+      "width": 3492,
+      "height": 2155,
+      "format": "jpg",
+      "bytes": 1478730
+    },
+    "research15.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306258/ling-web-assets/research15.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1498111
+    },
+    "hetao08.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306261/ling-web-assets/hetao08.jpg",
+      "width": 5997,
+      "height": 3704,
+      "format": "jpg",
+      "bytes": 1432328
+    },
+    "cover5.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306263/ling-web-assets/cover5.jpg",
+      "width": 4644,
+      "height": 2614,
+      "format": "jpg",
+      "bytes": 1444431
+    },
+    "coverip2.1.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306266/ling-web-assets/coverip2_1.jpg",
+      "width": 2012,
+      "height": 1284,
+      "format": "jpg",
+      "bytes": 443581
+    },
+    "research11.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306268/ling-web-assets/research11.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1491436
+    },
+    "research25.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306270/ling-web-assets/research25.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1469071
+    },
+    "cover8.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306273/ling-web-assets/cover8.jpg",
+      "width": 1360,
+      "height": 765,
+      "format": "jpg",
+      "bytes": 392804
+    },
+    "london6.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306274/ling-web-assets/london6.jpg",
+      "width": 5204,
+      "height": 2939,
+      "format": "jpg",
+      "bytes": 1175173
+    },
+    "research20.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306276/ling-web-assets/research20.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1319722
+    },
+    "research21.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306278/ling-web-assets/research21.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1299831
+    },
+    "research24.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306281/ling-web-assets/research24.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1212049
+    },
+    "research13.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306283/ling-web-assets/research13.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1230858
+    },
+    "research7.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306286/ling-web-assets/research7.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1160966
+    },
+    "research5.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306288/ling-web-assets/research5.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1129573
+    },
+    "research16.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306290/ling-web-assets/research16.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1171200
+    },
+    "ipdesign-zheng1.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306292/ling-web-assets/ipdesign-zheng1.jpg",
+      "width": 6966,
+      "height": 3921,
+      "format": "jpg",
+      "bytes": 4309019
+    },
+    "research14.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306295/ling-web-assets/research14.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1139179
+    },
+    "research10.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306297/ling-web-assets/research10.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1134672
+    },
+    "research12.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306299/ling-web-assets/research12.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1153596
+    },
+    "research22.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306301/ling-web-assets/research22.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1106855
+    },
+    "hetao15.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306305/ling-web-assets/hetao15.jpg",
+      "width": 6024,
+      "height": 3721,
+      "format": "jpg",
+      "bytes": 974076
+    },
+    "research9.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306306/ling-web-assets/research9.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 1048716
+    },
+    "research19.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306309/ling-web-assets/research19.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 992165
+    },
+    "research23.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306311/ling-web-assets/research23.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 884863
+    },
+    "research6.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306313/ling-web-assets/research6.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 803255
+    },
+    "cover3.12.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306315/ling-web-assets/cover3_12.jpg",
+      "width": 2904,
+      "height": 2481,
+      "format": "jpg",
+      "bytes": 675446
+    },
+    "research17.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306316/ling-web-assets/research17.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 735288
+    },
+    "hetao16.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306318/ling-web-assets/hetao16.jpg",
+      "width": 2920,
+      "height": 2481,
+      "format": "jpg",
+      "bytes": 615934
+    },
+    "hetao01.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306319/ling-web-assets/hetao01.jpg",
+      "width": 4180,
+      "height": 2972,
+      "format": "jpg",
+      "bytes": 657323
+    },
+    "research4.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306321/ling-web-assets/research4.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 701950
+    },
+    "research8.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306323/ling-web-assets/research8.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 682423
+    },
+    "practice16.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306325/ling-web-assets/practice16.jpg",
+      "width": 4796,
+      "height": 3393,
+      "format": "jpg",
+      "bytes": 583577
+    },
+    "hetao17.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306327/ling-web-assets/hetao17.jpg",
+      "width": 4016,
+      "height": 2481,
+      "format": "jpg",
+      "bytes": 532814
+    },
+    "practice10.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306328/ling-web-assets/practice10.jpg",
+      "width": 3521,
+      "height": 2490,
+      "format": "jpg",
+      "bytes": 534503
+    },
+    "cover1.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306331/ling-web-assets/cover1.jpg",
+      "width": 3247,
+      "height": 1548,
+      "format": "jpg",
+      "bytes": 476693
+    },
+    "ipdesign-5.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306332/ling-web-assets/ipdesign-5.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 463350
+    },
+    "cover3.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306334/ling-web-assets/cover3.jpg",
+      "width": 1620,
+      "height": 962,
+      "format": "jpg",
+      "bytes": 503099
+    },
+    "practice13.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306335/ling-web-assets/practice13.jpg",
+      "width": 3928,
+      "height": 2778,
+      "format": "jpg",
+      "bytes": 438249
+    },
+    "landscape0.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306336/ling-web-assets/landscape0.jpg",
+      "width": 1419,
+      "height": 640,
+      "format": "jpg",
+      "bytes": 114806
+    },
+    "ipdesign-6.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306337/ling-web-assets/ipdesign-6.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 351660
+    },
+    "practice23.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306339/ling-web-assets/practice23.jpg",
+      "width": 3509,
+      "height": 2482,
+      "format": "jpg",
+      "bytes": 401490
+    },
+    "ipdesign-7.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306340/ling-web-assets/ipdesign-7.jpg",
+      "width": 3508,
+      "height": 2480,
+      "format": "jpg",
+      "bytes": 304449
+    },
+    "vr-community-interface.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306342/ling-web-assets/vr-community-interface.jpg",
+      "width": 1440,
+      "height": 3035,
+      "format": "jpg",
+      "bytes": 608804
+    },
+    "practice12.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306344/ling-web-assets/practice12.jpg",
+      "width": 3778,
+      "height": 2672,
+      "format": "jpg",
+      "bytes": 350818
+    },
+    "london12.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306345/ling-web-assets/london12.jpg",
+      "width": 2556,
+      "height": 1445,
+      "format": "jpg",
+      "bytes": 339701
+    },
+    "coverip3.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306346/ling-web-assets/coverip3.jpg",
+      "width": 1672,
+      "height": 941,
+      "format": "jpg",
+      "bytes": 445970
+    },
+    "vr-homepage.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306347/ling-web-assets/vr-homepage.png",
+      "width": 1586,
+      "height": 2753,
+      "format": "png",
+      "bytes": 1259355
+    },
+    "london5.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306350/ling-web-assets/london5.jpg",
+      "width": 2936,
+      "height": 2076,
+      "format": "jpg",
+      "bytes": 334397
+    },
+    "london11.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306351/ling-web-assets/london11.jpg",
+      "width": 2572,
+      "height": 1033,
+      "format": "jpg",
+      "bytes": 294660
+    },
+    "practice11.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306353/ling-web-assets/practice11.jpg",
+      "width": 3520,
+      "height": 2481,
+      "format": "jpg",
+      "bytes": 270675
+    },
+    "practice09.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306354/ling-web-assets/practice09.jpg",
+      "width": 2827,
+      "height": 2000,
+      "format": "jpg",
+      "bytes": 281975
+    },
+    "practice14.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306355/ling-web-assets/practice14.jpg",
+      "width": 3641,
+      "height": 2576,
+      "format": "jpg",
+      "bytes": 210683
+    },
+    "VRugcdesign.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306357/ling-web-assets/vrugcdesign.jpg",
+      "width": 2786,
+      "height": 1569,
+      "format": "jpg",
+      "bytes": 552122
+    },
+    "practice15.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306359/ling-web-assets/practice15.jpg",
+      "width": 3344,
+      "height": 2366,
+      "format": "jpg",
+      "bytes": 204305
+    },
+    "vr-immersive-interface-2.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306361/ling-web-assets/vr-immersive-interface-2.jpg",
+      "width": 1536,
+      "height": 1024,
+      "format": "jpg",
+      "bytes": 419592
+    },
+    "practice24.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306362/ling-web-assets/practice24.jpg",
+      "width": 3146,
+      "height": 2244,
+      "format": "jpg",
+      "bytes": 203714
+    },
+    "vr-chart.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306363/ling-web-assets/vr-chart.jpg",
+      "width": 1536,
+      "height": 1024,
+      "format": "jpg",
+      "bytes": 462540
+    },
+    "practice20-1.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306364/ling-web-assets/practice20-1.jpg",
+      "width": 1920,
+      "height": 1080,
+      "format": "jpg",
+      "bytes": 277828
+    },
+    "cover6.1.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306365/ling-web-assets/cover6_1.jpg",
+      "width": 1920,
+      "height": 1080,
+      "format": "jpg",
+      "bytes": 324844
+    },
+    "hetao05.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306367/ling-web-assets/hetao05.jpg",
+      "width": 2303,
+      "height": 1423,
+      "format": "jpg",
+      "bytes": 193574
+    },
+    "practice25.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306367/ling-web-assets/practice25.jpg",
+      "width": 1793,
+      "height": 1279,
+      "format": "jpg",
+      "bytes": 203847
+    },
+    "cover2.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306368/ling-web-assets/cover2.jpg",
+      "width": 2460,
+      "height": 1398,
+      "format": "jpg",
+      "bytes": 188075
+    },
+    "hetao10.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306370/ling-web-assets/hetao10.jpg",
+      "width": 2678,
+      "height": 1654,
+      "format": "jpg",
+      "bytes": 158050
+    },
+    "vr-CMP.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306371/ling-web-assets/vr-cmp.jpg",
+      "width": 1536,
+      "height": 1024,
+      "format": "jpg",
+      "bytes": 363529
+    },
+    "practice04.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306372/ling-web-assets/practice04.jpg",
+      "width": 1792,
+      "height": 977,
+      "format": "jpg",
+      "bytes": 166444
+    },
+    "cover7.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306373/ling-web-assets/cover7.jpg",
+      "width": 1920,
+      "height": 1080,
+      "format": "jpg",
+      "bytes": 353551
+    },
+    "hetao11.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306374/ling-web-assets/hetao11.jpg",
+      "width": 1578,
+      "height": 1522,
+      "format": "jpg",
+      "bytes": 157458
+    },
+    "hetao02.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306375/ling-web-assets/hetao02.jpg",
+      "width": 1446,
+      "height": 893,
+      "format": "jpg",
+      "bytes": 188748
+    },
+    "ipdesign-13.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306376/ling-web-assets/ipdesign-13.jpg",
+      "width": 1672,
+      "height": 941,
+      "format": "jpg",
+      "bytes": 302283
+    },
+    "vr-platform-architecture.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306379/ling-web-assets/vr-platform-architecture.jpg",
+      "width": 1536,
+      "height": 1024,
+      "format": "jpg",
+      "bytes": 342206
+    },
+    "practice08.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306380/ling-web-assets/practice08.jpg",
+      "width": 1793,
+      "height": 1279,
+      "format": "jpg",
+      "bytes": 158831
+    },
+    "coverip4.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306381/ling-web-assets/coverip4.jpg",
+      "width": 1672,
+      "height": 941,
+      "format": "jpg",
+      "bytes": 300626
+    },
+    "digital-museum.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306383/ling-web-assets/digital-museum.jpg",
+      "width": 1402,
+      "height": 1122,
+      "format": "jpg",
+      "bytes": 286424
+    },
+    "practice21.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306384/ling-web-assets/practice21.jpg",
+      "width": 1271,
+      "height": 718,
+      "format": "jpg",
+      "bytes": 161980
+    },
+    "practice18.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306385/ling-web-assets/practice18.jpg",
+      "width": 1793,
+      "height": 1279,
+      "format": "jpg",
+      "bytes": 149047
+    },
+    "practice19.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306386/ling-web-assets/practice19.jpg",
+      "width": 1793,
+      "height": 1279,
+      "format": "jpg",
+      "bytes": 139813
+    },
+    "practice07.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306387/ling-web-assets/practice07.jpg",
+      "width": 1793,
+      "height": 1279,
+      "format": "jpg",
+      "bytes": 126969
+    },
+    "practice17.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306389/ling-web-assets/practice17.jpg",
+      "width": 1793,
+      "height": 1271,
+      "format": "jpg",
+      "bytes": 131504
+    },
+    "system-thinking.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306390/ling-web-assets/system-thinking.jpg",
+      "width": 1173,
+      "height": 1341,
+      "format": "jpg",
+      "bytes": 251024
+    },
+    "IP02.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306391/ling-web-assets/ip02.jpg",
+      "width": 1497,
+      "height": 1051,
+      "format": "jpg",
+      "bytes": 255668
+    },
+    "practice22.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306393/ling-web-assets/practice22.jpg",
+      "width": 1793,
+      "height": 1279,
+      "format": "jpg",
+      "bytes": 123457
+    },
+    "product_pain-point-map.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306394/ling-web-assets/product_pain-point-map.jpg",
+      "width": 1475,
+      "height": 853,
+      "format": "jpg",
+      "bytes": 247305
+    },
+    "practice06.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306395/ling-web-assets/practice06.jpg",
+      "width": 1793,
+      "height": 1279,
+      "format": "jpg",
+      "bytes": 124573
+    },
+    "cover6.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306396/ling-web-assets/cover6.jpg",
+      "width": 991,
+      "height": 640,
+      "format": "jpg",
+      "bytes": 90050
+    },
+    "IP03.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306397/ling-web-assets/ip03.jpg",
+      "width": 1491,
+      "height": 1055,
+      "format": "jpg",
+      "bytes": 263449
+    },
+    "practice05.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306398/ling-web-assets/practice05.jpg",
+      "width": 1793,
+      "height": 1279,
+      "format": "jpg",
+      "bytes": 99803
+    },
+    "IP01.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306400/ling-web-assets/ip01.jpg",
+      "width": 1491,
+      "height": 1055,
+      "format": "jpg",
+      "bytes": 228777
+    },
+    "practice27.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306401/ling-web-assets/practice27.jpg",
+      "width": 1793,
+      "height": 1279,
+      "format": "jpg",
+      "bytes": 98923
+    },
+    "langgraph-workflow.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306402/ling-web-assets/langgraph-workflow.jpg",
+      "width": 1536,
+      "height": 1024,
+      "format": "jpg",
+      "bytes": 199111
+    },
+    "product_Hero_Cover.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306404/ling-web-assets/product_hero_cover.jpg",
+      "width": 1531,
+      "height": 447,
+      "format": "jpg",
+      "bytes": 167737
+    },
+    "AI Workflow Diagram.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306404/ling-web-assets/ai_workflow_diagram.jpg",
+      "width": 1536,
+      "height": 1024,
+      "format": "jpg",
+      "bytes": 200368
+    },
+    "cover01.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306405/ling-web-assets/cover01.jpg",
+      "width": 1536,
+      "height": 1024,
+      "format": "jpg",
+      "bytes": 199196
+    },
+    "container-homepage.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306406/ling-web-assets/container-homepage.jpg",
+      "width": 751,
+      "height": 768,
+      "format": "jpg",
+      "bytes": 85353
+    },
+    "decision-strategy.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306407/ling-web-assets/decision-strategy.jpg",
+      "width": 1672,
+      "height": 941,
+      "format": "jpg",
+      "bytes": 131084
+    },
+    "cover00.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306408/ling-web-assets/cover00.jpg",
+      "width": 837,
+      "height": 418,
+      "format": "jpg",
+      "bytes": 114881
+    },
+    "cover12.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306409/ling-web-assets/cover12.jpg",
+      "width": 732,
+      "height": 731,
+      "format": "jpg",
+      "bytes": 58963
+    },
+    "hetao04.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306410/ling-web-assets/hetao04.jpg",
+      "width": 978,
+      "height": 604,
+      "format": "jpg",
+      "bytes": 48602
+    },
+    "job-matching.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306411/ling-web-assets/job-matching.png",
+      "width": 1478,
+      "height": 851,
+      "format": "png",
+      "bytes": 94778
+    },
+    "landscape5.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306412/ling-web-assets/landscape5.jpg",
+      "width": 960,
+      "height": 540,
+      "format": "jpg",
+      "bytes": 45503
+    },
+    "site.jpg": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306413/ling-web-assets/site.jpg",
+      "width": 459,
+      "height": 378,
+      "format": "jpg",
+      "bytes": 34547
+    },
+    "product_solution-system.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306414/ling-web-assets/product_solution-system.jpg",
+      "width": 731,
+      "height": 550,
+      "format": "jpg",
+      "bytes": 64076
+    },
+    "coverip1.webp": {
+      "url": "https://res.cloudinary.com/pbofn55m/image/upload/v1783306415/ling-web-assets/coverip1.jpg",
+      "width": 1237,
+      "height": 563,
+      "format": "jpg",
+      "bytes": 66868
+    }
+  }
+}
