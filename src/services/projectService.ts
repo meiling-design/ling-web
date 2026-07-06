@@ -87,7 +87,6 @@ const listingOverrides: Record<string, ListingOverride> = {
 const listingCache = new Map<string, ProjectListing>();
 const projectGroupById = new Map<string, ProjectGroup>();
 const projectGroupIndex = new Map<string, string>();
-const allProjectIds = Object.keys(projectDetailData);
 
 function toListing(id: string): ProjectListing {
   const cached = listingCache.get(id);
@@ -185,6 +184,10 @@ export const projectGroups: ProjectGroup[] = [
     projectIds: ["yangtze-bridge", "ancient-village"],
   },
 ];
+
+// ---- 全量有序 ID 列表 ----
+// 与 projectGroups 顺序一致，保证详情页导航顺序与首页卡片顺序相同
+const allProjectIds = projectGroups.flatMap(group => group.projectIds);
 
 // ---- 反向索引缓存 ----
 

@@ -4,8 +4,11 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "dev": "vite",
     "build": "vite build",
-    "dev": "vite"
+    "build:cdn": "VITE_USE_CLOUDINARY=true vite build",
+    "upload": "node scripts/upload-to-cloudinary.js",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
@@ -19,9 +22,12 @@
     "@types/react": "18.3.1",
     "@types/react-dom": "18.3.1",
     "@vitejs/plugin-react": "4.7.0",
+    "cloudinary": "2.10.0",
+    "sharp": "0.35.3",
     "tailwindcss": "4.1.12",
     "typescript": "^6.0.3",
-    "vite": "6.3.5"
+    "vite": "6.3.5",
+    "vite-plugin-image-optimizer": "2.0.3"
   },
   "peerDependencies": {
     "react": "18.3.1",

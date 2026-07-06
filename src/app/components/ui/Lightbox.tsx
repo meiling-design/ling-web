@@ -83,6 +83,8 @@ export function Lightbox({ isOpen, onClose, images, currentIndex, onNavigate, ge
               src={images[currentIndex]}
               alt={getAlt?.(currentIndex) ?? `Project ${currentIndex + 1}`}
               className="max-w-full max-h-[80vh] object-contain select-none"
+              loading="lazy"
+              decoding="async"
               draggable={false}
               onContextMenu={(e) => e.preventDefault()}
               onDragStart={(e) => e.preventDefault()}

@@ -39,6 +39,7 @@ export function ImageWithFallback(props: ImgHTMLAttributes<HTMLImageElement>) {
       alt={alt}
       className={className}
       style={style}
+      loading="lazy"
       draggable={false}
       onContextMenu={preventDownload}
       onDragStart={preventDownload}

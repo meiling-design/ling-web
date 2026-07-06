@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 
 function figmaAssetResolver() {
@@ -23,10 +24,16 @@ export default defineConfig({
   },
   plugins: [
     figmaAssetResolver(),
-    // The React and Tailwind plugins are both required for Make, even if
-    // Tailwind is not being actively used – do not remove them
     react(),
     tailwindcss(),
+    ViteImageOptimizer({
+      /* 对所有图片进行无损/近无损压缩 */
+      png: { quality: 85 },
+      jpg: { quality: 80, progressive: true },
+      jpeg: { quality: 80, progressive: true },
+      webp: { quality: 80, lossless: false },
+      avif: { quality: 70, lossless: false },
+    }),
   ],
   resolve: {
     alias: {

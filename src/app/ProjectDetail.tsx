@@ -2208,6 +2208,8 @@ function YimoVRProductDetail({
               src={project.images[0]}
               alt="Yimo Hero Cover"
               className="w-full h-auto object-cover"
+              loading="lazy"
+              decoding="async"
               draggable={false}
               onContextMenu={(e) => e.preventDefault()}
               onDragStart={(e) => e.preventDefault()}
@@ -2641,6 +2643,8 @@ function JobMatchingHero({ project }: { project: ProjectData }) {
               src={localImages.jobMatching}
               alt="Job Matching AI Agent"
               className="w-full h-full object-contain"
+              loading="lazy"
+              decoding="async"
               draggable={false}
               onError={() => setShowWorkflowImage(false)}
             />
@@ -2772,6 +2776,8 @@ function PlaceholderImage({ src, alt, title, subtitle }: {
       src={src}
       alt={alt}
       className="w-full h-full object-contain p-4"
+      loading="lazy"
+      decoding="async"
       draggable={false}
       onContextMenu={(e) => e.preventDefault()}
       onDragStart={(e) => e.preventDefault()}
