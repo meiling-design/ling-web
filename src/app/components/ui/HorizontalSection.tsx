@@ -60,7 +60,7 @@ export function HorizontalSection({ id, title, subtitle, projects, basePath = "p
       <div className="relative group">
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto gap-8 px-6 md:px-[calc((100vw-1440px)/2+24px)] snap-x pb-4 scroll-smooth custom-h-scroll"
+          className="flex overflow-x-auto gap-8 px-6 md:px-[calc((100vw-1440px)/2+24px)] lg:px-6 snap-x pb-4 scroll-smooth custom-h-scroll"
         >
           {projects.map((project) => (
             <Link
