@@ -30,7 +30,7 @@ export function HorizontalSection({ id, title, subtitle, projects, basePath = "p
       const firstCard = scrollRef.current.children[0] as HTMLElement | null;
       if (!firstCard) return;
       const cardWidth = firstCard.getBoundingClientRect().width;
-      const scrollAmount = cardWidth + 32; // card width + gap-8
+      const scrollAmount = cardWidth + 28; // card width + gap-7
       scrollRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -39,14 +39,14 @@ export function HorizontalSection({ id, title, subtitle, projects, basePath = "p
   };
 
   return (
-    <section id={id} className="mb-20 overflow-hidden scroll-mt-24">
-      <div className="container mx-auto px-6 max-w-[1440px] mb-8">
+    <section id={id} className="pt-[120px] pb-[80px] overflow-hidden scroll-mt-24">
+      <div className="px-6 mb-8">
         <div className="flex items-end justify-between">
           <div className="flex items-center gap-4">
             <div className="w-1 h-8 bg-[#1A1A1A]" />
             <div>
-              <h2 className="text-[1.5rem] font-medium text-[#1A1A1A] leading-none uppercase tracking-widest">{title}</h2>
-              <p className="text-[0.8rem] text-[#777] mt-1">{subtitle}</p>
+              <h2 className="text-[1.5rem] lg:text-[1.75rem] font-bold text-[#1A1A1A] leading-none uppercase tracking-[1px]">{title}</h2>
+              <p className="text-[0.8rem] text-[#999] opacity-55 mt-1">{subtitle}</p>
             </div>
           </div>
           <div className="hidden md:flex items-center gap-6">
@@ -60,7 +60,7 @@ export function HorizontalSection({ id, title, subtitle, projects, basePath = "p
       <div className="relative group">
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto gap-8 px-6 md:px-[calc((100vw-1440px)/2+24px)] snap-x pb-4 scroll-smooth custom-h-scroll"
+          className="flex overflow-x-auto gap-7 px-6 lg:px-0 snap-x pb-4 scroll-smooth custom-h-scroll"
         >
           {projects.map((project) => (
             <Link

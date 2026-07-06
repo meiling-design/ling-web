@@ -37,7 +37,7 @@ export function Home() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="min-h-[70vh] flex flex-col justify-center container mx-auto px-6 max-w-[1440px] py-20">
+      <section className="min-h-[70vh] flex flex-col justify-center px-6 mx-auto lg:max-w-[1600px] lg:px-12 py-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -66,22 +66,24 @@ export function Home() {
       </section>
 
       {/* Grid Sections — 由 projectService 中的 groups 驱动 */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-      >
-        {sections.map((group) => (
-          <HorizontalSection
-            key={group.id}
-            id={group.id}
-            title={group.title}
-            subtitle={group.subtitle}
-            projects={group.projects}
-          />
-        ))}
-      </motion.div>
+      <div className="lg:max-w-[1600px] lg:mx-auto lg:px-12">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
+          {sections.map((group) => (
+            <HorizontalSection
+              key={group.id}
+              id={group.id}
+              title={group.title}
+              subtitle={group.subtitle}
+              projects={group.projects}
+            />
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 }
