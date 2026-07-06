@@ -55,3 +55,5 @@ guidelines/
 scripts/upload-to-cloudinary.js
 
 # Cloudinary URL 映射文件（生成文件，需提交以支持 Vercel 构建）
+.vercel
+.env*
