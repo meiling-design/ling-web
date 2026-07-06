@@ -10,7 +10,7 @@ export function Footer() {
           <div className="space-y-6">
             <h2 className="text-[1.5rem] tracking-[0.2em] font-medium">LING DESIGN</h2>
             <p className="text-[#777] max-w-sm text-[0.9rem] leading-relaxed">
-              探索空间、时间与叙事的交汇点。致力于建筑、摄影与产品的纯粹表达。
+              好的产品不仅解决问题，更塑造人与技术之间更自然的连接，好的设计有着跨越时空的生命力。
             </p>
           </div>
 
@@ -26,14 +26,14 @@ export function Footer() {
             <div className="space-y-4">
               <h3 className="text-[0.75rem] tracking-widest text-[#777] uppercase font-bold">联系</h3>
               <ul className="space-y-2 text-[0.9rem]">
-                <li><Link to="/contact" className="hover:text-gray-400 transition-colors">邮箱 / ling@design.com</Link></li>
+                <li><Link to="/contact" className="hover:text-gray-400 transition-colors">邮箱 / 1350900062@qq.com</Link></li>
               </ul>
             </div>
           </div>
         </div>
         
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[0.8rem] text-[#777]">
-          <p>© {currentYear} LING DESIGN. ALL RIGHTS RESERVED.</p>
+          <p>© {currentYear} LING DESIGN. 保留所有版权.</p>
           <p>CHINA</p>
         </div>
       </div>

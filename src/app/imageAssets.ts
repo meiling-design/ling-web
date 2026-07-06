@@ -134,6 +134,7 @@ export const localImages = {
   hetao17: resolveByFilename("hetao17.jpg"),
 
   // Product case new images
+  digitalMuseum: resolveByFilename("digital-museum.webp"),
   productHeroCover: resolveByFilename("product_Hero_Cover.webp"),
   productPainPointMap: resolveByFilename("product_pain-point-map.webp"),
   productSolutionSystem: resolveByFilename("product_solution-system.webp"),

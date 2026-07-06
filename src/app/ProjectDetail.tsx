@@ -1187,6 +1187,22 @@ function FutureScenariosSection() {
             <div className="flex-1 p-6 md:p-8 space-y-5">
               <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
 
+              {/* Digital Museum 示意图 — 仅 Scenario 01 */}
+              {s.title === "Digital Museum" && (
+                <div className="rounded-xl overflow-hidden border border-border">
+                  <img
+                    src={localImages.digitalMuseum}
+                    alt="Digital Museum 数字博物馆 — 示意图"
+                    className="w-full h-auto"
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
+                    onDragStart={(e) => e.preventDefault()}
+                  />
+                </div>
+              )}
+
               {/* 流程箭头 */}
               <div className="flex flex-wrap items-center gap-1.5">
                 {s.flow.map((step, i) => (
@@ -1207,12 +1223,6 @@ function FutureScenariosSection() {
                 </div>
               )}
 
-              {/* 配图占位容器 */}
-              <div className="w-full h-24 rounded-xl bg-muted/50 border border-dashed border-border flex items-center justify-center">
-                <span className="text-[0.6rem] text-muted-foreground tracking-wider">
-                  [ {s.title} {s.cn} — 示意图 ]
-                </span>
-              </div>
             </div>
           </div>
         </motion.div>
@@ -1228,8 +1238,8 @@ function FutureScenariosSection() {
       >
         <p className="text-[0.55rem] font-bold text-muted-foreground uppercase tracking-widest">Core Vision</p>
         <p className="text-xl md:text-2xl font-bold text-foreground mt-3 leading-snug">
-          From a VR heritage experience platform <br />
-          <span className="text-muted-foreground">to an intelligent cultural innovation ecosystem.</span>
+          从一个VR非遗体验平台 <br />
+          <span className="text-muted-foreground">走向智能化的文化创新生态。</span>
         </p>
       </motion.div>
     </div>
@@ -3057,11 +3067,15 @@ function ValueSection({ localImages }: { localImages: Record<string, string> }) 
         className="flex items-center justify-center"
       >
         <div className="w-full aspect-[4/3] border border-neutral-200 rounded-2xl bg-white flex items-center justify-center text-neutral-400 overflow-hidden">
-          <PlaceholderImage
-            src={localImages.jobmatchingInterface}
+          <img
+            src={localImages.jobMatching}
             alt="产品界面截图"
-            title="产品界面截图"
-            subtitle="Job Matching AI Agent"
+            className="w-full h-full object-contain"
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+            onContextMenu={(e) => e.preventDefault()}
+            onDragStart={(e) => e.preventDefault()}
           />
         </div>
       </motion.div>

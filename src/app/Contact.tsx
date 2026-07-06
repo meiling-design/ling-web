@@ -89,8 +89,8 @@ export function Contact() {
             >
               <div className="space-y-6">
                 <p className="text-[1.2rem] text-[#666] leading-relaxed">
-                  我随时欢迎新的合作机会、学术交流或简单的问候。
-                  如果您有任何想法，请随时联系我。
+                  感谢你的时间。希望这些作品不仅展示设计成果，更展现我对产品思考、系统设计与持续探索的过程。
+                  如果您有任何想法，请随时联系我。期待与你交流更多可能。
                 </p>
               </div>
 

@@ -37,7 +37,7 @@ export function Home() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="min-h-[70vh] flex flex-col justify-center px-6 mx-auto lg:max-w-[1600px] lg:px-12 py-20">
+      <section className="min-h-[clamp(400px,60vh,800px)] flex flex-col justify-center px-6 mx-auto lg:max-w-[1600px] lg:px-12 py-[clamp(40px,10vh,100px)]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,7 +49,7 @@ export function Home() {
               letterSpacing: "0.55em",
               transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
             }}
-            className="text-[3.5rem] md:text-[5rem] font-medium tracking-[0.4em] text-[#1A1A1A] leading-tight select-none cursor-default inline-block origin-left"
+            className="text-[clamp(2.5rem,6vw,5rem)] font-medium tracking-[0.4em] text-[#1A1A1A] leading-tight select-none cursor-default inline-block origin-left"
           >
             LING.<br />DESIGN
           </motion.h1>
@@ -60,7 +60,7 @@ export function Home() {
             whileHover={{ x: 10 }}
             className="text-[1.2rem] md:text-[1.5rem] text-[#666] tracking-[0.2em] font-light transition-all duration-500"
           >
-            空间与时间的旅行者
+            从空间到产品，我始终关注复杂系统如何服务于真实的人
           </motion.p>
         </motion.div>
       </section>
