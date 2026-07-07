@@ -219,7 +219,7 @@ export function ProjectDetail() {
                 .map((item) => (
                   <div key={item.label} className="flex flex-col gap-1 text-[0.75rem]">
                     <span className="text-[#BBB] tracking-widest uppercase text-[0.65rem] font-bold">{item.label}</span>
-                    <span className="text-[#1A1A1A]">{item.value}</span>
+                    <span className="text-[#1A1A1A] whitespace-pre-line">{item.value}</span>
                   </div>
                 ))}
             </div>
