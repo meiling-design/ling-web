@@ -116,8 +116,8 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionCN: `面对传统聚落在城市发展中的文化弱化，如何留住城市中老窑湾的“记忆”，并为新窑湾注入“历史”？本项目重新思考文化中心的角色定位。建筑不再是单一的展示空间，而是融合了展览、公共活动与社区交流的复合组织，建立持续发生文化互动的公共平台，使文化传承从静态展示转向日常参与，提升公共空间的社会价值与持续活力。`,
     descriptionEN: `Facing the cultural weakening of traditional settlements amidst urban development, how can we preserve the "memory" of old Yao Wan while infusing "history" into the new Yao Wan? This project rethinks the role of the cultural center. Architecture is no longer a single-function exhibition space, but a composite organization that integrates exhibitions, public activities, and community exchange, establishing a public platform for ongoing cultural interaction. It transforms cultural heritage from static display into daily participation, enhancing the social value and sustained vitality of public space.`,
     year: "Spring 2018",
-    location: "Yao Wan, XiangTan",
-    role: "方案设计师",
+    location: "窑湾, 湘潭",
+    role: "Meilin Chen , Yuanmeng Hu ",
     mentor: "Wang Guiqin Jiangli",
     images: [
       localImages.research9,
@@ -139,8 +139,8 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionCN: `人已数代迁，屋立百年间。如何以温和的方式找回属于它们的“芳华”？本项目聚焦湖湘传统民居的空间逻辑与环境适应性，通过分析气候条件、生活方式与建造体系，提炼具有地域特征的建筑策略。设计并非复制传统形式，而是将传统空间秩序转译为适应当代生活的新型建筑语言，使地域文化成为可持续发展的设计资源。`,
     descriptionEN: `Generations have moved on, yet houses stand for centuries. How can we gently retrieve the prime they once possessed? This project focuses on the spatial logic and environmental adaptability of traditional Hunan dwellings, analyzing climate, lifestyle, and construction systems to distill regionally distinctive architectural strategies. Design does not replicate traditional forms, but transliterates traditional spatial order into a new architectural language suited for contemporary life, making regional culture a sustainable design resource.`,
     year: "Spring 2018",
-    location: "XiangShui Village, ZhuZhou",
-    role: "研究员",
+    location: "响水村, 株洲",
+    role: "caiman,zengxu",
     mentor: "Jiangli Huangjingqi",
     images: [
       localImages.research15,
@@ -179,7 +179,7 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionEN: `Passing through Jinjia Lane, walking along Kongjia Alley — facing the future, how can we let the original urban memory continue, so that the stories of this place can still be told? This project takes the historic Laoximen district as its subject, reorganizing street systems, public nodes, and historic spaces into a continuous urban experience path, allowing scattered historical memories to reintegrate into residents' daily lives. The design emphasizes the continuity of cultural heritage, making history a living component of ongoing urban development rather than an object of static preservation.`,
     year: "2020",
     location: "上海，中国",
-    role: "工作坊成员",
+    role: "GuoChuxin  ZhouXinyi  MaoTiantian ",
     mentor: "TUD导师团队",
     images: [
       localImages.research21,
@@ -223,7 +223,7 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionEN: `Behind rows of fixed classrooms lies an implicit assumption about knowledge: it happens at the same time, in the same way, for everyone. But when education begins to honor individual rhythms, is space still saying "no" with its walls? This project releases the teaching unit from permanent partitions, allowing learning settings to be as reconfigurable and fluid as knowledge itself. The campus ceases to be a machine housing students and becomes a quiet, open network where different paths unfold simultaneously.`,
     year: "2024",
     location: "深圳龙岗区，广东",
-    role: "室内方案设计师",
+    role: "室内设计师",
     images: [
       localImages.practice07,
       localImages.practice08,
@@ -297,7 +297,7 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionCN: `传统书画常被困在两种命运里：要么被供在封闭的展柜后，要么被遗忘在生活的角落。它们能否重新呼吸，成为日常里不请自来的客人？这个项目把展览建筑想象成公园里的一段缓坡——人们在散步中不期而遇。文化的当代意义，不在于被仰望，而在于被亲近。`,
     descriptionEN: `Traditional painting and calligraphy are often trapped between two fates: enshrined behind sealed glass, or forgotten in the corners of life. Can they breathe again, becoming uninvited guests in the everyday? This project imagines the exhibition building as a gentle slope in the park—people don't make pilgrimages to it; they encounter it while wandering. The contemporary meaning of culture lies not in being looked up to, but in being drawn near.`,
     year: "2022",
-    location: "浙江台州仙居县永安公园",
+    location: "浙江台州仙居县",
     role: "建筑设计师",
     images: [
       localImages.practice12,
@@ -377,7 +377,7 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionEN: `With nature, humanity is perpetually torn: we want both to preserve its wholeness and to walk into its depths. This project refuses a crude choice between "sealed-off conservation" and "destructive development." It replaces construction volume with experience capacity, aligning the paths of human wandering with the grain of the land. Visitors complete a quiet listening as they move—nature tells its own story without words.`,
     year: "2022",
     location: "山东省日照市莒县",
-    role: "规划设计师",
+    role: "规划设计",
     images: [
       localImages.practice17,
       localImages.practice18,
@@ -396,7 +396,7 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionEN: `How can agricultural-tourism space be reimagined within the dual context of Ju cultural heritage and farming practices? Located in Ju County, Rizhao, this project embeds minimalist geometric forms into vast rice paddies, constructing parallel touring routes along farm roads to keep tourism and agriculture interference-free. The architecture supports mixed programs including a café, agricultural science education, and study tours, aiming to create a new agricultural-tourism landmark that embodies cultural depth, viral appeal, and natural tranquility.`,
     year: "2022",
     location: "日照，山东",
-    role: "设计主创",
+    role: "建筑设计师",
     images: [
       localImages.practice20,
       localImages.practice21,
@@ -473,7 +473,7 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionEN: `Once an IP character is created, how does it move beyond being seen to truly permeating different scenarios and industries? Centered on "Carrot Head," this project redefines IP as a cross-context content and experience system rather than a one-off visual asset. The design unfolds across three layers: at the foundation, character logic, visual identity, and interaction principles are established for cross-scenario adaptability; at the application layer, the IP extends into events, exhibitions, brand communication, and virtual environments, forming a multi-touchpoint user journey; at the business layer, potential commercial models are explored in cultural tourism, experiential events, and digital content products. What is delivered is not a character design, but an IP-driven ecosystem that connects content, experience, and commercial value across contexts.`,
     year: "2024",
     location: "",
-    role: "视觉设计师",
+    role: "场景设计",
     images: [
       localImages.ipDesign5,
       localImages.ipDesign6,
@@ -510,7 +510,7 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionEN: `When a pattern moves from an image onto a product shelf, how much of its cultural identity remains? The productization of intangible cultural heritage patterns faces a core tension: direct copying loses design value, while excessive alteration severs cultural roots. This project systematically deconstructs and redesigns classic patterns from the Tujia brocade: extracting the identifying genes of core patterns and reconstructing them through contemporary compositions of symmetry, continuity, and repetition. The result is a standardized pattern component library that retains ethnic recognizability and modern applicability, flexibly adaptable to product development across textiles, home goods, and cultural merchandise—providing a scalable, licensable, cross-category foundational design asset for the commercial transformation of intangible cultural heritage.`,
     year: "2021",
     location: "",
-    role: "图案设计师",
+    role: "产品设计师",
     images: [
       localImages.ipDesign13,
       localImages.ipDesign10,

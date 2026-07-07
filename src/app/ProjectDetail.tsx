@@ -192,7 +192,7 @@ export function ProjectDetail() {
                 { label: "年份 / YEAR", value: project.year },
                 { label: "地点 / SITE", value: project.location },
                 { label: "类别 / CATEGORY", value: project.category },
-                { label: "角色 / ROLE", value: project.role },
+                { label: project.section === "Research" ? "合作者 / Collaborator" : "角色 / ROLE", value: project.role },
                 project.mentor ? { label: "指导 / INSTRUCTOR", value: project.mentor } : null,
               ]
                 .filter((item): item is { label: string; value: string } => item !== null)
