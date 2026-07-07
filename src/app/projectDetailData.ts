@@ -423,8 +423,8 @@ export const projectDetailData: Record<string, ProjectData> = {
     ],
   },
   "racstudio-6f": {
-    title: "RACstudio 6F 室内设计 · LIGHT·LINE",
-    subtitle: "室内设计 / 办公+展示空间",
+    title: " LIGHT·LINE",
+    subtitle: "RACstudio 6F 室内设计",
     section: "Practice",
     category: "Interior Design",
     homeTags: ["用户体验", "空间策略", "系统设计"],

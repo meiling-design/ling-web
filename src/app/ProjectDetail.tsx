@@ -162,6 +162,26 @@ export function ProjectDetail() {
                   <p>
                     {(() => {
                       const text = project.descriptionCN;
+                      const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+                      if (lines.length > 1) {
+                        return lines.map((line, i) => {
+                          const isFirst = i === 0;
+                          const qIdx = (() => {
+                            const cn = line.indexOf('？');
+                            const en = line.indexOf('?');
+                            if (cn >= 0 && en >= 0) return Math.min(cn, en);
+                            return cn >= 0 ? cn : en;
+                          })();
+                          return (
+                            <span key={i} className={isFirst ? "italic font-bold text-[#999]" : ""}>
+                              {i > 0 && <br />}
+                              {qIdx >= 0 ? (
+                                <><strong className="font-semibold">{line.slice(0, qIdx + 1)}</strong>{line.slice(qIdx + 1)}</>
+                              ) : line}
+                            </span>
+                          );
+                        });
+                      }
                       const qIdx = (() => {
                         const cn = text.indexOf('？');
                         const en = text.indexOf('?');
