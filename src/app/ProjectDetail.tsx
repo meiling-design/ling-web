@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { Lightbox } from "./components/ui/Lightbox";
-import { BackToHomeLink, ProjectMetadata } from "./components/product";
+import { BackToHomeLink, ProjectMetadata, JobInsightCase } from "./components/product";
 import { getProjectById, getAllProjectIds, getProjectGroup, groupHasDetailTags } from "../services/projectService";
 import type { ProjectData } from "../services/projectService";
 import { fadeUp } from "../services/animationVariants";
@@ -74,9 +74,9 @@ export function ProjectDetail() {
     return <YimoVRProductDetail project={project} allProjectIds={allProjectIds} id={id} />;
   }
 
-  // 职位匹配 Agent 项目使用 Question→Answer 风格产品案例详情页
+  // 职位匹配 Agent 项目使用 Scroll Story 风格产品案例详情页
   if (id === "job-matching-ai-agent") {
-    return <JobMatchingProductDetail project={project} allProjectIds={allProjectIds} id={id} />;
+    return <JobInsightCase project={project} id={id} />;
   }
 
   return (

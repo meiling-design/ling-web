@@ -177,3 +177,384 @@
 .yimo-back-link:hover {
   color: var(--yimo-text);
 }
+
+/* ============================================================
+   JobInsight Case 专用 UI 系统（统一设计语言 × 蓝色科技感）
+   ============================================================ */
+.jobinsight-case {
+  --ji-bg: #f6f1e7;
+  --ji-card: #ffffff;
+  --ji-text: #1c1c1c;
+  --ji-muted: #6b6b6b;
+  --ji-blue: #2d5bff;
+  --ji-blue-light: rgba(45, 91, 255, 0.08);
+  --ji-blue-mid: rgba(45, 91, 255, 0.15);
+  --ji-blue-strong: rgba(45, 91, 255, 0.25);
+  --ji-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  --ji-radius: 14px;
+
+  background: var(--ji-bg);
+  color: var(--ji-text);
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+
+  --background: var(--ji-bg);
+  --foreground: var(--ji-text);
+  --card: var(--ji-card);
+  --muted: #f0ebe3;
+  --muted-foreground: var(--ji-muted);
+}
+
+/* ------ 进度指示器 ------ */
+.ji-progress-bar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ji-blue), #6c8cff);
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+
+/* ------ 屏幕容器 ------ */
+.ji-screen {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 32px;
+}
+
+/* ------ 节点流程图（Screen 06） ------ */
+.ji-node-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.ji-node-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  padding: 6px 0;
+  opacity: 0.3;
+  transition: all 0.5s ease;
+}
+
+.ji-node-row.active {
+  opacity: 1;
+}
+
+.ji-node-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.4s ease;
+  z-index: 2;
+  position: relative;
+}
+
+.ji-node-dot.active {
+  border-color: var(--ji-blue);
+  background: var(--ji-blue);
+  color: white;
+  box-shadow: 0 0 16px var(--ji-blue-strong);
+}
+
+.ji-node-connector {
+  position: absolute;
+  left: 15px;
+  top: 38px;
+  width: 2px;
+  height: calc(100% - 8px);
+  background: #ddd;
+  z-index: 1;
+  transition: background 0.5s ease;
+}
+
+.ji-node-connector.active {
+  background: var(--ji-blue);
+}
+
+.ji-node-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ji-text);
+  transition: all 0.3s ease;
+}
+
+.ji-node-desc {
+  font-size: 0.65rem;
+  color: var(--ji-muted);
+  transition: all 0.3s ease;
+}
+
+/* ------ 权重条（Screen 07） ------ */
+.ji-weight-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: #e8e4dc;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.ji-weight-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--ji-blue), #6c8cff);
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ------ 产品截图卡片（Screen 08） ------ */
+.ji-demo-card {
+  border-radius: var(--ji-radius);
+  border: 1px solid rgba(0,0,0,0.06);
+  background: var(--ji-card);
+  overflow: hidden;
+  box-shadow: var(--ji-shadow);
+  transition: all 0.3s ease;
+}
+
+.ji-demo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+}
+
+/* ------ 技术架构标签（Screen 09） ------ */
+.ji-tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid rgba(45,91,255,0.15);
+  background: rgba(45,91,255,0.05);
+  color: var(--ji-text);
+  transition: all 0.2s ease;
+}
+
+.ji-tech-pill:hover {
+  border-color: var(--ji-blue);
+  background: var(--ji-blue-light);
+}
+
+/* ------ 架构层（Screen 05） ------ */
+.ji-layer {
+  border-radius: var(--ji-radius);
+  border: 1px solid rgba(0,0,0,0.06);
+  background: var(--ji-card);
+  padding: 24px 32px;
+  box-shadow: var(--ji-shadow);
+  transition: all 0.3s ease;
+}
+
+.ji-layer:hover {
+  border-color: rgba(45,91,255,0.2);
+  box-shadow: var(--ji-blue-glow, 0 0 18px rgba(45,91,255,0.15));
+}
+
+.ji-layer-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--ji-muted);
+}
+
+.ji-layer-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.ji-layer-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.ji-layer-item {
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  background: var(--ji-blue-light);
+  border-radius: 6px;
+  color: var(--ji-blue);
+  font-weight: 500;
+}
+
+/* ------ 滚动底部导航 ------ */
+.ji-nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.15);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.ji-nav-dot.active {
+  background: var(--ji-blue);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.ji-nav-dot:hover:not(.active) {
+  background: rgba(0,0,0,0.3);
+}
+
+/* ------ 滚动箭头指示器 ------ */
+.ji-scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: ji-bounce 2s ease-in-out infinite;
+}
+
+@keyframes ji-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ------ 组件间箭头连接符 ------ */
+.ji-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ji-muted);
+  font-size: 1.2rem;
+}
+
+/* ------ Hero 区 mockup 容器 ------ */
+.ji-mockup {
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f6f2 100%);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.ji-mockup-step {
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.ji-mockup-step:last-child {
+  border-bottom: none;
+}
+
+.ji-mockup-step.active {
+  background: var(--ji-blue-light);
+}
+
+.ji-mockup-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background: #f0ebe3;
+  flex-shrink: 0;
+}
+
+.ji-mockup-icon.active {
+  background: var(--ji-blue);
+  color: white;
+}
+
+/* ------ 决策引擎排名项 ------ */
+.ji-rank-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--ji-card);
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: all 0.4s ease;
+}
+
+.ji-rank-item:hover {
+  border-color: var(--ji-blue-mid);
+  transform: translateX(4px);
+}
+
+.ji-rank-number {
+  width: 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ji-muted);
+  text-align: center;
+}
+
+.ji-rank-number.top {
+  color: var(--ji-blue);
+}
+
+.ji-rank-score {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--ji-blue);
+  background: var(--ji-blue-light);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* ------ 路线图时间线 ------ */
+.ji-roadmap-line {
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e8e4dc;
+}
+
+.ji-roadmap-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #e8e4dc;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+  transition: all 0.4s ease;
+}
+
+.ji-roadmap-dot.active {
+  border-color: var(--ji-blue);
+  background: var(--ji-blue);
+  color: white;
+  box-shadow: 0 0 16px var(--ji-blue-strong);
+}
