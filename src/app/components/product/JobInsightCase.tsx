@@ -314,7 +314,7 @@ function ProblemSection() {
     <ScreenWrapper id="problem" minH="80vh">
       <SectionTitle
         label="Problem"
-        title="求职的难点，\n不是找到岗位，而是判断选择。"
+        title="求职的难点，不是找到岗位，而是判断选择。"
         align="center"
       />
 
@@ -410,7 +410,7 @@ function InsightSection() {
     <ScreenWrapper id="insight" minH="80vh">
       <SectionTitle
         label="Insight"
-        title="用户需要的不是一个分数，\n而是一套理解与判断过程。"
+        title="用户需要的不是一个分数，而是一套理解与判断过程。"
       />
 
       <div ref={ref} className="grid md:grid-cols-2 gap-8 md:gap-12 mt-8">
@@ -492,7 +492,7 @@ function SolutionSection() {
     <ScreenWrapper id="solution" minH="100vh">
       <SectionTitle
         label="Solution"
-        title="将复杂求职流程，\n转化为 AI 驱动的决策链路。"
+        title="将复杂求职流程，转化为 AI 驱动的决策链路。"
         subtitle="从输入到决策，AI 驱动完整分析链路。"
         align="center"
       />
@@ -642,7 +642,7 @@ function WorkflowSection() {
     <ScreenWrapper id="workflow" minH="120vh">
       <SectionTitle
         label="Multi-Agent Workflow"
-        title="多个 Agent 协作，\n完成一次完整职业分析。"
+        title="多个 Agent 协作，完成一次完整职业分析。"
         subtitle="不同任务需要不同推理能力，LangGraph 将多个 Agent 组织成可靠 Workflow。"
       />
 
@@ -774,7 +774,7 @@ function DecisionEngineSection() {
     <ScreenWrapper id="decision-engine" minH="100vh">
       <SectionTitle
         label="Personalized Decision Engine"
-        title="真正的推荐，\n应该理解每个人的选择偏好。"
+        title="真正的推荐，应该理解每个人的选择偏好。"
         subtitle="同一个岗位库，不同用户得到不同答案。"
       />
 
@@ -879,7 +879,7 @@ function ProductExperienceSection() {
     <ScreenWrapper id="experience" minH="100vh">
       <SectionTitle
         label="Product Experience"
-        title="从输入信息，\n到职业判断结果。"
+        title="从输入信息，到职业判断结果。"
       />
 
       {/* Main product image */}
