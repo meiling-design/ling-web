@@ -57,8 +57,8 @@ export const projectDetailData: Record<string, ProjectData> = {
   },
 
   "job-matching-ai-agent": {
-    title: "JOB MATCHING AI AGENT",
-    subtitle: "基于 LangGraph 的多 Agent 智能职位匹配系统",
+    title: "JobInsight AI —— 智能职位匹配助手",
+    subtitle: "0→1 可运行 MVP",
     section: "AI Product",
     category: "AI Agent",
     homeTags: ["AI Agent", "Workflow", "LangGraph"],
@@ -68,7 +68,7 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionEN: `An intelligent job matching system powered by multi-agent workflow, integrating job crawling, resume parsing, semantic matching, decision-making and report generation into an automated pipeline.`,
     year: "2026",
     location: "",
-    role: "AI Product Design / Full-stack Development",
+    role: "AI Agent产品经理 / 产品设计",
     images: [
       localImages.cover01,
       localImages.aiWorkflowDiagram,

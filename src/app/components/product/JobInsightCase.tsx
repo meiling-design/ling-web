@@ -1,5 +1,5 @@
 /**
- * JobInsight Agent —— Scroll Story 产品详情页
+ * AI 智能职位分析助手 —— Scroll Story 产品详情页
  *
  * 与遗墨保持统一设计语言：
  * 单页纵向滚动 · 一屏一核心信息 · 大标题 + 大留白 + 大图
@@ -195,13 +195,13 @@ function HeroSection({ project }: { project: ProjectData }) {
           className="flex-1 space-y-6"
         >
           <span className="text-[0.6rem] font-bold text-[var(--ji-muted)] uppercase tracking-[0.3em]">
-            AI Career Decision Copilot
+            0→1 可运行 MVP
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-[var(--ji-text)] leading-tight tracking-tight">
-            JobInsight Agent
+            AI 智能职位分析助手
           </h1>
           <p className="text-base md:text-lg text-[var(--ji-muted)] leading-relaxed max-w-xl">
-            从寻找岗位，到做出更好的职业决策。JobInsight Agent 利用 AI 理解职位、分析能力匹配、解释推荐原因，帮助求职者找到真正适合自己的机会。
+            从寻找岗位，到做出更好的职业决策。AI 智能职位分析助手 利用 AI 理解职位、分析能力匹配、解释推荐原因，帮助求职者找到真正适合自己的机会。
           </p>
 
           {/* 流程图 Mockup 动画 */}
@@ -243,7 +243,7 @@ function HeroSection({ project }: { project: ProjectData }) {
             </div>
             <div>
               <span className="text-[0.5rem] font-bold text-[var(--ji-muted)] uppercase tracking-widest block">Stack</span>
-              <span className="text-sm text-[var(--ji-text)]">LangGraph · Qwen · Streamlit</span>
+              <span className="text-sm text-[var(--ji-text)]">LangGraph · LLM · Streamlit</span>
             </div>
           </motion.div>
         </motion.div>
@@ -261,7 +261,7 @@ function HeroSection({ project }: { project: ProjectData }) {
               <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
               <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
               <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
-              <span className="text-[0.55rem] text-[var(--ji-muted)] ml-2 font-mono">JobInsight Agent — Dashboard</span>
+              <span className="text-[0.55rem] text-[var(--ji-muted)] ml-2 font-mono">AI 智能职位分析助手 — Dashboard</span>
             </div>
             {/* Steps */}
             {mockupSteps.map((step, i) => (
@@ -380,7 +380,124 @@ function MetricsSection() {
 }
 
 /* ================================================================
-   Screen 04 · Insight
+   Screen 04 · Persona
+   ================================================================ */
+function PersonaSection() {
+  const persona = {
+    initial: "A",
+    name: "Alex",
+    age: "—",
+    title: "AI 产品经理候选人",
+    tags: ["🎯 求职中", "🤖 AI 领域", "📱 产品思维"],
+    bgGradient: "from-[var(--ji-blue-light)]/60 to-[var(--ji-blue)]/5",
+    quadrants: [
+      { icon: "🎯", label: "目标", text: "进入 AI 行业，找到更匹配的产品岗位" },
+      { icon: "⚡", label: "挑战", text: "岗位太多，不知道选哪个值得投入时间" },
+      { icon: "❌", label: "痛点", text: "投递后没有反馈，不知道自己与岗位的差距" },
+      { icon: "💡", label: "需求", text: "需要一个理解我、能帮我做判断的 AI 顾问" },
+    ],
+    path: [
+      { icon: "🔍", label: "浏览岗位" },
+      { icon: "📄", label: "上传简历" },
+      { icon: "🤖", label: "AI 分析" },
+      { icon: "📊", label: "匹配评估" },
+      { icon: "🚀", label: "优化投递" },
+    ],
+  };
+
+  return (
+    <ScreenWrapper id="persona" minH="90vh">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="border border-border rounded-2xl bg-card overflow-hidden max-w-5xl mx-auto"
+      >
+        {/* ─── 左右布局：左侧个人信息 + 右侧四象限 ─── */}
+        <div className="flex flex-col md:flex-row">
+          {/* 左侧：头像 + 身份标签 */}
+          <div
+            className={`
+              md:w-[260px] shrink-0 p-6 md:p-8
+              flex flex-col items-center md:items-start justify-center
+              bg-gradient-to-br ${persona.bgGradient}
+              border-r-0 md:border-r border-border
+            `}
+          >
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-white to-white/60 border-2 border-border flex items-center justify-center mb-4 shadow-sm">
+              <span className="text-3xl font-bold text-[var(--ji-text)]">{persona.initial}</span>
+            </div>
+            <h3 className="text-xl font-bold text-foreground text-center md:text-left">
+              {persona.name}
+            </h3>
+            <p className="text-sm text-muted-foreground mt-1 text-center md:text-left">
+              {persona.age}{persona.age ? " · " : ""}{persona.title}
+            </p>
+            <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-4">
+              {persona.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 text-[0.6rem] font-medium bg-background/70 rounded-full text-muted-foreground border border-border/50"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* 右侧：四宫格 */}
+          <div className="flex-1 p-6 md:p-8">
+            <p className="text-[0.65rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-5">
+              求职决策画像 · 用户画像
+            </p>
+            <div className="grid grid-cols-2 gap-4">
+              {persona.quadrants.map((q) => (
+                <div
+                  key={q.label}
+                  className="p-4 border border-border rounded-xl bg-background/50"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-sm leading-none">{q.icon}</span>
+                    <h4 className="text-[0.80rem] font-bold text-foreground uppercase tracking-wider">
+                      {q.label}
+                    </h4>
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    {q.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* 底部：行为路径 */}
+        <div className="border-t border-border px-6 md:px-8 py-4">
+          <p className="text-[0.65rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-3 text-left">
+            求职行为路径 · 用户流程
+          </p>
+          <div className="flex items-center w-full gap-1 justify-between">
+            {persona.path.map((step, i) => (
+              <span key={step.label} className="inline-flex items-center gap-0">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 border border-border rounded-lg bg-background/50 text-[0.6rem] font-medium text-foreground/70 whitespace-nowrap">
+                  <span className="text-xs leading-none">{step.icon}</span>
+                  <span>{step.label}</span>
+                </span>
+                {i < persona.path.length - 1 && (
+                  <span className="text-muted-foreground/20 text-sm shrink-0 ml-2">→</span>
+                )}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </ScreenWrapper>
+  );
+}
+
+/* ================================================================
+   Screen 05 · Insight
    ================================================================ */
 function InsightSection() {
   const ref = useRef(null);
@@ -393,7 +510,7 @@ function InsightSection() {
       color: "text-red-500/70",
     },
     after: {
-      title: "JobInsight Agent",
+      title: "AI 智能职位分析助手",
       steps: [
         "职位描述",
         "语义理解",
@@ -477,7 +594,7 @@ function InsightSection() {
 }
 
 /* ================================================================
-   Screen 05 · Solution
+   Screen 06 · Solution
    ================================================================ */
 function SolutionSection() {
   const flow = [
@@ -545,7 +662,7 @@ function SolutionSection() {
 }
 
 /* ================================================================
-   Screen 06 · Product Blueprint (IA)
+   Screen 07 · Product Blueprint (IA)
    ================================================================ */
 function BlueprintSection() {
   const layers = [
@@ -618,7 +735,7 @@ function BlueprintSection() {
 }
 
 /* ================================================================
-   Screen 07 · Multi-Agent Workflow (LangGraph)
+   Screen 08 · Multi-Agent Workflow (LangGraph)
    ================================================================ */
 function WorkflowSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -726,7 +843,7 @@ function WorkflowSection() {
 }
 
 /* ================================================================
-   Screen 08 · Personalized Decision Engine
+   Screen 09 · Personalized Decision Engine
    ================================================================ */
 function DecisionEngineSection() {
   const [weights, setWeights] = useState({
@@ -865,7 +982,7 @@ function DecisionEngineSection() {
 }
 
 /* ================================================================
-   Screen 09 · Product Experience (Streamlit)
+   Screen 10 · Product Experience (Streamlit)
    ================================================================ */
 function ProductExperienceSection() {
   const demos = [
@@ -893,7 +1010,7 @@ function ProductExperienceSection() {
       >
         <img
           src={localImages.jobMatching}
-          alt="JobInsight Agent 产品界面"
+          alt="AI 智能职位分析助手 产品界面"
           className="w-full h-full object-contain p-2"
           loading="lazy"
         />
@@ -917,7 +1034,7 @@ function ProductExperienceSection() {
 }
 
 /* ================================================================
-   Screen 10 · Technical Architecture
+   Screen 11 · Technical Architecture
    ================================================================ */
 function TechArchitectureSection() {
   const techStack = [
@@ -1027,7 +1144,7 @@ function TechArchitectureSection() {
 }
 
 /* ================================================================
-   Screen 11 · Reflection & Roadmap
+   Screen 12 · Reflection & Roadmap
    ================================================================ */
 function ReflectionSection({ project }: { project: ProjectData }) {
   const lessons = [
@@ -1144,7 +1261,7 @@ export function JobInsightCase({
   project: ProjectData;
   id: string;
 }) {
-  const totalScreens = 11;
+  const totalScreens = 12;
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeScreen, setActiveScreen] = useState(0);
 
@@ -1200,42 +1317,47 @@ export function JobInsightCase({
       <MetricsSection />
 
       {/* ======================== */}
-      {/* Screen 04 · Insight       */}
+      {/* Screen 04 · Persona       */}
+      {/* ======================== */}
+      <PersonaSection />
+
+      {/* ======================== */}
+      {/* Screen 05 · Insight       */}
       {/* ======================== */}
       <InsightSection />
 
       {/* ======================== */}
-      {/* Screen 05 · Solution      */}
+      {/* Screen 06 · Solution      */}
       {/* ======================== */}
       <SolutionSection />
 
       {/* ======================== */}
-      {/* Screen 06 · Blueprint     */}
+      {/* Screen 07 · Blueprint     */}
       {/* ======================== */}
       <BlueprintSection />
 
       {/* ======================== */}
-      {/* Screen 07 · Workflow      */}
+      {/* Screen 08 · Workflow      */}
       {/* ======================== */}
       <WorkflowSection />
 
       {/* ======================== */}
-      {/* Screen 08 · Decision      */}
+      {/* Screen 09 · Decision      */}
       {/* ======================== */}
       <DecisionEngineSection />
 
       {/* ======================== */}
-      {/* Screen 09 · Experience    */}
+      {/* Screen 10 · Experience    */}
       {/* ======================== */}
       <ProductExperienceSection />
 
       {/* ======================== */}
-      {/* Screen 10 · Architecture  */}
+      {/* Screen 11 · Architecture  */}
       {/* ======================== */}
       <TechArchitectureSection />
 
       {/* ======================== */}
-      {/* Screen 11 · Reflection    */}
+      {/* Screen 12 · Reflection    */}
       {/* ======================== */}
       <ReflectionSection project={project} />
 

@@ -42,6 +42,7 @@ export interface ProjectListing {
 
 interface ListingOverride {
   title?: string;
+  subtitle?: string;
   image?: string;
 }
 
@@ -79,7 +80,7 @@ const listingOverrides: Record<string, ListingOverride> = {
 
   // ====== Product Case Studies ======
   "yimo-vr-platform":            { image: localImages.cover00 },
-  "job-matching-ai-agent":       { image: localImages.cover01 },
+  "job-matching-ai-agent":       { title: "JobInsight AI —— 智能职位分析助手", image: localImages.cover01 },
 };
 
 // ---- 内部函数 ----
@@ -103,7 +104,7 @@ function toListing(id: string): ProjectListing {
   const listing: ProjectListing = {
     id,
     title: override?.title ?? project.title,
-    subtitle: project.subtitle,
+    subtitle: override?.subtitle ?? project.subtitle,
     category: project.homeTags.join(" · "),
     image: override?.image ?? project.images?.[0],
     homeDescription: project.homeDescription,
