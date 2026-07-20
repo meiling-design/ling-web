@@ -24,6 +24,7 @@ import {
    Config
    ================================================================ */
 
+/* API 请求走 Vercel 代理 (`/api/v1/...`)；直接访问 Railway 时使用此变量 */
 const API_BASE = import.meta.env.VITE_JOB_MATCHING_API_URL || "https://job-matching-api.up.railway.app";
 
 /* ================================================================
@@ -183,6 +184,39 @@ interface MatchResult {
   recommendations?: string[];
 }
 
+/* API 响应包装（Railway 后端统一格式） */
+interface ApiResponse<T> {
+  success: boolean;
+  data: T | null;
+  error: { code: string; message: string } | null;
+  meta: { timestamp: number; version: string };
+}
+
+/* 异步任务状态（用于轮询） */
+interface TaskData {
+  task_id: string;
+  status: string;           // "pending" | "running" | "completed" | "failed"
+  is_running: boolean;
+  created_at: number;
+  updated_at: number;
+  progress: {
+    current_node: string | null;
+    node_status: string | null;
+    completed_nodes: number;
+    total_nodes: number;
+    percent: string;
+  };
+  errors: string[];
+  session_id?: string;
+  jobs_found?: number;
+  jobs_matched?: number;
+  top_score?: number | null;
+  top_job?: string | null;
+  average_score?: number | null;
+  routing_decision?: string;
+  routing_reason?: string;
+}
+
 interface SessionData {
   session_id: string;
   match_results?: MatchResult[];
@@ -318,56 +352,126 @@ export function LiveDemo() {
     setSessionData(null);
     setDownloadStatus("idle");
 
+    /* ---- 文本模式：本地模拟演示 ---- */
+    if (jobMode === "text") {
+      await new Promise(r => setTimeout(r, 1500));
+      const jWords = jobDescription.toLowerCase().split(/[\s,，、\n().;；:：]+/).filter(w => w.length > 2);
+      const rWords = resumeText.toLowerCase().split(/[\s,，、\n().;；:：]+/).filter(w => w.length > 2);
+      const common = [...new Set(jWords.filter(w => rWords.includes(w)))];
+      const baseScore = Math.min(0.92, Math.max(0.2, common.length / Math.max(jWords.length * 0.15, 1)));
+
+      const mockResults: MatchResult[] = [{
+        title: "模拟匹配结果",
+        company: "文本模式（离线演示）",
+        score: baseScore,
+        skill_overlap: common.slice(0, 10),
+        missing_skills: common.length < 3 ? ["建议使用职位链接进行精确匹配"] : [],
+        match_reasons: common.length > 2
+          ? [`简历包含 ${common.slice(0, 3).join("、")} 等关键词`]
+          : ["文本模式基于关键词简单匹配"],
+        recommendations: ["切换到「职位链接」模式获得 AI 精确多维匹配"],
+      }];
+
+      setResponse({
+        session_id: "demo-" + Date.now(),
+        status: "completed",
+        routing_decision: "text_demo",
+        routing_reason: "文本模式为离线演示，使用职位链接可获得精确 AI 匹配",
+        jobs_found: 1,
+        jobs_matched: 1,
+        top_score: baseScore,
+        top_job: "文本模式演示",
+        average_score: baseScore,
+        errors: [],
+      });
+      setSessionData({ session_id: "demo", match_results: mockResults });
+      setStatus("result");
+      return;
+    }
+
+    /* ---- URL 模式：异步 API + 轮询 ---- */
     try {
       const res = await fetch("/api/v1/match", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...(jobMode === "url"
-            ? { job_url: validUrls[0] || "" }
-            : { job_description: jobDescription.trim() }
-          ),
+          job_urls: validUrls,
           resume_text: resumeText.trim(),
-          visitor_id: (localStorage as any).visitor_id || "",
+          use_llm: true,
+          use_embedding: true,
         }),
       });
 
-      const data = await res.json();
+      const wrapper: ApiResponse<{ task_id: string; status: string; status_url: string }> = await res.json();
 
-      // Check for demo limit reached (both 200 and error responses)
-      if (data.code === "DEMO_LIMIT_REACHED") {
-        setShowDemoLimitModal(true);
-        setStatus("input");
-        setResponse(null);
-        setSessionData(null);
-        return;
+      if (!res.ok || !wrapper.success) {
+        if (wrapper.error?.code === "DEMO_LIMIT_REACHED") {
+          setShowDemoLimitModal(true);
+          setStatus("input");
+          return;
+        }
+        throw new Error(wrapper.error?.message || `HTTP ${res.status}`);
       }
 
-      if (!res.ok) {
-        throw new Error(data.detail || data.message || `HTTP ${res.status}`);
-      }
+      const taskId = wrapper.data!.task_id;
 
-      setResponse(data as MatchResponse);
-
-      // Fetch full session data for detailed results
-      if (data.session_id) {
+      /* 轮询任务，最多 120 秒 (60 次 × 2s) */
+      let taskData: TaskData | null = null;
+      for (let attempt = 0; attempt < 60; attempt++) {
+        await new Promise(r => setTimeout(r, 2000));
         try {
-          const sessionRes = await fetch(`${API_BASE}/sessions/${data.session_id}`);
-          if (sessionRes.ok) {
-            const session: SessionData = await sessionRes.json();
-            setSessionData(session);
+          const pollRes = await fetch(`/api/v1/tasks/${taskId}`);
+          const pollWrap: ApiResponse<TaskData> = await pollRes.json();
+          if (!pollWrap.success || !pollWrap.data) continue;
+
+          taskData = pollWrap.data;
+          if (taskData.status === "completed") break;
+          if (taskData.status === "failed") {
+            throw new Error(taskData.errors?.join("; ") || "匹配任务执行失败");
           }
-        } catch {
-          // Non-critical
+        } catch (e) {
+          if (e instanceof Error && (e.message.includes("执行失败") || e.message.includes("超时"))) throw e;
+          /* 网络抖动继续轮询 */
         }
       }
 
-      setStatus(data.status === "completed" ? "result" : "error");
+      if (!taskData || taskData.status !== "completed") {
+        throw new Error("匹配超时，请稍后重试");
+      }
+
+      /* 构建 MatchResponse */
+      setResponse({
+        session_id: taskData.session_id || taskId,
+        status: "completed",
+        routing_decision: taskData.routing_decision || "",
+        routing_reason: taskData.routing_reason || "",
+        jobs_found: taskData.jobs_found || 0,
+        jobs_matched: taskData.jobs_matched || 0,
+        top_score: taskData.top_score ?? null,
+        top_job: taskData.top_job ?? null,
+        average_score: taskData.average_score ?? null,
+        errors: taskData.errors || [],
+      });
+
+      /* 拉取详细匹配结果 */
+      if (taskData.session_id) {
+        try {
+          const sessRes = await fetch(`/api/v1/sessions/${taskData.session_id}`);
+          const sessWrap: ApiResponse<SessionData> = await sessRes.json();
+          if (sessWrap.success && sessWrap.data) setSessionData(sessWrap.data);
+        } catch { /* 非关键 */ }
+      }
+
+      setStatus("result");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "未知错误");
+      const msg = err instanceof Error ? err.message : "未知错误";
+      setError(msg);
+      if (msg.includes("超时") || msg.includes("执行失败")) {
+        setError(msg + " — 可尝试使用「预设示例」离线体验");
+      }
       setStatus("error");
     }
-  }, [urls, resumeText, jobMode, jobDescription, useProxy]);
+  }, [urls, resumeText, jobMode, jobDescription]);
 
   /* ---- 下载报告（降级友好） ---- */
   const handleDownload = useCallback(async () => {
@@ -375,8 +479,8 @@ export function LiveDemo() {
     setDownloadStatus("loading");
 
     try {
-      // 优先尝试 API 下载端点
-      const reportRes = await fetch(`${API_BASE}/sessions/${response.session_id}/report`, {
+      // 优先尝试 API 下载端点（通过 Vercel 代理）
+      const reportRes = await fetch(`/api/v1/sessions/${response.session_id}/report?fmt=json`, {
         method: "GET",
       });
 

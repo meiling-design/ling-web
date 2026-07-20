@@ -1302,49 +1302,49 @@ export function JobInsightCase({
       <HeroSection project={project} />
 
       {/* ======================== */}
-      {/* Screen 02 · Problem       */}
+      {/* Screen 02 · Live Demo    */}
+      {/* ======================== */}
+      <LiveDemoSection />
+
+      {/* ======================== */}
+      {/* Screen 03 · Problem       */}
       {/* ======================== */}
       <ProblemSection />
 
       {/* ======================== */}
-      {/* Screen 03 · Metrics       */}
+      {/* Screen 04 · Metrics       */}
       {/* ======================== */}
       <MetricsSection />
 
       {/* ======================== */}
-      {/* Screen 04 · Persona       */}
+      {/* Screen 05 · Persona       */}
       {/* ======================== */}
       <PersonaSection />
 
       {/* ======================== */}
-      {/* Screen 05 · Insight       */}
+      {/* Screen 06 · Insight       */}
       {/* ======================== */}
       <InsightSection />
 
       {/* ======================== */}
-      {/* Screen 06 · Solution      */}
+      {/* Screen 07 · Solution      */}
       {/* ======================== */}
       <SolutionSection />
 
       {/* ======================== */}
-      {/* Screen 07 · Blueprint     */}
+      {/* Screen 08 · Blueprint     */}
       {/* ======================== */}
       <BlueprintSection />
 
       {/* ======================== */}
-      {/* Screen 08 · Workflow      */}
+      {/* Screen 09 · Workflow      */}
       {/* ======================== */}
       <WorkflowSection />
 
       {/* ======================== */}
-      {/* Screen 09 · Decision      */}
+      {/* Screen 10 · Decision      */}
       {/* ======================== */}
       <DecisionEngineSection />
-
-      {/* ======================== */}
-      {/* Screen 10 · Live Demo    */}
-      {/* ======================== */}
-      <LiveDemoSection />
 
       {/* ======================== */}
       {/* Screen 11 · Architecture  */}
