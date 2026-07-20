@@ -13,6 +13,7 @@ import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import type { ProjectData } from "../../projectDetailData";
 import { BackToHomeLink, ProjectMetadata } from "./index";
+import { LiveDemo } from "./LiveDemo";
 import { localImages } from "../../imageAssets";
 
 /* ================================================================
@@ -982,53 +983,47 @@ function DecisionEngineSection() {
 }
 
 /* ================================================================
-   Screen 10 · Product Experience (Streamlit)
+   Screen 10 · Live Demo — 在线体验 AI 匹配
    ================================================================ */
-function ProductExperienceSection() {
-  const demos = [
-    { icon: "📤", title: "上传简历", desc: "AI 理解个人能力背景", step: "01" },
-    { icon: "🔗", title: "输入职位", desc: "解析岗位核心要求", step: "02" },
-    { icon: "⚙️", title: "Workflow 执行", desc: "观察 Agent 分析过程", step: "03" },
-    { icon: "📊", title: "生成报告", desc: "获得匹配解释与优化建议", step: "04" },
-  ];
-
+function LiveDemoSection() {
   return (
     <ScreenWrapper id="experience" minH="100vh">
       <SectionTitle
-        label="Product Experience"
-        title="从输入信息，到职业判断结果。"
+        label="Live Demo"
+        title="输入你的信息，立即体验 AI 匹配。"
+        subtitle="前后端真实调用 · 后端基于 FastAPI + LangGraph 构建，部署后实时返回匹配结果。"
       />
 
-      {/* Main product image */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="rounded-2xl overflow-hidden border border-black/5 bg-white shadow-sm mb-8"
-        style={{ aspectRatio: "16/9" }}
+        className="mb-6"
       >
-        <img
-          src={localImages.jobMatching}
-          alt="AI 智能职位分析助手 产品界面"
-          className="w-full h-full object-contain p-2"
-          loading="lazy"
-        />
+        {/* 说明标签 */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {["🔗 输入职位链接", "📄 粘贴简历内容", "⚙️ 一键运行 Workflow", "📊 查看匹配结果"].map((step) => (
+            <span key={step} className="ji-tech-pill text-[0.65rem]">
+              {step}
+            </span>
+          ))}
+        </div>
+
+        {/* Live Demo Container */}
+        <div className="rounded-2xl border border-black/5 bg-white/60 shadow-sm overflow-hidden">
+          <div className="px-5 py-3 bg-white/80 border-b border-black/5 flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full bg-red-400" />
+            <span className="w-3 h-3 rounded-full bg-amber-400" />
+            <span className="w-3 h-3 rounded-full bg-emerald-400" />
+            <span className="text-[0.6rem] text-[var(--ji-muted)] ml-2 font-mono">demo.jobinsight.ai ~</span>
+          </div>
+          <div className="p-5">
+            <LiveDemo />
+          </div>
+        </div>
       </motion.div>
 
-      {/* 4-step cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {demos.map((demo, i) => (
-          <AnimatedCard key={demo.title} delay={i * 0.1} className="text-center">
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[0.55rem] font-bold text-[var(--ji-muted)]">{demo.step}</span>
-              <span className="text-2xl">{demo.icon}</span>
-              <h3 className="text-sm font-semibold text-[var(--ji-text)]">{demo.title}</h3>
-              <p className="text-[0.7rem] text-[var(--ji-muted)]">{demo.desc}</p>
-            </div>
-          </AnimatedCard>
-        ))}
-      </div>
     </ScreenWrapper>
   );
 }
@@ -1347,9 +1342,9 @@ export function JobInsightCase({
       <DecisionEngineSection />
 
       {/* ======================== */}
-      {/* Screen 10 · Experience    */}
+      {/* Screen 10 · Live Demo    */}
       {/* ======================== */}
-      <ProductExperienceSection />
+      <LiveDemoSection />
 
       {/* ======================== */}
       {/* Screen 11 · Architecture  */}
