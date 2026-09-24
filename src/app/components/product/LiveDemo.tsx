@@ -1,5 +1,5 @@
 /**
- * LiveDemo — JobInsight AI 可交互职位匹配 Demo
+ * LiveDemo — Careerly 可交互能力匹配 Demo
  *
  * 与 JobInsightCase 设计语言一致：
  * motion 动画 · lucide-react 图标 · --ji-* CSS 变量配色
@@ -240,7 +240,7 @@ function generateReportText(response: MatchResponse, sessionData: SessionData | 
   const results = sessionData?.match_results || [];
   const lines: string[] = [
     "==============================================",
-    "  JobInsight AI — 职位匹配分析报告",
+    "  Careerly — 能力匹配分析报告",
     "==============================================",
     "",
     `生成时间: ${new Date().toLocaleString("zh-CN")}`,
@@ -277,7 +277,7 @@ function generateReportText(response: MatchResponse, sessionData: SessionData | 
   });
 
   lines.push("==============================================");
-  lines.push("  报告由 JobInsight AI 自动生成");
+  lines.push("  报告由 Careerly 自动生成");
   lines.push("==============================================");
 
   return lines.join("\n");
@@ -556,7 +556,7 @@ export function LiveDemo() {
             </div>
             <div>
               <h3 className="text-base font-semibold text-[var(--ji-text)]">在线体验</h3>
-              <p className="text-xs text-[var(--ji-muted)]">输入职位链接和简历，体验 AI 智能匹配</p>
+              <p className="text-xs text-[var(--ji-muted)]">输入职位链接和简历，体验 AI 能力匹配</p>
             </div>
           </div>
 

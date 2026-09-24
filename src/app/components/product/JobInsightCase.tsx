@@ -1,5 +1,9 @@
 /**
- * AI 智能职位分析助手 —— Scroll Story 产品详情页
+ * Careerly —— AI Career Growth 产品详情页（Scroll Story）
+ *
+ * 前身是 JobInsight AI（AI Job Matching Tool），本次重构为职业成长产品叙事：
+ * 不变的是「同一份简历 × 目标岗位 × 能力」的底层逻辑，
+ * 变的是产品要回答的问题 —— 从「我配得上哪个岗位」到「我正在成为什么样的人」。
  *
  * 与遗墨保持统一设计语言：
  * 单页纵向滚动 · 一屏一核心信息 · 大标题 + 大留白 + 大图
@@ -14,7 +18,6 @@ import { ChevronDown } from "lucide-react";
 import type { ProjectData } from "../../projectDetailData";
 import { BackToHomeLink, ProjectMetadata } from "./index";
 import { LiveDemo } from "./LiveDemo";
-import { localImages } from "../../imageAssets";
 
 /* ================================================================
    Types
@@ -42,6 +45,8 @@ interface AnimatedCardProps {
   delay?: number;
   className?: string;
   children?: ReactNode;
+  /** 内边距 Tailwind 类，默认 p-6。用 prop 而非 className 覆盖，同属性工具类谁生效取决于样式表顺序 */
+  padding?: string;
 }
 
 /* ================================================================
@@ -86,14 +91,14 @@ function SectionTitle({ label, title, subtitle, align = "left" }: SectionTitlePr
   );
 }
 
-function AnimatedCard({ icon, title, desc, delay = 0, className = "", children }: AnimatedCardProps) {
+function AnimatedCard({ icon, title, desc, delay = 0, className = "", children, padding = "p-6" }: AnimatedCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay, ease: "easeOut" }}
-      className={`rounded-xl border border-black/5 bg-white p-6 shadow-sm ${className}`}
+      className={`rounded-xl border border-black/5 bg-white ${padding} shadow-sm ${className}`}
     >
       {icon && <span className="text-2xl block mb-3">{icon}</span>}
       <h3 className="text-base font-semibold text-[var(--ji-text)] mb-2">{title}</h3>
@@ -121,6 +126,39 @@ function ScrollIndicator() {
         <rect x="1" y="1" width="14" height="22" rx="7" />
         <circle cx="8" cy="8" r="2" fill="currentColor" />
       </svg>
+    </div>
+  );
+}
+
+/* ---------- 手机外框（纯 Tailwind，零 CSS 改动） ----------
+ * 屏内列表复用 .ji-mockup-step / .ji-mockup-icon —— 这两个类无定位、无固定宽度、
+ * 不依赖父选择器，可安全脱离 .ji-mockup 使用。
+ */
+function PhoneFrame({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={`relative w-[248px] shrink-0 ${className}`}>
+      {/* 机身 */}
+      <div className="relative rounded-[2.25rem] bg-[#1c1c1c] p-[6px] shadow-[0_20px_50px_rgba(0,0,0,0.16)]">
+        {/* 侧键 */}
+        <span className="absolute -left-[1px] top-24 h-10 w-[3px] rounded-l-full bg-[#0f0f0f]" />
+        <span className="absolute -right-[1px] top-28 h-14 w-[3px] rounded-r-full bg-[#0f0f0f]" />
+        {/* 屏幕 */}
+        <div className="relative flex h-[496px] flex-col overflow-hidden rounded-[1.9rem] bg-white">
+          {/* 灵动岛 */}
+          <div className="absolute left-1/2 top-[10px] z-20 h-[18px] w-[74px] -translate-x-1/2 rounded-full bg-[#1c1c1c]" />
+          {/* 状态栏 */}
+          <div className="flex items-center justify-between px-5 pb-2 pt-[22px] text-[0.55rem] font-semibold text-[var(--ji-text)]">
+            <span>9:41</span>
+            <span className="text-[0.5rem] text-[var(--ji-muted)]">5G ▮</span>
+          </div>
+          {/* 内容区 */}
+          <div className="flex min-h-0 flex-1 flex-col px-3 pb-1">{children}</div>
+          {/* Home indicator */}
+          <div className="flex justify-center pb-2 pt-1">
+            <span className="h-[3px] w-24 rounded-full bg-black/20" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -175,11 +213,11 @@ function HeroSection({ project }: { project: ProjectData }) {
   const isInView = useInView(ref, { once: true });
 
   const mockupSteps = [
-    { icon: "👤", label: "个人背景", desc: "Background" },
-    { icon: "📋", label: "职位理解", desc: "Understanding" },
-    { icon: "📊", label: "能力分析", desc: "Analysis" },
-    { icon: "🔍", label: "匹配推理", desc: "Reasoning" },
-    { icon: "💡", label: "职业建议", desc: "Suggestion" },
+    { icon: "📄", label: "简历", desc: "Resume" },
+    { icon: "🧬", label: "能力", desc: "Capability" },
+    { icon: "🎯", label: "岗位", desc: "Job" },
+    { icon: "📐", label: "距离", desc: "Distance" },
+    { icon: "📈", label: "成长", desc: "Growth" },
   ];
 
   return (
@@ -196,13 +234,16 @@ function HeroSection({ project }: { project: ProjectData }) {
           className="flex-1 space-y-6"
         >
           <span className="text-[0.6rem] font-bold text-[var(--ji-muted)] uppercase tracking-[0.3em]">
-            0→1 可运行 MVP
+            0→1 · Web Prototype → Mobile Product
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-[var(--ji-text)] leading-tight tracking-tight">
-            AI 智能职位分析助手
+            Careerly
           </h1>
+          <p className="text-lg md:text-xl font-medium text-[var(--ji-blue)] tracking-wide">
+            AI Career Growth Companion
+          </p>
           <p className="text-base md:text-lg text-[var(--ji-muted)] leading-relaxed max-w-xl">
-            从寻找岗位，到做出更好的职业决策。AI 智能职位分析助手 利用 AI 理解职位、分析能力匹配、解释推荐原因，帮助求职者找到真正适合自己的机会。
+            看见能力 · 跨越 Gap · 记录成长。把简历、项目与技能转化为可理解的能力画像，看见与目标岗位的真实距离，并在每一次更新中记录成长。
           </p>
 
           {/* 流程图 Mockup 动画 */}
@@ -244,7 +285,7 @@ function HeroSection({ project }: { project: ProjectData }) {
             </div>
             <div>
               <span className="text-[0.5rem] font-bold text-[var(--ji-muted)] uppercase tracking-widest block">Stack</span>
-              <span className="text-sm text-[var(--ji-text)]">LangGraph · LLM · Streamlit</span>
+              <span className="text-sm text-[var(--ji-text)]">Flutter · FastAPI · LangGraph · LLM</span>
             </div>
           </motion.div>
         </motion.div>
@@ -262,7 +303,7 @@ function HeroSection({ project }: { project: ProjectData }) {
               <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
               <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
               <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
-              <span className="text-[0.55rem] text-[var(--ji-muted)] ml-2 font-mono">AI 智能职位分析助手 — Dashboard</span>
+              <span className="text-[0.55rem] text-[var(--ji-muted)] ml-2 font-mono">careerly.app — Dashboard</span>
             </div>
             {/* Steps */}
             {mockupSteps.map((step, i) => (
@@ -290,37 +331,150 @@ function HeroSection({ project }: { project: ProjectData }) {
 }
 
 /* ================================================================
-   Screen 02 · Problem
+   Screen 03 · From JobInsight AI → Careerly
    ================================================================ */
-function ProblemSection() {
-  const problems = [
+function ReframeSection() {
+  const before = {
+    name: "JobInsight AI",
+    tagline: "AI Job Matching",
+    items: ["分数 · 一个匹配度数字", "排序 · 把岗位排成一列", "单次 · 一次查询就结束"],
+  };
+  const after = {
+    name: "Careerly",
+    tagline: "AI Career Growth",
+    items: ["能力 · 简历被拆成能力项", "Gap · 距离被逐项指出来", "变化 · 版本之间可以对比"],
+  };
+
+  return (
+    <ScreenWrapper id="reframe" minH="100vh">
+      <SectionTitle
+        label="Reframing"
+        title="同一个模型，问了一个不同的问题。"
+        subtitle="技术没有换，换的是它要回答什么。"
+        align="center"
+      />
+
+      <div className="mt-8 flex flex-col md:flex-row items-stretch md:items-stretch justify-center gap-6 md:gap-4">
+        {/* Before */}
+        <motion.div
+          initial={{ opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex-1 rounded-2xl border border-black/5 bg-white p-7 shadow-sm"
+        >
+          <span className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-[var(--ji-muted)]">
+            Before
+          </span>
+          <h3 className="mt-3 text-xl font-semibold text-[var(--ji-muted)]">{before.name}</h3>
+          <p className="mt-1 text-[0.7rem] font-medium text-[var(--ji-muted)]">{before.tagline}</p>
+          <ul className="mt-6 space-y-3">
+            {before.items.map((item) => (
+              <li key={item} className="flex items-start gap-3 text-sm text-[var(--ji-muted)]">
+                <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-black/20" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+
+        {/* Rethink 枢纽 */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.25, duration: 0.5 }}
+          className="flex shrink-0 flex-row md:flex-col items-center justify-center gap-3"
+        >
+          <span className="hidden md:block">
+            <ArrowIcon />
+          </span>
+          <span className="rounded-full border border-[var(--ji-blue-mid)] bg-[var(--ji-blue-light)] px-4 py-2 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[var(--ji-blue)]">
+            Rethink
+          </span>
+          <span className="max-w-[150px] text-[0.6rem] leading-relaxed text-[var(--ji-muted)] md:text-center">
+            问题变了，产品才跟着变
+          </span>
+          <span className="md:hidden">
+            <ArrowIcon />
+          </span>
+        </motion.div>
+
+        {/* After */}
+        <motion.div
+          initial={{ opacity: 0, x: 24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15, duration: 0.6, ease: "easeOut" }}
+          className="flex-1 rounded-2xl border border-[var(--ji-blue-mid)] bg-[var(--ji-blue-light)] p-7"
+        >
+          <span className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-[var(--ji-blue)]">
+            After
+          </span>
+          <h3 className="mt-3 text-xl font-semibold text-[var(--ji-text)]">{after.name}</h3>
+          <p className="mt-1 text-[0.7rem] font-medium text-[var(--ji-blue)]">{after.tagline}</p>
+          <ul className="mt-6 space-y-3">
+            {after.items.map((item) => (
+              <li key={item} className="flex items-start gap-3 text-sm text-[var(--ji-text)]">
+                <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--ji-blue)]" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      </div>
+
+      {/* 收束 */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+        className="ji-layer mt-12 text-center"
+      >
+        <span className="ji-layer-label">Rethink</span>
+        <h3 className="ji-layer-title">从「这个岗位适合我吗」，到「我正在成为什么样的人」。</h3>
+        <p className="mt-2 text-sm leading-relaxed text-[var(--ji-muted)]">
+          同一份简历，本来就可以回答不止一个问题。
+        </p>
+      </motion.div>
+    </ScreenWrapper>
+  );
+}
+
+/* ================================================================
+   Screen 04 · The Question
+   ================================================================ */
+function QuestionSection() {
+  const hypotheses = [
     {
       icon: "📡",
-      title: "信息过载",
-      desc: "每天面对大量岗位，\n却不知道哪个值得投入时间。",
+      title: "更多岗位",
+      desc: "把「看得更多」当成答案。\n但岗位再多，也只是把选择的压力推回给用户。",
     },
     {
-      icon: "📋",
-      title: "需求难懂",
-      desc: "JD 中隐藏大量能力要求，\n用户难以判断真正匹配点。",
+      icon: "⏱️",
+      title: "更快筛选",
+      desc: "把「筛得更快」当成答案。\n但更快地拿到结果，不等于更懂这个结果。",
     },
     {
-      icon: "🔄",
-      title: "缺少反馈",
-      desc: "投递失败后，\n不知道问题在哪里，也无法持续优化。",
+      icon: "🎯",
+      title: "更准推荐",
+      desc: "把「推得更准」当成答案。\n但一个更准的分数，依然回答不了「我差在哪」。",
     },
   ];
 
   return (
-    <ScreenWrapper id="problem" minH="80vh">
+    <ScreenWrapper id="question" minH="80vh">
       <SectionTitle
-        label="Problem"
-        title="求职的难点，不是找到岗位，而是判断选择。"
+        label="The Question"
+        title="我们真的缺少一个更好的岗位搜索工具吗？"
+        subtitle="搜索、筛选、推荐——过去十年，岗位侧的工具已经足够多了。"
         align="center"
       />
 
       <div className="grid md:grid-cols-3 gap-6 mt-8">
-        {problems.map((p, i) => (
+        {hypotheses.map((p, i) => (
           <AnimatedCard key={p.title} icon={p.icon} title={p.title} desc={p.desc} delay={i * 0.12} />
         ))}
       </div>
@@ -333,165 +487,8 @@ function ProblemSection() {
         className="text-center mt-12"
       >
         <span className="inline-block px-6 py-3 rounded-full bg-[var(--ji-blue-light)] border border-[var(--ji-blue-mid)] text-sm font-medium text-[var(--ji-blue)]">
-          用户真正需要的，<br/>不是更多岗位，而是更好的决策依据。
+          用户真正缺少的，<br/>是看见自己能力变化的方式。
         </span>
-      </motion.div>
-    </ScreenWrapper>
-  );
-}
-
-/* ================================================================
-   Screen 03 · Metrics
-   ================================================================ */
-function MetricsSection() {
-  const metrics = [
-    { stat: "90%", label: "匹配精度", desc: "AI 理解职位核心要求与用户能力匹配度" },
-    { stat: "60%", label: "效率提升", desc: "从人工筛选数小时到 AI 分钟级分析" },
-    { stat: "85%", label: "决策信心", desc: "用户获得可解释匹配原因后的选择确定性" },
-  ];
-
-  return (
-    <ScreenWrapper id="metrics" minH="60vh">
-      <SectionTitle
-        label="Metrics"
-        title="用数据验证决策价值"
-        align="center"
-      />
-
-      <div className="grid md:grid-cols-3 gap-6 mt-8">
-        {metrics.map((m, i) => (
-          <motion.div
-            key={m.label}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.15, duration: 0.5 }}
-            className="text-center rounded-2xl border border-black/5 bg-white p-8 shadow-sm"
-          >
-            <span className="text-4xl md:text-5xl font-bold text-[var(--ji-blue)] block">
-              {m.stat}
-            </span>
-            <h3 className="text-base font-semibold text-[var(--ji-text)] mt-3">{m.label}</h3>
-            <p className="text-sm text-[var(--ji-muted)] mt-2 leading-relaxed">{m.desc}</p>
-          </motion.div>
-        ))}
-      </div>
-    </ScreenWrapper>
-  );
-}
-
-/* ================================================================
-   Screen 04 · Persona
-   ================================================================ */
-function PersonaSection() {
-  const persona = {
-    initial: "A",
-    name: "Alex",
-    age: "—",
-    title: "AI 产品经理候选人",
-    tags: ["🎯 求职中", "🤖 AI 领域", "📱 产品思维"],
-    bgGradient: "from-[var(--ji-blue-light)]/60 to-[var(--ji-blue)]/5",
-    quadrants: [
-      { icon: "🎯", label: "目标", text: "进入 AI 行业，找到更匹配的产品岗位" },
-      { icon: "⚡", label: "挑战", text: "岗位太多，不知道选哪个值得投入时间" },
-      { icon: "❌", label: "痛点", text: "投递后没有反馈，不知道自己与岗位的差距" },
-      { icon: "💡", label: "需求", text: "需要一个理解我、能帮我做判断的 AI 顾问" },
-    ],
-    path: [
-      { icon: "🔍", label: "浏览岗位" },
-      { icon: "📄", label: "上传简历" },
-      { icon: "🤖", label: "AI 分析" },
-      { icon: "📊", label: "匹配评估" },
-      { icon: "🚀", label: "优化投递" },
-    ],
-  };
-
-  return (
-    <ScreenWrapper id="persona" minH="90vh">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="border border-border rounded-2xl bg-card overflow-hidden max-w-5xl mx-auto"
-      >
-        {/* ─── 左右布局：左侧个人信息 + 右侧四象限 ─── */}
-        <div className="flex flex-col md:flex-row">
-          {/* 左侧：头像 + 身份标签 */}
-          <div
-            className={`
-              md:w-[260px] shrink-0 p-6 md:p-8
-              flex flex-col items-center md:items-start justify-center
-              bg-gradient-to-br ${persona.bgGradient}
-              border-r-0 md:border-r border-border
-            `}
-          >
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-white to-white/60 border-2 border-border flex items-center justify-center mb-4 shadow-sm">
-              <span className="text-3xl font-bold text-[var(--ji-text)]">{persona.initial}</span>
-            </div>
-            <h3 className="text-xl font-bold text-foreground text-center md:text-left">
-              {persona.name}
-            </h3>
-            <p className="text-sm text-muted-foreground mt-1 text-center md:text-left">
-              {persona.age}{persona.age ? " · " : ""}{persona.title}
-            </p>
-            <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-4">
-              {persona.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 text-[0.6rem] font-medium bg-background/70 rounded-full text-muted-foreground border border-border/50"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* 右侧：四宫格 */}
-          <div className="flex-1 p-6 md:p-8">
-            <p className="text-[0.65rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-5">
-              求职决策画像 · 用户画像
-            </p>
-            <div className="grid grid-cols-2 gap-4">
-              {persona.quadrants.map((q) => (
-                <div
-                  key={q.label}
-                  className="p-4 border border-border rounded-xl bg-background/50"
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-sm leading-none">{q.icon}</span>
-                    <h4 className="text-[0.80rem] font-bold text-foreground uppercase tracking-wider">
-                      {q.label}
-                    </h4>
-                  </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {q.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 底部：行为路径 */}
-        <div className="border-t border-border px-6 md:px-8 py-4">
-          <p className="text-[0.65rem] font-bold text-muted-foreground uppercase tracking-[0.25em] mb-3 text-left">
-            求职行为路径 · 用户流程
-          </p>
-          <div className="flex items-center w-full gap-1 justify-between">
-            {persona.path.map((step, i) => (
-              <span key={step.label} className="inline-flex items-center gap-0">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 border border-border rounded-lg bg-background/50 text-[0.6rem] font-medium text-foreground/70 whitespace-nowrap">
-                  <span className="text-xs leading-none">{step.icon}</span>
-                  <span>{step.label}</span>
-                </span>
-                {i < persona.path.length - 1 && (
-                  <span className="text-muted-foreground/20 text-sm shrink-0 ml-2">→</span>
-                )}
-              </span>
-            ))}
-          </div>
-        </div>
       </motion.div>
     </ScreenWrapper>
   );
@@ -504,114 +501,110 @@ function InsightSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  const beforeAfterData = {
-    before: {
-      title: "传统岗位匹配",
-      steps: ["职位描述", "关键词提取", "匹配分数"],
-      color: "text-red-500/70",
+  const questions = [
+    {
+      en: "Why?",
+      zh: "为什么是 82%",
+      desc: "这个分数由哪些能力项决定？哪一项贡献最大，哪一项拖了后腿？",
     },
-    after: {
-      title: "AI 智能职位分析助手",
-      steps: [
-        "职位描述",
-        "语义理解",
-        "能力分析",
-        "匹配原因",
-        "优化建议",
-        "再次决策",
-      ],
-      color: "text-[var(--ji-blue)]",
+    {
+      en: "What's missing?",
+      zh: "差的是什么",
+      desc: "差的那部分具体是技能、项目，还是经历的深度？它需要被逐项指出来。",
     },
-  };
+    {
+      en: "What changed?",
+      zh: "有什么变化",
+      desc: "相比上一版简历，同一个岗位的匹配是变好了还是变差了？变化了多少？",
+    },
+  ];
 
   return (
-    <ScreenWrapper id="insight" minH="80vh">
+    <ScreenWrapper id="insight" minH="85vh">
       <SectionTitle
         label="Insight"
-        title="用户需要的不是一个分数，而是一套理解与判断过程。"
+        title="Match Score is not the answer."
+        subtitle="一个分数只能说明「够不够」，说明不了「为什么」。"
       />
 
-      <div ref={ref} className="grid md:grid-cols-2 gap-8 md:gap-12 mt-8">
-        {/* Before */}
+      <div ref={ref} className="grid md:grid-cols-5 gap-8 md:gap-12 mt-8">
+        {/* 左：分数卡 */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="rounded-2xl border border-red-200/40 bg-red-50/30 p-8"
+          className="md:col-span-2 rounded-2xl border border-black/5 bg-white p-8 shadow-sm flex flex-col justify-center"
         >
-          <h3 className="text-lg font-semibold text-red-500/80 mb-6 flex items-center gap-2">
-            <span className="text-2xl">◀</span>
-            {beforeAfterData.before.title}
-          </h3>
-          <div className="space-y-3">
-            {beforeAfterData.before.steps.map((step, i) => (
-              <div key={step} className="flex items-center gap-3">
-                <span className="w-7 h-7 rounded-full bg-red-100 text-red-500 flex items-center justify-center text-[0.65rem] font-bold">
-                  {i + 1}
-                </span>
-                <span className="text-sm text-[var(--ji-text)]">{step}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 pt-4 border-t border-red-200/30 text-center">
-            <span className="text-sm text-red-400/70">得到结果，<br/>却不知道为什么。</span>
+          <span className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-[var(--ji-muted)]">
+            Match Score
+          </span>
+          <p className="mt-4 text-6xl md:text-7xl font-bold text-[var(--ji-text)] leading-none">
+            82<span className="text-3xl md:text-4xl align-top">%</span>
+          </p>
+          <p className="mt-4 text-sm text-[var(--ji-muted)] leading-relaxed">
+            分数告诉你「够不够」，然后就没有然后了。
+          </p>
+          <div className="mt-6 pt-4 border-t border-black/5">
+            <span className="text-sm text-[var(--ji-muted)]">一个结论，到此为止。</span>
           </div>
         </motion.div>
 
-        {/* After */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="rounded-2xl border border-[var(--ji-blue-mid)] bg-[var(--ji-blue-light)] p-8"
-        >
-          <h3 className="text-lg font-semibold text-[var(--ji-blue)] mb-6 flex items-center gap-2">
-            <span className="text-2xl">▶</span>
-            {beforeAfterData.after.title}
-          </h3>
-          <div className="space-y-3">
-            {beforeAfterData.after.steps.map((step, i) => (
-              <motion.div
-                key={step}
-                initial={{ opacity: 0, x: 20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
-                className="flex items-center gap-3"
-              >
-                <span className="w-7 h-7 rounded-full bg-[var(--ji-blue)] text-white flex items-center justify-center text-[0.65rem] font-bold">
-                  {i + 1}
-                </span>
-                <span className="text-sm text-[var(--ji-text)] font-medium">{step}</span>
-              </motion.div>
-            ))}
-          </div>
-          <div className="mt-6 pt-4 border-t border-[var(--ji-blue-mid)] text-center">
-            <span className="text-sm font-medium text-[var(--ji-blue)]">从黑盒推荐，<br/>到可解释职业决策。</span>
-          </div>
-        </motion.div>
+        {/* 右：分数回答不了的三个问题 */}
+        <div className="md:col-span-3 space-y-4">
+          {questions.map((q, i) => (
+            <motion.div
+              key={q.en}
+              initial={{ opacity: 0, x: 30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
+              className="flex items-start gap-4 rounded-2xl border border-[var(--ji-blue-mid)] bg-[var(--ji-blue-light)] p-5"
+            >
+              <span className="w-7 h-7 shrink-0 rounded-full bg-[var(--ji-blue)] text-white flex items-center justify-center text-[0.65rem] font-bold mt-0.5">
+                {i + 1}
+              </span>
+              <div className="min-w-0">
+                <h3 className="text-base font-semibold text-[var(--ji-blue)]">
+                  {q.en}
+                  <span className="ml-2 text-sm font-medium text-[var(--ji-text)]">{q.zh}</span>
+                </h3>
+                <p className="mt-1.5 text-sm text-[var(--ji-muted)] leading-relaxed">{q.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.8, duration: 0.5 }}
+            className="pt-2 text-sm font-medium text-[var(--ji-text)]"
+          >
+            一个分数回答不了这三个问题。
+            <span className="text-[var(--ji-blue)]">Careerly 要回答的是这三个。</span>
+          </motion.div>
+        </div>
       </div>
     </ScreenWrapper>
   );
 }
 
 /* ================================================================
-   Screen 06 · Solution
+   Screen 06 · Product Strategy — 成长闭环
    ================================================================ */
-function SolutionSection() {
+function ProductStrategySection() {
   const flow = [
-    { icon: "📥", label: "输入\n简历 + 职位信息" },
-    { icon: "🧠", label: "理解\nAI 分析用户与岗位" },
-    { icon: "🔍", label: "推理\n能力匹配与差距分析" },
-    { icon: "📊", label: "决策\n个性化岗位排序" },
-    { icon: "🚀", label: "行动\n优化建议与下一步规划" },
+    { icon: "👁️", label: "See\n看见当前匹配" },
+    { icon: "🧭", label: "Understand\n理解差距构成" },
+    { icon: "🎯", label: "Act\n针对 Gap 行动" },
+    { icon: "📝", label: "Record\n记录变化" },
+    { icon: "🔁", label: "See Again\n再次看见" },
   ];
 
   return (
-    <ScreenWrapper id="solution" minH="100vh">
+    <ScreenWrapper id="strategy" minH="100vh">
       <SectionTitle
-        label="Solution"
-        title="将复杂求职流程，转化为 AI 驱动的决策链路。"
-        subtitle="从输入到决策，AI 驱动完整分析链路。"
+        label="Product Strategy"
+        title="产品要解决的不是「选哪个」，而是「怎么变好」。"
+        subtitle="把一次性的匹配，变成一条持续的成长闭环。"
         align="center"
       />
 
@@ -658,28 +651,380 @@ function SolutionSection() {
         ))}
       </div>
 
+      {/* 闭环说明 */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+        className="text-center mt-12"
+      >
+        <span className="inline-block px-6 py-3 rounded-full bg-[var(--ji-blue-light)] border border-[var(--ji-blue-mid)] text-sm font-medium text-[var(--ji-blue)]">
+          这是一条闭环——<br/>每一次 Record，都会让下一次 See 更准确。
+        </span>
+      </motion.div>
     </ScreenWrapper>
   );
 }
 
 /* ================================================================
-   Screen 07 · Product Blueprint (IA)
+   Screen 07 · Core Experience — 两个「看见」
    ================================================================ */
-function BlueprintSection() {
-  const layers = [
-    { label: "Output", title: "输出层", items: ["岗位推荐", "匹配解释", "优化建议"], color: "border-l-[var(--ji-blue)]" },
-    { label: "Decision", title: "决策层", items: ["能力匹配", "权重计算", "排序优化"], color: "border-l-blue-400" },
-    { label: "Agent", title: "Agent 层", items: ["信息获取 Agent", "简历分析 Agent", "岗位匹配 Agent", "报告生成 Agent"], color: "border-l-blue-500" },
-    { label: "Input", title: "输入层", items: ["简历", "职位数据", "用户需求"], color: "border-l-blue-600" },
-    { label: "User", title: "用户层", items: ["职业目标", "个人经历", "求职偏好"], color: "border-l-gray-400" },
+
+/** 手机屏内的匹配行：标签 + 百分比 + 迷你条 */
+function PhoneMatchRow({ icon, label, percent }: { icon: string; label: string; percent: number }) {
+  return (
+    <div className="ji-mockup-step" style={{ padding: "9px 10px", gap: "8px" }}>
+      <span className="ji-mockup-icon" style={{ width: 24, height: 24, fontSize: 11 }}>
+        {icon}
+      </span>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-baseline justify-between gap-2">
+          <span className="truncate text-[0.7rem] font-medium text-[var(--ji-text)]">{label}</span>
+          <span className="text-[0.7rem] font-bold text-[var(--ji-blue)]">{percent}%</span>
+        </div>
+        <div className="mt-1.5 h-[4px] overflow-hidden rounded-full" style={{ background: "#e8e4dc" }}>
+          <div
+            className="h-full rounded-full"
+            style={{ width: `${percent}%`, background: "linear-gradient(90deg, var(--ji-blue), #6c8cff)" }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CoreExperienceSection() {
+  const current = [
+    { icon: "💼", label: "AI 产品经理", percent: 82 },
+    { icon: "📊", label: "数据产品经理", percent: 64 },
+    { icon: "📈", label: "增长产品经理", percent: 48 },
+  ];
+  const growth = [
+    { icon: "📄", label: "Resume v1", percent: 48 },
+    { icon: "📄", label: "Resume v2", percent: 65 },
+    { icon: "📄", label: "Resume v3", percent: 82 },
   ];
 
   return (
-    <ScreenWrapper id="blueprint" minH="120vh">
+    <ScreenWrapper id="core-experience" minH="110vh">
       <SectionTitle
-        label="Product Blueprint"
-        title="AI 职业决策系统"
-        subtitle="连接用户背景、AI 推理能力与职业行动建议。"
+        label="Core Experience"
+        title="产品只做两件事：看见现在，看见变化。"
+        subtitle="一个是横向的比较，一个是纵向的比较。"
+        align="center"
+      />
+
+      <div className="mt-8 flex flex-col items-center justify-center gap-14 md:flex-row md:items-start md:gap-16">
+        {/* 01 · See */}
+        <div className="flex flex-col items-center gap-5">
+          <PhoneFrame>
+            <div className="px-1 pb-3 pt-1">
+              <span className="text-[0.5rem] font-bold uppercase tracking-[0.2em] text-[var(--ji-muted)]">
+                01 · See
+              </span>
+              <h4 className="mt-1 text-[0.85rem] font-semibold text-[var(--ji-text)]">看见当前匹配</h4>
+              <p className="mt-0.5 text-[0.58rem] text-[var(--ji-muted)]">Resume × Multiple Jobs</p>
+            </div>
+            <div className="mt-1">
+              {current.map((row) => (
+                <PhoneMatchRow key={row.label} {...row} />
+              ))}
+            </div>
+          </PhoneFrame>
+          <p className="max-w-[248px] text-center text-xs leading-relaxed text-[var(--ji-muted)]">
+            同一份简历，对着多个目标岗位，逐个看清距离。
+          </p>
+        </div>
+
+        {/* 02 · See Again */}
+        <div className="flex flex-col items-center gap-5">
+          <PhoneFrame>
+            <div className="px-1 pb-3 pt-1">
+              <span className="text-[0.5rem] font-bold uppercase tracking-[0.2em] text-[var(--ji-blue)]">
+                02 · See Again
+              </span>
+              <h4 className="mt-1 text-[0.85rem] font-semibold text-[var(--ji-text)]">看见成长变化</h4>
+              <p className="mt-0.5 text-[0.58rem] text-[var(--ji-muted)]">
+                Resume Version × Historical Jobs
+              </p>
+            </div>
+            <div className="mt-1">
+              {growth.map((row) => (
+                <PhoneMatchRow key={row.label} {...row} />
+              ))}
+            </div>
+          </PhoneFrame>
+          <p className="max-w-[248px] text-center text-xs leading-relaxed text-[var(--ji-muted)]">
+            同一个目标岗位，对着不同时期的简历，看见自己走了多远。
+          </p>
+        </div>
+      </div>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.4 }}
+        className="mt-12 text-center text-[0.65rem] font-medium uppercase tracking-[0.2em] text-[var(--ji-muted)]"
+      >
+        界面示意 · UI mockup
+      </motion.p>
+    </ScreenWrapper>
+  );
+}
+
+/* ================================================================
+   Screen 08 · Career Gap — Show the distance, not the score
+   ================================================================ */
+function CareerGapSection() {
+  const tiers = [
+    {
+      no: "01",
+      name: "Strength",
+      zh: "已具备",
+      width: 100,
+      fill: "linear-gradient(90deg, var(--ji-blue), #6c8cff)",
+      badgeBg: "rgba(45,91,255,0.08)",
+      badgeColor: "var(--ji-blue)",
+      badge: "能主张",
+      next: "可以直接写进简历与作品集，作为下一步的凭据。",
+    },
+    {
+      no: "02",
+      name: "Partial",
+      zh: "部分具备",
+      width: 55,
+      fill: "linear-gradient(90deg, #d9a441, #e8c37a)",
+      badgeBg: "rgba(217,164,65,0.12)",
+      badgeColor: "#9a7420",
+      badge: "要补产出",
+      next: "还差一层可展示的产出，需要把它落到一个具体项目里。",
+    },
+    {
+      no: "03",
+      name: "Gap",
+      zh: "尚未具备",
+      width: 20,
+      fill: "linear-gradient(90deg, #a89f92, #c9c2b6)",
+      badgeBg: "rgba(168,159,146,0.14)",
+      badgeColor: "#7d766b",
+      badge: "要建证据",
+      next: "还没有可以证明的经历，需要先找到入口去积累。",
+    },
+  ];
+
+  return (
+    <ScreenWrapper id="career-gap" minH="120vh">
+      <SectionTitle
+        label="Career Gap"
+        title="Don't just show the score. Show the distance."
+        subtitle="分数告诉你够不够，距离告诉你往哪走。"
+      />
+
+      {/* ① 分数 vs 距离 */}
+      <div className="flex flex-col gap-4 md:flex-row">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex-1 rounded-2xl border border-black/5 bg-white p-7 shadow-sm"
+        >
+          <span className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-[var(--ji-muted)]">
+            What a score tells you
+          </span>
+          <p className="mt-4 text-5xl font-semibold tracking-tight text-[var(--ji-muted)]">82%</p>
+          <p className="mt-3 text-sm text-[var(--ji-muted)]">你在哪</p>
+          <p className="mt-1 text-xs text-[var(--ji-muted)]">一个结论，到此为止。</p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.12, duration: 0.5 }}
+          className="flex-1 rounded-2xl border border-[var(--ji-blue-mid)] bg-[var(--ji-blue)] p-7"
+        >
+          <span className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-white/70">
+            What a distance tells you
+          </span>
+          <p className="mt-4 text-5xl font-semibold tracking-tight text-white">−45%</p>
+          <p className="mt-3 text-sm text-white/90">往哪走</p>
+          <p className="mt-1 text-xs text-white/70">一个动作，可以开始。</p>
+        </motion.div>
+      </div>
+
+      {/* ② 三档距离 */}
+      <div className="mt-6 space-y-3">
+        {tiers.map((tier, i) => (
+          <motion.div
+            key={tier.name}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1, duration: 0.5 }}
+            className="ji-rank-item"
+          >
+            <span className={`ji-rank-number${i === 0 ? " top" : ""}`}>{tier.no}</span>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-sm font-semibold text-[var(--ji-text)]">{tier.name}</span>
+                <span className="text-[0.7rem] text-[var(--ji-muted)]">{tier.zh}</span>
+                <span
+                  className="ji-rank-score ml-auto"
+                  style={{ background: tier.badgeBg, color: tier.badgeColor }}
+                >
+                  {tier.badge}
+                </span>
+              </div>
+              <div className="ji-weight-bar mt-2" style={{ height: 6, cursor: "default" }}>
+                <div className="ji-weight-fill" style={{ width: `${tier.width}%`, background: tier.fill }} />
+              </div>
+              <p className="mt-2 text-[0.7rem] leading-relaxed text-[var(--ji-muted)]">{tier.next}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* ③ 收束 */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+        className="mt-12 text-center"
+      >
+        <span className="inline-block rounded-full border border-[var(--ji-blue-mid)] bg-[var(--ji-blue-light)] px-6 py-3 text-sm font-medium text-[var(--ji-blue)]">
+          分数是结论，距离是动作。<br />
+          知道还差什么，才知道下一步做什么。
+        </span>
+      </motion.div>
+    </ScreenWrapper>
+  );
+}
+
+/* ================================================================
+   Screen 09 · Career Asset — Your career is an asset
+   ================================================================ */
+function CareerAssetSection() {
+  const assets = [
+    {
+      icon: "💼",
+      title: "Work 工作经历",
+      fields: ["公司", "角色", "时间", "职责", "成果"],
+    },
+    {
+      icon: "🧩",
+      title: "Projects 项目",
+      fields: ["项目名", "你的角色", "调用能力", "产出物", "链接"],
+    },
+    {
+      icon: "🧠",
+      title: "Skills 技能",
+      fields: ["技能", "熟练度", "证据"],
+    },
+    {
+      icon: "🏆",
+      title: "Awards 奖项",
+      fields: ["奖项", "级别", "时间", "关联作品"],
+    },
+    {
+      icon: "📄",
+      title: "Resumes 简历版本",
+      fields: ["版本", "时间", "变更点", "对应匹配"],
+    },
+  ];
+
+  return (
+    <ScreenWrapper id="career-asset" minH="110vh">
+      <SectionTitle
+        label="Career Asset"
+        title="简历是快照，职业资产是可累积的记录。"
+        subtitle="把散在简历、作品集和记忆里的东西，拆成结构化的、能反复使用的字段。"
+      />
+
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {assets.map((asset, i) => (
+          <AnimatedCard
+            key={asset.title}
+            icon={asset.icon}
+            title={asset.title}
+            delay={i * 0.07}
+            padding="p-5"
+          >
+            {/* .ji-layer-items 自带 margin-top，Tailwind 覆盖不掉 → 内联 */}
+            <div className="ji-layer-items" style={{ marginTop: 0 }}>
+              {asset.fields.map((field) => (
+                <span key={field} className="ji-layer-item">
+                  {field}
+                </span>
+              ))}
+            </div>
+          </AnimatedCard>
+        ))}
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+        className="ji-layer mt-12 text-center"
+      >
+        <span className="ji-layer-label">Career Asset</span>
+        <h3 className="ji-layer-title">Your career is an asset.</h3>
+        <p className="mt-2 text-sm leading-relaxed text-[var(--ji-muted)]">
+          每一次更新都留在档案里——上一版的你，是这一版的起点。
+        </p>
+      </motion.div>
+    </ScreenWrapper>
+  );
+}
+
+/* ================================================================
+   Screen 11 · Product Architecture — AI behind the experience
+   ================================================================ */
+function ProductArchitectureSection() {
+  const layers = [
+    {
+      label: "Experience",
+      title: "体验层 · 用户看见什么",
+      items: ["看见当前匹配", "看见能力距离", "看见成长变化", "职业资产库"],
+      color: "border-l-[var(--ji-blue)]",
+    },
+    {
+      label: "Product Logic",
+      title: "产品逻辑层 · 产品如何组织",
+      items: ["能力模型", "岗位要求拆解", "距离定义", "版本化记录"],
+      color: "border-l-blue-400",
+    },
+    {
+      label: "AI Agent",
+      title: "Agent 层 · AI 如何协作",
+      items: ["简历解析 Agent", "能力抽取 Agent", "岗位理解 Agent", "Gap 分析 Agent"],
+      color: "border-l-blue-500",
+    },
+    {
+      label: "Reasoning",
+      title: "推理层 · 判断如何产生",
+      items: ["结构化能力图谱", "Embedding 语义对齐", "LLM 打分与解释"],
+      color: "border-l-blue-600",
+    },
+    {
+      label: "Data",
+      title: "数据层 · 输入从哪里来",
+      items: ["简历导入", "手动粘贴 JD", "作品与经历补充"],
+      color: "border-l-gray-400",
+    },
+  ];
+
+  return (
+    <ScreenWrapper id="architecture" minH="120vh">
+      <SectionTitle
+        label="Product Architecture"
+        title="AI behind the experience."
+        subtitle="用户只看见三件事：我在哪、还差什么、我走了多远。背后是四层系统在承担复杂度。"
       />
 
       <div className="space-y-3 mt-8">
@@ -703,7 +1048,7 @@ function BlueprintSection() {
         ))}
       </div>
 
-      {/* 层间箭头指示 */}
+      {/* 层间箭头：方向与行的视觉顺序相反 —— 复杂度从下长上来，用户只看见最上面一层 */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -711,32 +1056,35 @@ function BlueprintSection() {
         transition={{ delay: 0.6 }}
         className="flex justify-center mt-6 text-[var(--ji-muted)]"
       >
-        <div className="flex items-center gap-8 text-[0.6rem] font-medium uppercase tracking-wider">
-          <span>User</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M5 12h14M13 5l7 7-7 7" />
-          </svg>
-          <span>Input</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M5 12h14M13 5l7 7-7 7" />
-          </svg>
-          <span>Agent</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M5 12h14M13 5l7 7-7 7" />
-          </svg>
-          <span>Decision</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M5 12h14M13 5l7 7-7 7" />
-          </svg>
-          <span>Output</span>
+        <div className="flex flex-wrap items-center justify-center gap-4 text-[0.6rem] font-medium uppercase tracking-wider">
+          {["Data", "Reasoning", "Agent", "Product Logic", "Experience"].map((name, i, arr) => (
+            <span key={name} className="inline-flex items-center gap-4">
+              <span>{name}</span>
+              {i < arr.length - 1 && (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              )}
+            </span>
+          ))}
         </div>
       </motion.div>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.7 }}
+        className="text-center text-sm text-[var(--ji-muted)] mt-8"
+      >
+        AI 不替用户做职业决定——它把「为什么」讲清楚，决定权仍在用户手里。
+      </motion.p>
     </ScreenWrapper>
   );
 }
 
 /* ================================================================
-   Screen 08 · Multi-Agent Workflow (LangGraph)
+   Screen 10 · AI Workflow (LangGraph)
    ================================================================ */
 function WorkflowSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -746,22 +1094,22 @@ function WorkflowSection() {
   });
 
   const nodes = [
-    { icon: "🌐", label: "职位抓取", desc: "从招聘网站获取职位数据" },
-    { icon: "🔧", label: "数据标准化", desc: "清洗与统一格式" },
-    { icon: "📄", label: "简历解析", desc: "提取个人能力与经历" },
-    { icon: "🧬", label: "Embedding", desc: "语义向量检索" },
-    { icon: "🔀", label: "Router", desc: "条件决策路径分发" },
-    { icon: "🎯", label: "岗位匹配", desc: "能力与需求综合评分" },
-    { icon: "📊", label: "综合排序", desc: "多维度加权排序" },
-    { icon: "📝", label: "报告生成", desc: "输出可读分析报告" },
+    { icon: "📄", label: "Resume", desc: "简历导入" },
+    { icon: "🔧", label: "Parse", desc: "解析结构与段落" },
+    { icon: "🧹", label: "Normalize", desc: "统一字段与格式" },
+    { icon: "🧬", label: "Capability Extraction", desc: "抽取结构化能力项" },
+    { icon: "🎯", label: "Job Understanding", desc: "拆解岗位要求" },
+    { icon: "🔀", label: "Matching", desc: "能力与要求对齐" },
+    { icon: "📐", label: "Gap Analysis", desc: "计算逐项距离" },
+    { icon: "📝", label: "Report", desc: "输出可理解的能力报告" },
   ];
 
   return (
     <ScreenWrapper id="workflow" minH="120vh">
       <SectionTitle
-        label="Multi-Agent Workflow"
-        title="多个 Agent 协作，完成一次完整职业分析。"
-        subtitle="不同任务需要不同推理能力，LangGraph 将多个 Agent 组织成可靠 Workflow。"
+        label="AI Workflow"
+        title="从一份简历，到一份可理解的能力报告。"
+        subtitle="不是把简历丢给一个大模型——每一步都有明确的输入、输出与状态。"
       />
 
       <div ref={ref} className="mt-8 max-w-2xl mx-auto">
@@ -770,8 +1118,6 @@ function WorkflowSection() {
             // Calculate normalized progress for each node
             const nodeStart = i / nodes.length;
             const nodeEnd = (i + 1) / nodes.length;
-            const activeThreshold = nodeStart + (nodeEnd - nodeStart) * 0.3;
-            const isActive = scrollYProgress.get() >= activeThreshold;
 
             return (
               <motion.div
@@ -837,161 +1183,22 @@ function WorkflowSection() {
         transition={{ delay: 0.3 }}
         className="text-center text-sm text-[var(--ji-muted)] mt-10"
       >
-        每一步都可观察、可恢复、可优化。
+        每一步都可观察、可恢复、可优化。同一条 Workflow，既服务于当前匹配，也服务于成长记录。
       </motion.p>
     </ScreenWrapper>
   );
 }
 
 /* ================================================================
-   Screen 09 · Personalized Decision Engine
-   ================================================================ */
-function DecisionEngineSection() {
-  const [weights, setWeights] = useState({
-    salary: 40,
-    content: 30,
-    growth: 20,
-    scale: 10,
-  });
-
-  const weightKeys = [
-    { key: "salary" as const, label: "薪资待遇", en: "Salary", icon: "💰" },
-    { key: "content" as const, label: "工作内容", en: "Content", icon: "💼" },
-    { key: "growth" as const, label: "成长空间", en: "Growth", icon: "📈" },
-    { key: "scale" as const, label: "公司规模", en: "Company Size", icon: "🏢" },
-  ];
-
-  // Simulate ranking change based on weights
-  const rankings = [
-    { rank: 1, title: "资深 AI 工程师 — 字节跳动", scores: { salary: 92, content: 88, growth: 60, scale: 85 } },
-    { rank: 2, title: "AI 算法工程师 — 腾讯", scores: { salary: 85, content: 90, growth: 70, scale: 90 } },
-    { rank: 3, title: "机器学习工程师 — 商汤科技", scores: { salary: 78, content: 92, growth: 55, scale: 65 } },
-    { rank: 4, title: "NLP 算法工程师 — 阿里", scores: { salary: 88, content: 82, growth: 65, scale: 88 } },
-    { rank: 5, title: "AI 产品经理 — 小红书", scores: { salary: 75, content: 75, growth: 80, scale: 70 } },
-  ];
-
-  // Recalculate scores based on weights
-  const weightedRankings = rankings.map((r) => {
-    const total =
-      (r.scores.salary * weights.salary +
-        r.scores.content * weights.content +
-        r.scores.distance * weights.distance +
-        r.scores.scale * weights.scale) /
-      (weights.salary + weights.content + weights.distance + weights.scale);
-    return { ...r, score: Math.round(total) };
-  }).sort((a, b) => b.score - a.score);
-
-  const updateWeight = (key: keyof typeof weights, delta: number) => {
-    setWeights((prev) => {
-      const newVal = Math.max(0, Math.min(100, prev[key] + delta));
-      return { ...prev, [key]: newVal };
-    });
-  };
-
-  return (
-    <ScreenWrapper id="decision-engine" minH="100vh">
-      <SectionTitle
-        label="Personalized Decision Engine"
-        title="真正的推荐，应该理解每个人的选择偏好。"
-        subtitle="同一个岗位库，不同用户得到不同答案。"
-      />
-
-      <div className="grid md:grid-cols-5 gap-8 mt-8">
-        {/* 左侧：权重调节（占 2 列） */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="md:col-span-2 space-y-6"
-        >
-          <h3 className="text-sm font-bold text-[var(--ji-text)] uppercase tracking-wider">偏好权重</h3>
-          {weightKeys.map((w) => (
-            <div key={w.key} className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span>{w.icon}</span>
-                  <span className="text-sm font-medium text-[var(--ji-text)]">{w.label}</span>
-                  <span className="text-[0.55rem] text-[var(--ji-muted)]">{w.en}</span>
-                </div>
-                <span className="text-sm font-bold text-[var(--ji-blue)]">{weights[w.key]}%</span>
-              </div>
-              <div className="ji-weight-bar" onClick={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const pct = ((e.clientX - rect.left) / rect.width) * 100;
-                setWeights((prev) => ({ ...prev, [w.key]: Math.round(pct) }));
-              }}>
-                <div
-                  className="ji-weight-fill"
-                  style={{ width: `${weights[w.key]}%` }}
-                />
-              </div>
-              <div className="flex justify-between text-[0.5rem] text-[var(--ji-muted)]">
-                <button onClick={() => updateWeight(w.key, -5)} className="hover:text-[var(--ji-text)] transition-colors">−5%</button>
-                <button onClick={() => updateWeight(w.key, 5)} className="hover:text-[var(--ji-text)] transition-colors">+5%</button>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* 右侧：排序结果（占 3 列） */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="md:col-span-3"
-        >
-          <h3 className="text-sm font-bold text-[var(--ji-text)] uppercase tracking-wider mb-4">
-            <span className="flex items-center gap-2">
-              推荐排序
-              <span className="text-[0.55rem] font-normal text-[var(--ji-muted)]">(权重变化实时计算)</span>
-            </span>
-          </h3>
-          <div className="space-y-2">
-            {weightedRankings.map((item, i) => (
-              <motion.div
-                key={item.title}
-                layout
-                transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                className="ji-rank-item"
-              >
-                <span className={`ji-rank-number ${i < 3 ? "top" : ""}`}>
-                  {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `#${item.rank}`}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-[var(--ji-text)] truncate">{item.title}</p>
-                </div>
-                <span className="ji-rank-score">{item.score}分</span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.5 }}
-        className="text-center text-sm text-[var(--ji-muted)] mt-8"
-      >
-        ↑ 拖动权重条，实时观察排序变化
-      </motion.p>
-    </ScreenWrapper>
-  );
-}
-
-/* ================================================================
-   Screen 10 · Live Demo — 在线体验 AI 匹配
+   Screen 02 · Live Demo — 在线体验能力匹配
    ================================================================ */
 function LiveDemoSection() {
   return (
     <ScreenWrapper id="experience" minH="100vh">
       <SectionTitle
         label="Live Demo"
-        title="输入你的信息，立即体验 AI 匹配。"
-        subtitle="前后端真实调用 · 后端基于 FastAPI + LangGraph 构建，部署后实时返回匹配结果。"
+        title="输入简历与目标岗位，体验一次能力匹配。"
+        subtitle="前后端真实调用 · 后端基于 FastAPI + LangGraph 构建，部署后实时返回能力匹配结果。"
       />
 
       <motion.div
@@ -1003,7 +1210,7 @@ function LiveDemoSection() {
       >
         {/* 说明标签 */}
         <div className="flex flex-wrap gap-2 mb-6">
-          {["🔗 输入职位链接", "📄 粘贴简历内容", "⚙️ 一键运行 Workflow", "📊 查看匹配结果"].map((step) => (
+          {["🔗 输入职位链接", "📄 粘贴简历内容", "⚙️ 一键运行 Workflow", "📊 查看能力匹配报告"].map((step) => (
             <span key={step} className="ji-tech-pill text-[0.65rem]">
               {step}
             </span>
@@ -1016,7 +1223,7 @@ function LiveDemoSection() {
             <span className="w-3 h-3 rounded-full bg-red-400" />
             <span className="w-3 h-3 rounded-full bg-amber-400" />
             <span className="w-3 h-3 rounded-full bg-emerald-400" />
-            <span className="text-[0.6rem] text-[var(--ji-muted)] ml-2 font-mono">demo.jobinsight.ai ~</span>
+            <span className="text-[0.6rem] text-[var(--ji-muted)] ml-2 font-mono">demo.careerly.app ~</span>
           </div>
           <div className="p-5">
             <LiveDemo />
@@ -1029,188 +1236,64 @@ function LiveDemoSection() {
 }
 
 /* ================================================================
-   Screen 11 · Technical Architecture
+   Screen 12 · From Prototype → Product
    ================================================================ */
-function TechArchitectureSection() {
-  const techStack = [
-    { icon: "🔷", label: "LangGraph" },
-    { icon: "🧠", label: "Qwen / LLM" },
-    { icon: "💾", label: "SQLite" },
-    { icon: "🧬", label: "Embedding" },
-    { icon: "📄", label: "pdfplumber" },
-    { icon: "🎭", label: "Playwright" },
-    { icon: "📡", label: "DashScope" },
-    { icon: "⚡", label: "Streamlit" },
+function EvolutionSection() {
+  const stages = [
+    {
+      icon: "🧪",
+      label: "JobInsight AI",
+      tag: "Web / Agent",
+      desc: "一个能跑的匹配原型：Streamlit Web + LangGraph Agent，验证 AI 能否理解简历与岗位。",
+    },
+    {
+      icon: "🔁",
+      label: "Product Reframing",
+      tag: "重新定义问题",
+      desc: "原型成立，但问题问错了。从「匹配一个岗位」转向「看见能力与成长」。",
+    },
+    {
+      icon: "🌱",
+      label: "Careerly",
+      tag: "Mobile Product",
+      desc: "把能力匹配变成可以日常使用、可以累积记录的产品，而不是一次性查询。",
+    },
+    {
+      icon: "📱",
+      label: "Flutter",
+      tag: "移动端实现",
+      desc: "同一套 AI 能力，换一个产品容器：从浏览器窗口，到随身携带。",
+    },
   ];
 
-  const highlights = [
-    { title: "多 Agent 协作", desc: "4 个专业 Agent" },
-    { title: "状态管理", desc: "SQLite Checkpoint" },
-    { title: "混合检索", desc: "Embedding + LLM" },
-    { title: "可靠执行", desc: "Retry + Error Handling" },
+  const stackGroups = [
+    { label: "Product", items: ["Flutter"] },
+    { label: "Backend", items: ["FastAPI"] },
+    { label: "AI", items: ["LangGraph", "LLM"] },
   ];
 
   return (
-    <ScreenWrapper id="architecture" minH="100vh">
+    <ScreenWrapper id="evolution" minH="100vh">
       <SectionTitle
-        label="Technical Architecture"
-        title="产品背后的 AI 系统能力"
-        subtitle="通过 LangGraph 构建稳定、可扩展的 Agent Workflow。"
+        label="From Prototype → Product"
+        title="从 Web 原型，到移动产品。"
+        subtitle="AI 能力没有变，变的是它被组织进什么样的产品。"
       />
 
       <div className="grid md:grid-cols-2 gap-8 md:gap-12 mt-8">
-        {/* 左侧：技术栈 */}
+        {/* 左侧：演进时间线 */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-sm font-bold text-[var(--ji-text)] uppercase tracking-wider mb-5">技术栈</h3>
-          <div className="space-y-4">
-            {/* LangGraph → Checkpoint → Retry 流程示意 */}
-            <div className="ji-layer">
-              <div className="flex items-center gap-3 flex-wrap">
-                {["LangGraph", "Checkpoint", "Retry"].map((item, i, arr) => (
-                  <span key={item} className="inline-flex items-center gap-1">
-                    <span className="ji-tech-pill">{item}</span>
-                    {i < arr.length - 1 && <span className="text-[var(--ji-muted)] text-xs">→</span>}
-                  </span>
-                ))}
-              </div>
-              <div className="flex items-center gap-3 flex-wrap mt-3">
-                {["Embedding", "LLM", "Export"].map((item, i, arr) => (
-                  <span key={item} className="inline-flex items-center gap-1">
-                    <span className="ji-tech-pill">{item}</span>
-                    {i < arr.length - 1 && <span className="text-[var(--ji-muted)] text-xs">→</span>}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* 完整技术栈标签 */}
-            <div className="flex flex-wrap gap-2">
-              {techStack.map((t) => (
-                <span key={t.label} className="ji-tech-pill">
-                  {t.icon} {t.label}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* 右侧：工程亮点 */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <h3 className="text-sm font-bold text-[var(--ji-text)] uppercase tracking-wider mb-5">工程亮点</h3>
-          <div className="grid grid-cols-2 gap-3">
-            {highlights.map((h) => (
-              <motion.div
-                key={h.title}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3 }}
-                className="rounded-xl border border-black/5 bg-white p-4 shadow-sm"
-              >
-                <p className="text-sm font-semibold text-[var(--ji-text)]">{h.title}</p>
-                <p className="text-[0.65rem] text-[var(--ji-muted)] mt-1">{h.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.5 }}
-        className="text-center text-sm text-[var(--ji-muted)] mt-10"
-      >
-        不讲代码，讲系统能力
-      </motion.p>
-    </ScreenWrapper>
-  );
-}
-
-/* ================================================================
-   Screen 12 · Reflection & Roadmap
-   ================================================================ */
-function ReflectionSection({ project }: { project: ProjectData }) {
-  const lessons = [
-    {
-      category: "产品思考",
-      items: [
-        { label: "从工具思维 ↓ 到 Agent 思维", desc: "用户需要的不是另一个搜索工具，而是一个能做决策的助手。" },
-        { label: "从固定推荐 ↓ 到动态决策", desc: "静态匹配分数无法满足个性化需求，动态权重引擎让推荐结果因人而异。" },
-        { label: "从结果输出 ↓ 到可解释 AI", desc: "用户不仅要一个分数，还要知道分数为什么是这样，以及如何改进。" },
-      ],
-    },
-    {
-      category: "技术沉淀",
-      items: [
-        { label: "LangGraph State", desc: "状态驱动的 Workflow 让 Agent 协作更可控，避免大模型输出不稳定的问题。" },
-        { label: "Prompt Engineering", desc: "不同 Agent 使用定制化的 System Prompt，显著提升输出质量和一致性。" },
-        { label: "Embedding Strategy", desc: "向量召回 + LLM 评分的两阶段策略，在成本和质量之间取得了好的平衡。" },
-      ],
-    },
-  ];
-
-  const roadmap = [
-    { icon: "🌐", label: "v0.2 Browser Agent", desc: "自动获取岗位信息" },
-    { icon: "🎙️", label: "v0.3 Interview Agent", desc: "AI 面试训练" },
-    { icon: "🧠", label: "v0.4 Career Memory", desc: "长期职业画像" },
-    { icon: "🚀", label: "Future", desc: "Career Decision Platform" },
-  ];
-
-  return (
-    <ScreenWrapper id="reflection" minH="80vh">
-      <SectionTitle
-        label="Reflection & Roadmap"
-        title="产品演进与未来方向"
-      />
-
-      <div className="grid md:grid-cols-2 gap-8 mt-8">
-        {/* 产品/技术 Lessons */}
-        <div className="space-y-6">
-          {lessons.map((group) => (
-            <div key={group.category}>
-              <h3 className="text-[0.55rem] font-bold text-[var(--ji-muted)] uppercase tracking-[0.25em] mb-3">
-                {group.category}
-              </h3>
-              <div className="space-y-3">
-                {group.items.map((lesson) => (
-                  <motion.div
-                    key={lesson.label}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4 }}
-                    className="rounded-xl border border-black/5 bg-white p-4 shadow-sm"
-                  >
-                    <h4 className="text-sm font-semibold text-[var(--ji-text)]">{lesson.label}</h4>
-                    <p className="text-[0.7rem] text-[var(--ji-muted)] mt-1 leading-relaxed">{lesson.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Roadmap */}
-        <div>
           <h3 className="text-[0.55rem] font-bold text-[var(--ji-muted)] uppercase tracking-[0.25em] mb-3">
-            Roadmap · v0.2 +
+            Evolution
           </h3>
           <div className="relative pl-12 space-y-0">
-            {/* 时间线 */}
             <div className="ji-roadmap-line" />
-            {roadmap.map((item, i) => (
+            {stages.map((item, i) => (
               <motion.div
                 key={item.label}
                 initial={{ opacity: 0, x: -10 }}
@@ -1223,14 +1306,120 @@ function ReflectionSection({ project }: { project: ProjectData }) {
                   {item.icon}
                 </div>
                 <div className="ml-2">
-                  <h4 className="text-sm font-semibold text-[var(--ji-text)]">{item.label}</h4>
-                  <p className="text-[0.7rem] text-[var(--ji-muted)]">{item.desc}</p>
+                  <div className="flex items-baseline gap-2">
+                    <h4 className="text-sm font-semibold text-[var(--ji-text)]">{item.label}</h4>
+                    <span className="text-[0.55rem] font-medium text-[var(--ji-blue)] uppercase tracking-wider">
+                      {item.tag}
+                    </span>
+                  </div>
+                  <p className="text-[0.7rem] text-[var(--ji-muted)] mt-1 leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
+
+        {/* 右侧：技术栈分组 */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <h3 className="text-[0.55rem] font-bold text-[var(--ji-muted)] uppercase tracking-[0.25em] mb-3">
+            Stack
+          </h3>
+          <div className="space-y-4">
+            {stackGroups.map((group) => (
+              <div key={group.label} className="ji-layer">
+                <span className="ji-layer-label">{group.label}</span>
+                <div className="ji-layer-items">
+                  {group.items.map((item) => (
+                    <span key={item} className="ji-tech-pill">{item}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 rounded-xl border border-black/5 bg-white p-4 shadow-sm">
+            <p className="text-[0.7rem] text-[var(--ji-muted)] leading-relaxed">
+              原型阶段的 Streamlit Web 界面保留为第 02 屏的可交互 Demo——
+              AI 能力在那里已经被验证过，产品化要解决的是它如何被日常使用。
+            </p>
+          </div>
+        </motion.div>
       </div>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.5 }}
+        className="text-center text-sm text-[var(--ji-muted)] mt-10"
+      >
+        同一条 AI 能力，换一个产品容器。
+      </motion.p>
+    </ScreenWrapper>
+  );
+}
+
+/* ================================================================
+   Screen 13 · Reflection — What changed in my thinking
+   ================================================================ */
+function ReflectionSection({ project }: { project: ProjectData }) {
+  const conclusions = [
+    {
+      index: "01",
+      en: "AI is not the product.",
+      zh: "AI 不是产品",
+      desc: "AI 能算出匹配度，但匹配度不是用户要的东西。产品是把 AI 的输出，翻译成用户能理解、能行动的判断。",
+    },
+    {
+      index: "02",
+      en: "A score is not insight.",
+      zh: "分数不是洞察",
+      desc: "82% 不是洞察。洞察是「差在哪里、为什么差、怎么补上」——分数只是这条线索的起点。",
+    },
+    {
+      index: "03",
+      en: "Growth needs a memory.",
+      zh: "成长需要记忆",
+      desc: "没有历史版本，就没有成长。产品必须记得你上一次是什么样，才谈得上「你变好了多少」。",
+    },
+  ];
+
+  return (
+    <ScreenWrapper id="reflection" minH="85vh">
+      <SectionTitle
+        label="Reflection"
+        title="What changed in my thinking."
+        subtitle="比做出来什么更重要的，是这次做下来改变了什么判断。"
+        align="center"
+      />
+
+      <div className="grid md:grid-cols-3 gap-6 mt-8">
+        {conclusions.map((c, i) => (
+          <AnimatedCard key={c.index} icon={c.index} title={c.en} delay={i * 0.12}>
+            <p className="text-[0.7rem] font-medium text-[var(--ji-blue)] mb-2">{c.zh}</p>
+            <p className="text-sm text-[var(--ji-muted)] leading-relaxed">{c.desc}</p>
+          </AnimatedCard>
+        ))}
+      </div>
+
+      {/* 收束 */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+        className="ji-layer mt-12 text-center"
+      >
+        <span className="ji-layer-label">Closing</span>
+        <h3 className="ji-layer-title">
+          See where you are. Understand the gap. Keep moving.
+        </h3>
+      </motion.div>
 
       {/* Project metadata + nav */}
       <motion.div
@@ -1256,7 +1445,7 @@ export function JobInsightCase({
   project: ProjectData;
   id: string;
 }) {
-  const totalScreens = 12;
+  const totalScreens = 13;
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeScreen, setActiveScreen] = useState(0);
 
@@ -1277,6 +1466,15 @@ export function JobInsightCase({
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
+
+  // 导航圆点按 DOM 顺序取索引，屏数错位会静默失效 —— DEV 下断言
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    const n = document.querySelectorAll(".ji-screen").length;
+    if (n !== totalScreens) {
+      console.warn(`[JobInsightCase] .ji-screen ${n} ≠ totalScreens ${totalScreens}`);
+    }
+  }, []);
 
   const scrollTo = (index: number) => {
     const sections = document.querySelectorAll(".ji-screen");
@@ -1307,52 +1505,57 @@ export function JobInsightCase({
       <LiveDemoSection />
 
       {/* ======================== */}
-      {/* Screen 03 · Problem       */}
+      {/* Screen 03 · Reframe      */}
       {/* ======================== */}
-      <ProblemSection />
+      <ReframeSection />
 
       {/* ======================== */}
-      {/* Screen 04 · Metrics       */}
+      {/* Screen 04 · The Question */}
       {/* ======================== */}
-      <MetricsSection />
+      <QuestionSection />
 
       {/* ======================== */}
-      {/* Screen 05 · Persona       */}
-      {/* ======================== */}
-      <PersonaSection />
-
-      {/* ======================== */}
-      {/* Screen 06 · Insight       */}
+      {/* Screen 05 · Insight      */}
       {/* ======================== */}
       <InsightSection />
 
       {/* ======================== */}
-      {/* Screen 07 · Solution      */}
+      {/* Screen 06 · Strategy     */}
       {/* ======================== */}
-      <SolutionSection />
+      <ProductStrategySection />
 
       {/* ======================== */}
-      {/* Screen 08 · Blueprint     */}
+      {/* Screen 07 · Experience   */}
       {/* ======================== */}
-      <BlueprintSection />
+      <CoreExperienceSection />
 
       {/* ======================== */}
-      {/* Screen 09 · Workflow      */}
+      {/* Screen 08 · Career Gap   */}
+      {/* ======================== */}
+      <CareerGapSection />
+
+      {/* ======================== */}
+      {/* Screen 09 · Career Asset */}
+      {/* ======================== */}
+      <CareerAssetSection />
+
+      {/* ======================== */}
+      {/* Screen 10 · Workflow     */}
       {/* ======================== */}
       <WorkflowSection />
 
       {/* ======================== */}
-      {/* Screen 10 · Decision      */}
+      {/* Screen 11 · Architecture */}
       {/* ======================== */}
-      <DecisionEngineSection />
+      <ProductArchitectureSection />
 
       {/* ======================== */}
-      {/* Screen 11 · Architecture  */}
+      {/* Screen 12 · Evolution    */}
       {/* ======================== */}
-      <TechArchitectureSection />
+      <EvolutionSection />
 
       {/* ======================== */}
-      {/* Screen 12 · Reflection    */}
+      {/* Screen 13 · Reflection   */}
       {/* ======================== */}
       <ReflectionSection project={project} />
 

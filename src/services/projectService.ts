@@ -80,7 +80,7 @@ const listingOverrides: Record<string, ListingOverride> = {
 
   // ====== Product Case Studies ======
   "yimo-vr-platform":            { image: localImages.cover00 },
-  "job-matching-ai-agent":       { title: "JobInsight AI —— 智能职位分析助手", image: localImages.cover01 },
+  "job-matching-ai-agent":       { title: "Careerly —— AI Career Growth", image: localImages.cover01 },
 };
 
 // ---- 内部函数 ----

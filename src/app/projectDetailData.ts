@@ -68,7 +68,7 @@ export const projectDetailData: Record<string, ProjectData> = {
     descriptionEN: `An intelligent job matching system powered by multi-agent workflow, integrating job crawling, resume parsing, semantic matching, decision-making and report generation into an automated pipeline.`,
     year: "2026",
     location: "",
-    role: "AI Agent产品经理 / 产品设计",
+    role: "产品设计",
     images: [
       localImages.cover01,
       localImages.aiWorkflowDiagram,
@@ -496,7 +496,7 @@ export const projectDetailData: Record<string, ProjectData> = {
     images: [
       localImages.ipZheng1,
       localImages.ipNing1,
-    ],
+    ], 
   },
   "tujia-bro编织-pattern": {
     title: "土家织锦纹样设计",

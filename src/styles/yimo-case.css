@@ -226,7 +226,7 @@
   padding: 0 32px;
 }
 
-/* ------ 节点流程图（Screen 06） ------ */
+/* ------ 节点流程图（Screen 10 · AI Workflow） ------ */
 .ji-node-flow {
   display: flex;
   flex-direction: column;
@@ -300,14 +300,13 @@
   transition: all 0.3s ease;
 }
 
-/* ------ 权重条（Screen 07） ------ */
+/* ------ 距离条（Screen 08 · Career Gap） ------ */
 .ji-weight-bar {
   height: 8px;
   border-radius: 4px;
   background: #e8e4dc;
   overflow: hidden;
   position: relative;
-  cursor: pointer;
 }
 
 .ji-weight-fill {
@@ -317,7 +316,7 @@
   transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ------ 产品截图卡片（Screen 08） ------ */
+/* ------ 产品截图卡片 ------ */
 .ji-demo-card {
   border-radius: var(--ji-radius);
   border: 1px solid rgba(0,0,0,0.06);
@@ -332,7 +331,7 @@
   box-shadow: 0 12px 32px rgba(0,0,0,0.1);
 }
 
-/* ------ 技术架构标签（Screen 09） ------ */
+/* ------ 技术栈标签（Screen 02 / 屏 12） ------ */
 .ji-tech-pill {
   display: inline-flex;
   align-items: center;
@@ -352,7 +351,7 @@
   background: var(--ji-blue-light);
 }
 
-/* ------ 架构层（Screen 05） ------ */
+/* ------ 分层卡片（Screen 03 / 09 / 11） ------ */
 .ji-layer {
   border-radius: var(--ji-radius);
   border: 1px solid rgba(0,0,0,0.06);
@@ -446,7 +445,7 @@
   font-size: 1.2rem;
 }
 
-/* ------ Hero 区 mockup 容器 ------ */
+/* ------ Hero 区 mockup 容器 / 手机屏内列表（Screen 01 / 07） ------ */
 .ji-mockup {
   border-radius: 12px;
   border: 1px solid rgba(0,0,0,0.06);
@@ -490,7 +489,7 @@
   color: white;
 }
 
-/* ------ 决策引擎排名项 ------ */
+/* ------ 距离分档行（Screen 08 · Career Gap） ------ */
 .ji-rank-item {
   display: flex;
   align-items: center;
@@ -528,7 +527,7 @@
   border-radius: 4px;
 }
 
-/* ------ 路线图时间线 ------ */
+/* ------ 演进时间线（Screen 12 · From Prototype → Product） ------ */
 .ji-roadmap-line {
   position: absolute;
   left: 15px;
