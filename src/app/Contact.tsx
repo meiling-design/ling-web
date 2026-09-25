@@ -89,7 +89,7 @@ export function Contact() {
             >
               <div className="space-y-6">
                 <p className="text-[1.2rem] text-[#666] leading-relaxed">
-                  感谢你的时间。希望这些作品不仅展示设计成果，更展现我对产品思考、系统设计与持续探索的过程。
+                  感谢你的时间。希望这些作品不仅展示设计成果，更展现我的思考、系统设计与持续探索的过程。
                   如果您有任何想法，请随时联系我。
                 </p>
               </div>
