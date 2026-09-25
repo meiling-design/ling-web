@@ -58,9 +58,11 @@ export function Home() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
             whileHover={{ x: 10 }}
-            className="text-[1.2rem] md:text-[1.5rem] text-[#666] tracking-[0.2em] font-light transition-all duration-500"
+            className="text-[1.2rem] md:text-[1.5rem] text-[#666] tracking-[0.2em] font-light leading-relaxed transition-all duration-500"
           >
-            从空间到产品，我始终关注复杂系统如何服务于真实的人
+            时间与空间的旅行者
+            <br />
+            设计，是创作，是重新理解问题，也是探索世界的一种方式。
           </motion.p>
         </motion.div>
       </section>

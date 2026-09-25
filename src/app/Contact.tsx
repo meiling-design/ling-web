@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "motion/react";
-import { Mail, MessageSquare, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { supabase } from "../lib/supabase";
 
 type FormStatus =
@@ -95,18 +95,12 @@ export function Contact() {
               </div>
 
               <div className="space-y-6 pt-10 border-t border-[#F2F2F2]">
-                <a href="mailto:1350900062@qq.com" className="flex items-center gap-6 group">
+                <a href="mailto:l1350900062@163.com" className="flex items-center gap-6 group">
                   <div className="w-12 h-12 rounded-full border border-[#F2F2F2] flex items-center justify-center group-hover:bg-[#1A1A1A] group-hover:text-white transition-all">
                     <Mail size={20} />
                   </div>
-                  <span className="text-[1.1rem] text-[#1A1A1A] font-medium tracking-wide">1350900062@qq.com</span>
+                  <span className="text-[1.1rem] text-[#1A1A1A] font-medium tracking-wide">l1350900062@163.com</span>
                 </a>
-                <div className="flex items-center gap-6 group">
-                  <div className="w-12 h-12 rounded-full border border-[#F2F2F2] flex items-center justify-center">
-                    <MessageSquare size={20} />
-                  </div>
-                  <span className="text-[1.1rem] text-[#1A1A1A] font-medium tracking-wide">微信 / ling_design</span>
-                </div>
                 <div className="flex items-center gap-6 group">
                   <div className="w-12 h-12 rounded-full border border-[#F2F2F2] flex items-center justify-center">
                     <MapPin size={20} />

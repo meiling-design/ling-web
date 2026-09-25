@@ -132,7 +132,11 @@ export const projectGroups: ProjectGroup[] = [
     id: "product-cases",
     title: "Product Case Studies",
     subtitle: "用户研究 · 产品设计 · 增长策略 · 商业模式",
-    projectIds: ["yimo-vr-platform", "job-matching-ai-agent"],
+    // job-matching-ai-agent（Careerly）暂时隐藏入口：移出 projectIds 后首页卡片不再渲染它，
+    // allProjectIds 也随之不含它（上下页导航一并排除），但 /project/job-matching-ai-agent
+    // 路由仍可直达 —— 详情数据来自 projectDetailData，不依赖分组。
+    // 要恢复显示，把 "job-matching-ai-agent" 加回本数组即可（listingOverrides 里的配置仍在）。
+    projectIds: ["yimo-vr-platform"],
     showDetailTags: false,
   },
   {
