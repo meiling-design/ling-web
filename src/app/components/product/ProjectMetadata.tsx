@@ -14,7 +14,7 @@ interface ProjectMetadataProps {
  */
 export function ProjectMetadata({ project, className = "", hideLocation = false }: ProjectMetadataProps) {
   return (
-    <div className={`grid grid-cols-2 md:grid-cols-${hideLocation ? "3" : "4"} gap-4 ${className}`}>
+    <div className={`grid grid-cols-2 ${hideLocation ? "md:grid-cols-3" : "md:grid-cols-4"} gap-4 ${className}`}>
       <div className="flex flex-col gap-1">
         <span className="text-[0.65rem] font-bold tracking-widest uppercase text-muted-foreground">年份 / YEAR</span>
         <span className="text-foreground whitespace-pre-line">{project.year}</span>

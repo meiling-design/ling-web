@@ -4,7 +4,8 @@ import { motion } from "motion/react";
 import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { Lightbox } from "./components/ui/Lightbox";
-import { BackToHomeLink, ProjectMetadata, JobInsightCase } from "./components/product";
+import { BackToHomeLink, ProjectMetadata } from "./components/product";
+import { CunxiCase } from "./components/product/CunxiCase";
 import { getProjectById, getAllProjectIds, getProjectGroup, groupHasDetailTags } from "../services/projectService";
 import type { ProjectData } from "../services/projectService";
 import { fadeUp } from "../services/animationVariants";
@@ -15,41 +16,7 @@ const allProjectIds = getAllProjectIds();
 
 export function ProjectDetail() {
   const { id } = useParams();
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
   const project = id ? getProjectById(id) : undefined;
-
-  const { currentIndex, prevId, nextId } = useProjectNavigation(
-    id,
-    allProjectIds,
-    { isDisabled: isLightboxOpen },
-  );
-
-  // 判断是否需要用标签取代副标题（除 product-cases 外均显示）
-  const projectGroupId = id ? getProjectGroup(id) : undefined;
-  const showTags = projectGroupId ? groupHasDetailTags(projectGroupId) : false;
-  const tagItems = showTags ? (project?.detailTags ?? []) : [];
-
-  // 摄影板块保持黑白滤镜
-  const isPhotography = project?.category.includes("摄影");
-  // 所有板块统一使用 object-cover 填满容器
-
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const container = scrollRef.current;
-      const firstCard = container.children[0] as HTMLElement | null;
-      if (!firstCard) return;
-      // 每张卡片宽度 + gap-8（32px），确保每次点击完整浏览下一张
-      const cardWidth = firstCard.getBoundingClientRect().width;
-      const scrollAmount = cardWidth + 32;
-      container.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
 
   // Project not found
   if (!project) {
@@ -74,10 +41,49 @@ export function ProjectDetail() {
     return <YimoVRProductDetail project={project} allProjectIds={allProjectIds} id={id} />;
   }
 
-  // 职位匹配 Agent 项目使用 Scroll Story 风格产品案例详情页
-  if (id === "job-matching-ai-agent") {
-    return <JobInsightCase project={project} id={id} />;
+  // 寸隙 CUNXI 使用 10 章品牌产品案例
+  if (id === "cunxi-ai-career-growth") {
+    return <CunxiCase project={project} id={id} allProjectIds={allProjectIds} />;
   }
+
+  return <GenericProjectDetail project={project} id={id!} />;
+}
+
+/** 通用项目详情：图片横向画廊 + sticky 文案栏 + Lightbox */
+function GenericProjectDetail({ project, id }: { project: ProjectData; id: string }) {
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const { currentIndex, prevId, nextId } = useProjectNavigation(
+    id,
+    allProjectIds,
+    { isDisabled: isLightboxOpen },
+  );
+
+  // 判断是否需要用标签取代副标题（除 product-cases 外均显示）
+  const projectGroupId = getProjectGroup(id);
+  const showTags = projectGroupId ? groupHasDetailTags(projectGroupId) : false;
+  const tagItems = showTags ? (project.detailTags ?? []) : [];
+
+  // 摄影板块保持黑白滤镜
+  const isPhotography = project.category.includes("摄影");
+  // 所有板块统一使用 object-cover 填满容器
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      const firstCard = container.children[0] as HTMLElement | null;
+      if (!firstCard) return;
+      // 每张卡片宽度 + gap-8（32px），确保每次点击完整浏览下一张
+      const cardWidth = firstCard.getBoundingClientRect().width;
+      const scrollAmount = cardWidth + 32;
+      container.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <div className="pt-20 min-h-screen bg-white">

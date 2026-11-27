@@ -152,10 +152,4 @@ export const localImages = {
   london11: resolveByFilename("london11.jpg"),
   london12: resolveByFilename("london12.jpg"),
 
-  // Job Matching AI Agent
-  cover01: resolveByFilename("cover01.webp"),
-  jobMatching: resolveByFilename("job-matching.webp"),
-  aiWorkflowDiagram: resolveByFilename("AI Workflow Diagram.webp"),
-  jobmatchingLanggraphWorkflow: resolveByFilename("langgraph-workflow.webp"),
-  jobmatchingInterface: resolveByFilename("jobmatching-interface.webp"),
 };

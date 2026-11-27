@@ -14,7 +14,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-20">
+          <div className="grid grid-cols-2 gap-8 md:gap-20">
             <div className="space-y-4">
               <h3 className="text-[0.75rem] tracking-widest text-[#777] uppercase font-bold">导航</h3>
               <ul className="space-y-2 text-[0.9rem]">

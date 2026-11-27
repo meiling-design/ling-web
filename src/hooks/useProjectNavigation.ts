@@ -32,9 +32,11 @@ export function useProjectNavigation(
     () => (id ? allProjectIds.indexOf(id) : -1),
     [id, allProjectIds],
   );
-  const prevId = currentIndex > 0 ? allProjectIds[currentIndex - 1] : undefined;
+  // 未知 id（currentIndex === -1）时不得回绕到首项
+  const isInNavigation = currentIndex >= 0;
+  const prevId = isInNavigation && currentIndex > 0 ? allProjectIds[currentIndex - 1] : undefined;
   const nextId =
-    currentIndex < allProjectIds.length - 1
+    isInNavigation && currentIndex < allProjectIds.length - 1
       ? allProjectIds[currentIndex + 1]
       : undefined;
 

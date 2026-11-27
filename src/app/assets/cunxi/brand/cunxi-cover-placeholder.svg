@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="寸隙 CUNXI 封面占位">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F5F3EF"/>
+      <stop offset="1" stop-color="#EDEBF4"/>
+    </linearGradient>
+    <radialGradient id="glowBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7D9FEF" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#7D9FEF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowLilac" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#B59AD9" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#B59AD9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <ellipse cx="1180" cy="330" rx="480" ry="360" fill="url(#glowBlue)"/>
+  <ellipse cx="1360" cy="640" rx="420" ry="320" fill="url(#glowLilac)"/>
+
+  <!-- 间隙轨迹 -->
+  <g fill="none" stroke="#252936" stroke-opacity="0.08" stroke-width="1.5">
+    <path d="M760 900 C 900 620, 1040 520, 1240 330 C 1370 208, 1500 170, 1600 150"/>
+    <path d="M820 900 C 950 640, 1090 545, 1280 365 C 1400 250, 1510 215, 1600 200"/>
+    <path d="M890 900 C 1010 665, 1145 575, 1330 405 C 1440 300, 1530 265, 1600 250"/>
+  </g>
+
+  <g font-family="Inter, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <text x="120" y="360" fill="#252936" font-size="96" font-weight="600" letter-spacing="6">寸隙 CUNXI</text>
+    <text x="124" y="430" fill="#5C6070" font-size="30" letter-spacing="4">AI 职业成长产品</text>
+    <line x1="124" y1="480" x2="420" y2="480" stroke="#252936" stroke-opacity="0.25"/>
+    <text x="124" y="526" fill="#7B7F8E" font-size="20" letter-spacing="6">PRODUCT CASE STUDY · 2026</text>
+    <text x="124" y="806" fill="#7B7F8E" font-size="18" letter-spacing="4">ASSET PLACEHOLDER · 待替换</text>
+    <text x="124" y="838" fill="#9A9DAA" font-size="15" letter-spacing="3">1600 × 900 · 放入 cunxi-cover.webp 后自动替换</text>
+  </g>
+</svg>
