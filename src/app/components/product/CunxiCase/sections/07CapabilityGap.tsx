@@ -39,7 +39,7 @@ export function CapabilityGap() {
     <section id="capability-gap" className="cunxi-section">
       <div className="cunxi-shell">
         <SectionHeading
-          index="06"
+          index="07"
           label="把「匹配」拆成可以被阅读的结构"
           enLabel="Capability & Gap"
           lede="一次能力匹配由三部分构成：目标岗位要求、当前职业资产，以及两者之间的关系。寸隙把关系解释清楚，而不是只输出一个总分。"

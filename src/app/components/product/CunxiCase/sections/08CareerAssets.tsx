@@ -20,7 +20,7 @@ export function CareerAssets({ onOpenImage }: CareerAssetsProps) {
     <section id="career-assets" className="cunxi-section">
       <div className="cunxi-shell">
         <SectionHeading
-          index="07"
+          index="08"
           label="职业资产不是一份简历，而是一套可积累的结构"
           enLabel="Career Assets"
           lede="简历是一次性的表达，职业资产是长期复用的底座。寸隙把经历、项目、技能、简历版本与分析结果放在同一套关系里，让每次更新都能被下一次分析继承。"

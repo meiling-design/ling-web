@@ -40,7 +40,7 @@ export function AiEngineering() {
     <section id="ai-engineering" className="cunxi-section">
       <div className="cunxi-shell">
         <SectionHeading
-          index="09"
+          index="10"
           label="从界面到工作流：一条可运行的技术链路"
           enLabel="AI & Engineering"
           lede="寸隙不是一次界面概念。Flutter 客户端、FastAPI 服务、LangGraph 工作流与 SQLite 持久化共同支撑了真实可运行的职业分析流程。"

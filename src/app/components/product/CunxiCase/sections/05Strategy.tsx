@@ -37,12 +37,39 @@ const perspectives = [
   },
 ];
 
+const shifts = [
+  {
+    from: "单次简历匹配",
+    to: "多岗位能力认知",
+    desc: "把「这份简历配不配这个岗位」变成「在几个可能的方向里，我目前更接近哪一条」。",
+    ref: "Insight 03",
+  },
+  {
+    from: "单次分析",
+    to: "持续职业成长",
+    desc: "分析结果按版本保留，让每一次分析成为下一次的起点，而不是一次性结论。",
+    ref: "Insight 05",
+  },
+  {
+    from: "结果分数",
+    to: "可解释的能力差距",
+    desc: "分数只作为入口，优势、Gap 与建议才是用户真正阅读的内容。",
+    ref: "Insight 02",
+  },
+  {
+    from: "零散信息",
+    to: "长期职业资产",
+    desc: "工作经历、项目、技能与简历版本沉淀为同一套可复用的底座。",
+    ref: "Insight 01",
+  },
+];
+
 export function Strategy() {
   return (
     <section id="strategy" className="cunxi-section">
       <div className="cunxi-shell">
         <SectionHeading
-          index="04"
+          index="05"
           label="SEE → UNDERSTAND → ACT → GROW"
           enLabel="Product Strategy"
           lede="产品策略不是把四个功能堆在一起，而是让用户在一个循环里持续前进：先看见，再理解，然后行动，最后把结果沉淀为下一次的起点。"
@@ -76,6 +103,37 @@ export function Strategy() {
                   {item.title}
                 </h3>
                 <p className="cunxi-body">{item.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal>
+          <div className="cunxi-subhead" style={{ marginTop: 64 }}>
+            <h3 className="cunxi-h3">策略回应用户研究的四个转向</h3>
+            <span>Research → Strategy</span>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.04}>
+          <p className="cunxi-body" style={{ maxWidth: 760 }}>
+            策略不是从功能清单出发，而是逐条回应用户研究中的洞察：
+          </p>
+        </Reveal>
+
+        <div className="cunxi-shifts">
+          {shifts.map((shift, index) => (
+            <Reveal key={shift.to} delay={0.04 * index}>
+              <div className="cunxi-shift">
+                <span className="cunxi-shift-from">{shift.from}</span>
+                <span className="cunxi-shift-arrow" aria-hidden="true">
+                  →
+                </span>
+                <div className="cunxi-shift-to">
+                  <strong>{shift.to}</strong>
+                  <p>{shift.desc}</p>
+                </div>
+                <span className="cunxi-shift-ref">{shift.ref}</span>
               </div>
             </Reveal>
           ))}

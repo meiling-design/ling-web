@@ -39,7 +39,7 @@ export function Reflection() {
     <section id="reflection" className="cunxi-section">
       <div className="cunxi-shell">
         <SectionHeading
-          index="10"
+          index="11"
           label="在寸隙之间，留下可持续的成长"
           enLabel="Reflection"
         />

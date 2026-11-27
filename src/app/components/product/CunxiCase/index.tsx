@@ -11,13 +11,14 @@ import { CaseFooterNav } from "./components/CaseFooterNav";
 import { BrandHero } from "./sections/01BrandHero";
 import { Overview } from "./sections/02Overview";
 import { Problem } from "./sections/03Problem";
-import { Strategy } from "./sections/04Strategy";
-import { CoreExperience } from "./sections/05CoreExperience";
-import { CapabilityGap } from "./sections/06CapabilityGap";
-import { CareerAssets } from "./sections/07CareerAssets";
-import { BrandSystem } from "./sections/08BrandSystem";
-import { AiEngineering } from "./sections/09AiEngineering";
-import { Reflection } from "./sections/10Reflection";
+import { UserResearch } from "./sections/04UserResearch";
+import { Strategy } from "./sections/05Strategy";
+import { CoreExperience } from "./sections/06CoreExperience";
+import { CapabilityGap } from "./sections/07CapabilityGap";
+import { CareerAssets } from "./sections/08CareerAssets";
+import { BrandSystem } from "./sections/09BrandSystem";
+import { AiEngineering } from "./sections/10AiEngineering";
+import { Reflection } from "./sections/11Reflection";
 import "./cunxi-case.css";
 
 interface CunxiCaseProps {
@@ -96,6 +97,7 @@ export function CunxiCase({ project, id, allProjectIds }: CunxiCaseProps) {
       <BrandHero />
       <Overview />
       <Problem />
+      <UserResearch />
       <Strategy />
       <CoreExperience onOpenImage={openImage} />
       <CapabilityGap />

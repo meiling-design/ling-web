@@ -1420,3 +1420,646 @@
 .cunxi-flow > *:last-child .cunxi-flow-node::after {
   display: none;
 }
+
+/* ============================================================
+   04 User Research / 用户研究
+   ============================================================ */
+
+.cunxi-h2-en--sub {
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  line-height: 1.7;
+}
+
+.cunxi-subhead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--cx-line-soft);
+}
+
+.cunxi-subhead .cunxi-h3 {
+  margin: 0;
+  font-size: 1.22rem;
+}
+
+.cunxi-subhead > span {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cx-faint);
+  white-space: nowrap;
+}
+
+/* --- 4.1 用户细分 --- */
+
+.cunxi-segments {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px 28px;
+  margin-top: 28px;
+}
+
+.cunxi-segment {
+  padding: 20px 6px 4px 0;
+  border-top: 2px solid var(--cx-line);
+}
+
+.cunxi-segment-letter {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.cunxi-segment-title {
+  margin: 8px 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cx-ink);
+}
+
+.cunxi-segment-stage {
+  margin: 4px 0 16px;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--cx-faint);
+}
+
+.cunxi-segment-field + .cunxi-segment-field {
+  margin-top: 14px;
+}
+
+.cunxi-segment-field > span {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cx-faint);
+}
+
+.cunxi-segment-field p {
+  margin: 6px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--cx-muted);
+}
+
+/* --- 4.2 用户画像 --- */
+
+.cunxi-persona {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 36px;
+  margin-top: 28px;
+  padding: 32px;
+  border: 1px solid var(--cx-line);
+  border-radius: var(--cx-radius);
+  background: var(--cx-card);
+}
+
+.cunxi-persona--secondary {
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 28px;
+  padding: 24px 28px;
+  border-color: var(--cx-line-soft);
+  background: transparent;
+}
+
+.cunxi-persona-portrait {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cunxi-persona-avatar {
+  overflow: hidden;
+  margin-bottom: 8px;
+  border-radius: 20px;
+}
+
+.cunxi-persona-avatar svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cunxi-persona-portrait strong {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cx-ink);
+}
+
+.cunxi-persona--secondary .cunxi-persona-portrait strong {
+  font-size: 0.95rem;
+}
+
+.cunxi-persona-portrait > span {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cx-faint);
+}
+
+.cunxi-persona--secondary .cunxi-persona-portrait > span:not(.cunxi-persona-flag) {
+  font-size: 0.56rem;
+  letter-spacing: 0.12em;
+}
+
+.cunxi-persona-portrait > .cunxi-persona-flag {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 6px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(125, 159, 239, 0.12);
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  word-break: keep-all;
+  color: #50669e;
+}
+
+.cunxi-persona-portrait > .cunxi-persona-flag--soft {
+  margin-top: 4px;
+  background: rgba(215, 209, 200, 0.38);
+  color: #7c766c;
+}
+
+.cunxi-persona-portrait > .cunxi-persona-flag--stack {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.cunxi-persona-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cunxi-persona-facts span {
+  padding: 5px 11px;
+  border: 1px solid var(--cx-line);
+  border-radius: 999px;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--cx-muted);
+}
+
+.cunxi-persona-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 32px;
+  margin-top: 22px;
+}
+
+.cunxi-persona-block h4 {
+  margin: 0 0 8px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cx-faint);
+}
+
+.cunxi-persona-block .cunxi-list li {
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.cunxi-persona--secondary .cunxi-persona-block .cunxi-list li {
+  font-size: 0.77rem;
+}
+
+/* --- 4.3 用户需求与行为 --- */
+
+.cunxi-needs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 28px;
+}
+
+.cunxi-need-stage {
+  position: relative;
+  padding: 22px 22px 4px 0;
+  border-top: 1px solid var(--cx-line);
+}
+
+.cunxi-need-stage::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cx-blue);
+}
+
+.cunxi-need-index {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--cx-faint);
+}
+
+.cunxi-need-title {
+  margin: 8px 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cx-ink);
+}
+
+.cunxi-need-en {
+  margin: 4px 0 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cx-faint);
+}
+
+.cunxi-need-list {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cunxi-need-list li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--cx-muted);
+}
+
+.cunxi-need-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.58em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cx-lilac);
+}
+
+/* --- 4.4 核心洞察 --- */
+
+.cunxi-insights {
+  margin-top: 20px;
+  border-top: 1px solid var(--cx-line-soft);
+}
+
+.cunxi-insight {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr) 260px;
+  gap: 28px;
+  align-items: start;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--cx-line-soft);
+}
+
+.cunxi-insight-index {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cx-faint);
+}
+
+.cunxi-insight-title {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cx-ink);
+}
+
+.cunxi-insight-response {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  justify-self: end;
+  padding-left: 18px;
+  border-left: 1px solid var(--cx-line);
+}
+
+.cunxi-insight-response span {
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cx-faint);
+}
+
+.cunxi-insight-response strong {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #50669e;
+}
+
+/* --- 需求 → 洞察 → 功能映射 --- */
+
+.cunxi-needmap {
+  margin-top: 24px;
+  border-top: 1px solid var(--cx-line);
+}
+
+.cunxi-needmap-head,
+.cunxi-needmap-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr) 34px minmax(0, 1fr);
+  align-items: center;
+}
+
+.cunxi-needmap-head {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--cx-line-soft);
+}
+
+.cunxi-needmap-head span {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cx-faint);
+}
+
+.cunxi-needmap-row {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--cx-line-soft);
+}
+
+.cunxi-needmap-cell strong {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--cx-ink);
+}
+
+.cunxi-needmap-cell--insight strong {
+  font-weight: 500;
+  color: var(--cx-muted);
+}
+
+.cunxi-needmap-cell--feature strong {
+  color: #50669e;
+}
+
+.cunxi-needmap-label {
+  display: none;
+  margin-bottom: 4px;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cx-faint);
+}
+
+.cunxi-needmap-arrow {
+  text-align: center;
+  color: var(--cx-blue);
+}
+
+/* --- 03 Problem：证据层级 --- */
+
+.cunxi-evidence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 44px;
+}
+
+.cunxi-evidence-item {
+  padding: 22px;
+  border: 1px solid var(--cx-line);
+  border-radius: var(--cx-radius-sm);
+  background: var(--cx-card);
+}
+
+.cunxi-evidence-item > span {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cx-faint);
+}
+
+.cunxi-evidence-item strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--cx-ink);
+}
+
+.cunxi-evidence-item p {
+  margin: 8px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.7;
+  color: var(--cx-muted);
+}
+
+/* --- 05 Strategy：策略转向 --- */
+
+.cunxi-shifts {
+  margin-top: 20px;
+  border-top: 1px solid var(--cx-line);
+}
+
+.cunxi-shift {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) 34px minmax(0, 1.3fr) 96px;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--cx-line-soft);
+}
+
+.cunxi-shift-from {
+  font-size: 0.8rem;
+  color: var(--cx-faint);
+  text-decoration: line-through;
+  text-decoration-color: rgba(37, 41, 54, 0.2);
+}
+
+.cunxi-shift-arrow {
+  text-align: center;
+  color: var(--cx-blue);
+}
+
+.cunxi-shift-to strong {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cx-ink);
+}
+
+.cunxi-shift-to p {
+  margin: 4px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.65;
+  color: var(--cx-muted);
+}
+
+.cunxi-shift-ref {
+  justify-self: end;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cx-faint);
+}
+
+/* --- 06 Core experience：典型任务流程 --- */
+
+.cunxi-taskflow {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--cx-line);
+}
+
+.cunxi-task-step {
+  position: relative;
+  padding-right: 14px;
+}
+
+.cunxi-task-step::before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cx-blue);
+  opacity: 0.75;
+}
+
+.cunxi-task-step span {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  color: var(--cx-faint);
+}
+
+.cunxi-task-step p {
+  margin: 6px 0 0;
+  font-size: 0.74rem;
+  line-height: 1.55;
+  color: var(--cx-ink);
+}
+
+/* --- 新增章节的响应式 --- */
+
+@media (max-width: 1100px) {
+  .cunxi-segments {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cunxi-taskflow {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px 0;
+  }
+}
+
+@media (max-width: 820px) {
+  .cunxi-subhead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 52px;
+  }
+
+  .cunxi-persona,
+  .cunxi-persona--secondary {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .cunxi-persona-portrait {
+    max-width: 220px;
+  }
+
+  .cunxi-persona--secondary .cunxi-persona-portrait {
+    max-width: 180px;
+  }
+
+  .cunxi-needs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 0;
+  }
+
+  .cunxi-insight {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .cunxi-insight-response {
+    justify-self: start;
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .cunxi-needmap-head {
+    display: none;
+  }
+
+  .cunxi-needmap {
+    margin-top: 18px;
+    border-top: 0;
+  }
+
+  .cunxi-needmap-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 18px 0;
+  }
+
+  .cunxi-needmap-arrow {
+    text-align: left;
+    transform: rotate(90deg);
+    width: 12px;
+  }
+
+  .cunxi-needmap-label {
+    display: block;
+  }
+
+  .cunxi-evidence {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cunxi-shift {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .cunxi-shift-arrow {
+    text-align: left;
+    transform: rotate(90deg);
+    width: 12px;
+  }
+
+  .cunxi-shift-ref {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 540px) {
+  .cunxi-segments,
+  .cunxi-needs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cunxi-taskflow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cunxi-persona {
+    padding: 24px 22px;
+  }
+
+  .cunxi-persona-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+}

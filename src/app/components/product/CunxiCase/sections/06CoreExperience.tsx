@@ -52,16 +52,51 @@ const screens = [
   },
 ];
 
+const taskFlow = [
+  "上传简历",
+  "添加多个目标岗位",
+  "获取匹配结果与排序",
+  "查看匹配详情",
+  "发现能力 Gap",
+  "AI 对话理解提升方向",
+  "更新职业资产",
+  "历史分析追踪变化",
+];
+
 export function CoreExperience({ onOpenImage }: CoreExperienceProps) {
   return (
     <section id="core-experience" className="cunxi-section">
       <div className="cunxi-shell">
         <SectionHeading
-          index="05"
+          index="06"
           label="四个页面，一条连续的成长路径"
           enLabel="Core Experience"
           lede="四个一级页面不是四个孤立工具，而是同一条路径上的四个位置：先看见资产，再理解匹配，然后进入对话，最后把结果留在成长记录里。"
         />
+
+        <Reveal delay={0.06}>
+          <p className="cunxi-eyebrow" style={{ marginTop: 40 }}>
+            典型任务流程 / End-to-end Task Flow
+          </p>
+        </Reveal>
+
+        <div className="cunxi-taskflow">
+          {taskFlow.map((step, index) => (
+            <Reveal key={step} delay={0.03 * index}>
+              <div className="cunxi-task-step">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <p>{step}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={0.06}>
+          <p className="cunxi-small" style={{ marginTop: 14 }}>
+            整个流程共用同一份职业资产：更新简历或资产后，下一次分析会基于新版本重新计算，
+            历史结果仍然保留。
+          </p>
+        </Reveal>
 
         <div className="cunxi-screens">
           {screens.map((screen, index) => {

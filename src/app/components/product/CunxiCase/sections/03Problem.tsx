@@ -71,11 +71,44 @@ export function Problem() {
           ))}
         </div>
 
+        <div className="cunxi-evidence">
+          <Reveal delay={0.04}>
+            <div className="cunxi-evidence-item">
+              <span>01 · 设计假设</span>
+              <strong>产品定义阶段的问题推演</strong>
+              <p>
+                上面四组问题来自对职业成长流程的推演，被整理为「问题 → 机会」的工作假设，
+                用于指导功能取舍；这是本章的主要依据。
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="cunxi-evidence-item">
+              <span>02 · 产品回应</span>
+              <strong>已经在产品中实现的解决方案</strong>
+              <p>
+                职业资产、多岗位分析、匹配原因与 Gap、AI 对话等能力已经存在，
+                可以被用来检验上述假设是否被回应，而不是停留在概念层。
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <div className="cunxi-evidence-item">
+              <span>03 · 外部反馈</span>
+              <strong>少量、尚未结构化的体验反馈</strong>
+              <p>
+                目前只有零散的非正式反馈；尚未开展访谈、问卷或可用性测试，
+                因此不将其作为研究证据，也不写入任何比例或满意度数据。
+              </p>
+            </div>
+          </Reveal>
+        </div>
+
         <Reveal delay={0.1}>
-          <div className="cunxi-note cunxi-note--soft" style={{ marginTop: 36 }}>
+          <div className="cunxi-note cunxi-note--soft" style={{ marginTop: 32 }}>
             <span>
-              以上四组问题来自产品定义阶段的推演，被整理为「问题 → 机会」的工作假设，
-              用于指导功能取舍；不代表已经完成的用户研究结论。
+              三种证据分开标注：设计推演、已实现的功能回应、有限的外部反馈。
+              问题定义仍然是待验证的工作假设，而不是正式用户调研结论。
             </span>
           </div>
         </Reveal>

@@ -41,7 +41,7 @@ export function ProjectDetail() {
     return <YimoVRProductDetail project={project} allProjectIds={allProjectIds} id={id} />;
   }
 
-  // 寸隙 CUNXI 使用 10 章品牌产品案例
+  // 寸隙 CUNXI 使用 11 章品牌产品案例
   if (id === "cunxi-ai-career-growth") {
     return <CunxiCase project={project} id={id} allProjectIds={allProjectIds} />;
   }

@@ -29,7 +29,7 @@ export function BrandSystem({ onOpenImage }: BrandSystemProps) {
     <section id="brand-system" className="cunxi-section">
       <div className="cunxi-shell">
         <SectionHeading
-          index="08"
+          index="09"
           label="冷纸、蓝紫与一道光缝"
           enLabel="Brand System"
           lede="寸隙的品牌识别刻意与遗墨的暖纸红金区分：冷纸作为底，蓝紫作为光，所有视觉都围绕「边界之间留出的一寸空间」展开。"
