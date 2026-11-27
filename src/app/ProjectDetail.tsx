@@ -1,11 +1,14 @@
 import { useState, useRef, useMemo, type KeyboardEvent, type ReactNode } from "react";
 import { useParams, Link } from "react-router";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { Lightbox } from "./components/ui/Lightbox";
 import { BackToHomeLink, ProjectMetadata } from "./components/product";
 import { CunxiCase } from "./components/product/CunxiCase";
+import { CaseChapterNav } from "./components/product/CaseChapterNav";
+import type { CaseChapter } from "./components/product/CaseChapterNav";
+import { scrollToCaseChapter, useActiveChapter } from "./components/product/useActiveChapter";
 import { getProjectById, getAllProjectIds, getProjectGroup, groupHasDetailTags } from "../services/projectService";
 import type { ProjectData } from "../services/projectService";
 import { fadeUp } from "../services/animationVariants";
@@ -334,12 +337,13 @@ function SectionDivider({ label }: { label?: string }) {
 }
 
 /* ---------- ChapterHeader —— 大章节标题 ---------- */
-function ChapterHeader({ number, title, enTitle, expanded, onToggle }: {
+function ChapterHeader({ number, title, enTitle, expanded, onToggle, id }: {
   number: number;
   title: string;
   enTitle: string;
   expanded?: boolean;
   onToggle?: () => void;
+  id?: string;
 }) {
   const handleKeyDown = onToggle ? (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -350,12 +354,13 @@ function ChapterHeader({ number, title, enTitle, expanded, onToggle }: {
 
   return (
     <div
+      id={id}
       onClick={onToggle}
       onKeyDown={handleKeyDown}
       role={onToggle ? "button" : undefined}
       tabIndex={onToggle ? 0 : undefined}
       aria-expanded={onToggle ? expanded : undefined}
-      className={`px-6 pt-10 pb-0 md:pt-14 ${onToggle ? "cursor-pointer select-none group" : ""}`}
+      className={`case-chapter-anchor px-6 pt-10 pb-0 md:pt-14 ${onToggle ? "cursor-pointer select-none group" : ""}`}
     >
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between">
@@ -2183,6 +2188,17 @@ function ChapterTransition({ children }: { children: React.ReactNode }) {
 
 // ---------- 主组件 ----------
 
+const YIMO_CHAPTERS: CaseChapter[] = [
+  { id: "yimo-overview", index: "01", label: "项目概述", enLabel: "Project Overview" },
+  { id: "yimo-discovery", index: "02", label: "产品机会分析", enLabel: "Product Discovery" },
+  { id: "yimo-research", index: "03", label: "用户研究", enLabel: "User Research" },
+  { id: "yimo-design", index: "04", label: "产品设计", enLabel: "Product Design" },
+  { id: "yimo-features", index: "05", label: "产品功能设计", enLabel: "Product Features" },
+  { id: "yimo-business", index: "06", label: "商业模式与运营", enLabel: "Business & Growth" },
+  { id: "yimo-future", index: "07", label: "产品规划", enLabel: "Future" },
+  { id: "yimo-reflection", index: "08", label: "项目总结", enLabel: "Reflection" },
+];
+
 function YimoVRProductDetail({
   project,
   allProjectIds,
@@ -2192,10 +2208,16 @@ function YimoVRProductDetail({
   allProjectIds: string[];
   id: string;
 }) {
+  const reduceMotion = useReducedMotion();
+  const activeChapterId = useActiveChapter(YIMO_CHAPTERS);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [isVrLightboxOpen, setIsVrLightboxOpen] = useState(false);
   const [vrLightboxIndex, setVrLightboxIndex] = useState(0);
+
+  const navigateToChapter = (chapterId: string) => {
+    scrollToCaseChapter(chapterId, Boolean(reduceMotion));
+  };
 
   const vrImages = useMemo(() => [localImages.vrExperience2, localImages.vrUgcDesign, localImages.vrCommunity], []);
 
@@ -2219,6 +2241,14 @@ function YimoVRProductDetail({
 
       {/* ===== 固定返回按钮 ===== */}
       <BackToHomeLink />
+
+      {/* ===== 章节快速导航（与寸隙一致） ===== */}
+      <CaseChapterNav
+        chapters={YIMO_CHAPTERS}
+        activeId={activeChapterId}
+        onNavigate={navigateToChapter}
+        ariaLabel="遗墨案例章节导航"
+      />
 
       {/*
         ════════════════════════════════════════════════════════════
@@ -2273,7 +2303,7 @@ function YimoVRProductDetail({
         Chapter 1 项目概述 / Project Overview
         ════════════════════════════════════════════════════════════
       */}
-      <ChapterHeader number={1} title="项目概述" enTitle="Project Overview" expanded={expandedChapters[1]} onToggle={() => toggleChapter(1)} />
+      <ChapterHeader id="yimo-overview" number={1} title="项目概述" enTitle="Project Overview" expanded={expandedChapters[1]} onToggle={() => toggleChapter(1)} />
 
       <CollapsibleContent expanded={expandedChapters[1]}>
         {/*
@@ -2299,7 +2329,7 @@ function YimoVRProductDetail({
         Chapter 2 产品机会分析 / Product Discovery
         ════════════════════════════════════════════════════════════
       */}
-      <ChapterHeader number={2} title="产品机会分析" enTitle="Product Discovery" expanded={expandedChapters[2]} onToggle={() => toggleChapter(2)} />
+      <ChapterHeader id="yimo-discovery" number={2} title="产品机会分析" enTitle="Product Discovery" expanded={expandedChapters[2]} onToggle={() => toggleChapter(2)} />
 
       <CollapsibleContent expanded={expandedChapters[2]}>
 
@@ -2348,7 +2378,7 @@ function YimoVRProductDetail({
         Chapter 3 用户研究 / User Research
         ════════════════════════════════════════════════════════════
       */}
-      <ChapterHeader number={3} title="用户研究" enTitle="User Research" expanded={expandedChapters[3]} onToggle={() => toggleChapter(3)} />
+      <ChapterHeader id="yimo-research" number={3} title="用户研究" enTitle="User Research" expanded={expandedChapters[3]} onToggle={() => toggleChapter(3)} />
 
       <CollapsibleContent expanded={expandedChapters[3]}>
 
@@ -2375,7 +2405,7 @@ function YimoVRProductDetail({
         Chapter 4 产品设计 / Product Design
         ════════════════════════════════════════════════════════════
       */}
-      <ChapterHeader number={4} title="产品设计" enTitle="Product Design" expanded={expandedChapters[4]} onToggle={() => toggleChapter(4)} />
+      <ChapterHeader id="yimo-design" number={4} title="产品设计" enTitle="Product Design" expanded={expandedChapters[4]} onToggle={() => toggleChapter(4)} />
 
       <CollapsibleContent expanded={expandedChapters[4]}>
 
@@ -2416,7 +2446,7 @@ function YimoVRProductDetail({
         Chapter 5 产品功能设计 / Product Features
         ════════════════════════════════════════════════════════════
       */}
-      <ChapterHeader number={5} title="产品功能设计" enTitle="Product Features" expanded={expandedChapters[5]} onToggle={() => toggleChapter(5)} />
+      <ChapterHeader id="yimo-features" number={5} title="产品功能设计" enTitle="Product Features" expanded={expandedChapters[5]} onToggle={() => toggleChapter(5)} />
 
       <CollapsibleContent expanded={expandedChapters[5]}>
 
@@ -2457,7 +2487,7 @@ function YimoVRProductDetail({
         Chapter 6 商业模式与运营 / Business & Growth
         ════════════════════════════════════════════════════════════
       */}
-      <ChapterHeader number={6} title="商业模式与运营" enTitle="Business & Growth" expanded={expandedChapters[6]} onToggle={() => toggleChapter(6)} />
+      <ChapterHeader id="yimo-business" number={6} title="商业模式与运营" enTitle="Business & Growth" expanded={expandedChapters[6]} onToggle={() => toggleChapter(6)} />
 
       <CollapsibleContent expanded={expandedChapters[6]}>
 
@@ -2498,7 +2528,7 @@ function YimoVRProductDetail({
         Chapter 7 产品规划 / Future
         ════════════════════════════════════════════════════════════
       */}
-      <ChapterHeader number={7} title="产品规划" enTitle="Future" expanded={expandedChapters[7]} onToggle={() => toggleChapter(7)} />
+      <ChapterHeader id="yimo-future" number={7} title="产品规划" enTitle="Future" expanded={expandedChapters[7]} onToggle={() => toggleChapter(7)} />
 
       <CollapsibleContent expanded={expandedChapters[7]}>
 
@@ -2532,7 +2562,7 @@ function YimoVRProductDetail({
         Chapter 8 项目总结 / Reflection
         ════════════════════════════════════════════════════════════
       */}
-      <ChapterHeader number={8} title="项目总结" enTitle="Reflection" expanded={expandedChapters[8]} onToggle={() => toggleChapter(8)} />
+      <ChapterHeader id="yimo-reflection" number={8} title="项目总结" enTitle="Reflection" expanded={expandedChapters[8]} onToggle={() => toggleChapter(8)} />
 
       <CollapsibleContent expanded={expandedChapters[8]}>
 

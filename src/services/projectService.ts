@@ -133,7 +133,11 @@ export const projectGroups: ProjectGroup[] = [
     id: "product-cases",
     title: "Product Case Studies",
     subtitle: "产品设计 / 用户体验 · 技术探索",
-    projectIds: ["yimo-vr-platform", "cunxi-ai-career-growth"],
+    // 寸隙（cunxi-ai-career-growth）暂时不显示首页入口：移出 projectIds 后首页卡片不渲染，
+    // allProjectIds 也随之不含它（上下页导航一并排除），但 /project/cunxi-ai-career-growth
+    // 仍可直达 —— 详情数据来自 projectDetailData，不依赖分组。
+    // 恢复显示时把 "cunxi-ai-career-growth" 加回本数组即可（listingOverrides 配置仍保留）。
+    projectIds: ["yimo-vr-platform"],
     showDetailTags: false,
   },
   {

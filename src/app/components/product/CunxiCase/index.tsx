@@ -6,7 +6,8 @@ import { BackToHomeLink } from "../BackToHomeLink";
 import { Lightbox } from "../../ui/Lightbox";
 import { cunxiAssets } from "../../../cunxiAssets";
 import { CUNXI_CHAPTERS } from "./chapters";
-import { ChapterNav } from "./components/ChapterNav";
+import { CaseChapterNav } from "../CaseChapterNav";
+import { scrollToCaseChapter, useActiveChapter } from "../useActiveChapter";
 import { CaseFooterNav } from "./components/CaseFooterNav";
 import { BrandHero } from "./sections/01BrandHero";
 import { Overview } from "./sections/02Overview";
@@ -29,7 +30,7 @@ interface CunxiCaseProps {
 
 export function CunxiCase({ project, id, allProjectIds }: CunxiCaseProps) {
   const reduce = useReducedMotion();
-  const [activeId, setActiveId] = useState(CUNXI_CHAPTERS[0].id);
+  const activeId = useActiveChapter(CUNXI_CHAPTERS);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -41,26 +42,6 @@ export function CunxiCase({ project, id, allProjectIds }: CunxiCaseProps) {
   const gallery = useMemo(() => {
     const screens = Object.values(cunxiAssets.screens);
     return [...screens, cunxiAssets.ip.nebula].filter((value): value is string => Boolean(value));
-  }, []);
-
-  // 章节高亮
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActiveId(visible.target.id);
-      },
-      { rootMargin: "-32% 0px -55% 0px", threshold: [0, 0.2, 0.5, 1] },
-    );
-
-    for (const chapter of CUNXI_CHAPTERS) {
-      const element = document.getElementById(chapter.id);
-      if (element) observer.observe(element);
-    }
-
-    return () => observer.disconnect();
   }, []);
 
   // DEV 断言：章节数量与 DOM 必须一致
@@ -75,11 +56,7 @@ export function CunxiCase({ project, id, allProjectIds }: CunxiCaseProps) {
   }, []);
 
   const navigateToChapter = (chapterId: string) => {
-    const element = document.getElementById(chapterId);
-    element?.scrollIntoView({
-      behavior: reduce ? "auto" : "smooth",
-      block: "start",
-    });
+    scrollToCaseChapter(chapterId, Boolean(reduce));
   };
 
   const openImage = (src: string) => {
@@ -92,7 +69,12 @@ export function CunxiCase({ project, id, allProjectIds }: CunxiCaseProps) {
   return (
     <div className="cunxi-case">
       <BackToHomeLink />
-      <ChapterNav activeId={activeId} onNavigate={navigateToChapter} />
+      <CaseChapterNav
+        chapters={CUNXI_CHAPTERS}
+        activeId={activeId}
+        onNavigate={navigateToChapter}
+        ariaLabel="寸隙案例章节导航"
+      />
 
       <BrandHero />
       <Overview />

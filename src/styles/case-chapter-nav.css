@@ -1,0 +1,161 @@
+/* ============================================================
+   案例详情页通用章节导航（寸隙 CUNXI / 遗墨 YIMO 共用）
+   颜色通过 --cn-* 变量由页面覆盖，布局与交互保持一致
+   ============================================================ */
+
+.case-chapter-nav,
+.case-nav-mobile {
+  --cn-ink: #252936;
+  --cn-faint: #989ba7;
+  --cn-line: rgba(37, 41, 54, 0.12);
+  --cn-accent: #7d9fef;
+  --cn-panel: rgba(251, 250, 248, 0.97);
+  --cn-shadow: 0 24px 60px rgba(37, 41, 54, 0.2);
+}
+
+/* 寸隙：沿用 --cx-* 设计 token */
+.cunxi-case .case-chapter-nav,
+.cunxi-case .case-nav-mobile {
+  --cn-ink: var(--cx-ink);
+  --cn-faint: var(--cx-faint);
+  --cn-line: var(--cx-line);
+  --cn-accent: var(--cx-blue);
+  --cn-panel: rgba(251, 250, 248, 0.97);
+  --cn-shadow: 0 24px 60px rgba(37, 41, 54, 0.2);
+}
+
+/* 遗墨：暖纸底 + 赭金强调 */
+.yimo-case .case-chapter-nav,
+.yimo-case .case-nav-mobile {
+  --cn-ink: #1c1c1c;
+  --cn-faint: #9b9386;
+  --cn-line: rgba(28, 28, 28, 0.14);
+  --cn-accent: #c9a227;
+  --cn-panel: rgba(255, 252, 246, 0.97);
+  --cn-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
+}
+
+/* ---------- 桌面 ---------- */
+
+.case-chapter-nav {
+  display: none;
+}
+
+.case-chapter-item {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  width: 100%;
+  padding: 7px 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--cn-faint);
+  transition: color 0.2s ease;
+}
+
+.case-chapter-item span {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: inherit;
+  opacity: 0.7;
+}
+
+.case-chapter-item em {
+  position: relative;
+  font-style: normal;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+
+.case-chapter-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  width: 0;
+  height: 1px;
+  background: var(--cn-accent);
+  transition: width 0.3s ease;
+}
+
+.case-chapter-item:hover,
+.case-chapter-item.is-active {
+  color: var(--cn-ink);
+}
+
+.case-chapter-item.is-active::after {
+  width: 18px;
+}
+
+@media (min-width: 1440px) {
+  .case-chapter-nav {
+    position: fixed;
+    top: 50%;
+    left: 24px;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    width: 128px;
+    transform: translateY(-50%);
+  }
+}
+
+/* ---------- 移动 / 窄屏 ---------- */
+
+.case-nav-mobile {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 50;
+}
+
+.case-nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border: 1px solid var(--cn-line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(37, 41, 54, 0.16);
+  backdrop-filter: blur(10px);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--cn-ink);
+  cursor: pointer;
+}
+
+.case-nav-panel {
+  position: absolute;
+  right: 0;
+  bottom: 56px;
+  width: 236px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 12px;
+  border: 1px solid var(--cn-line);
+  border-radius: 16px;
+  background: var(--cn-panel);
+  box-shadow: var(--cn-shadow);
+  backdrop-filter: blur(14px);
+}
+
+.case-nav-panel .case-chapter-item {
+  padding: 9px 8px;
+}
+
+@media (min-width: 1440px) {
+  .case-nav-mobile {
+    display: none;
+  }
+}
+
+/* 章节锚点：避开固定站点导航 */
+.case-chapter-anchor {
+  scroll-margin-top: 96px;
+}
